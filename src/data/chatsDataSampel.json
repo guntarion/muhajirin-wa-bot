@@ -1,0 +1,1249 @@
+
+  {
+    "id": {
+      "server": "c.us",
+      "user": "62811334932",
+      "_serialized": "62811334932@c.us"
+    },
+    "name": "Guntar",
+    "isGroup": false,
+    "isReadOnly": false,
+    "unreadCount": 0,
+    "timestamp": 1714487225,
+    "archived": false,
+    "pinned": false,
+    "muteExpiration": 0,
+    "lastMessage": {
+      "_data": {
+        "id": {
+          "fromMe": true,
+          "remote": "62811334932@c.us",
+          "id": "3EB0D398881DB74192A724",
+          "self": "out",
+          "_serialized": "true_62811334932@c.us_3EB0D398881DB74192A724_out"
+        },
+        "rowId": 1000000127,
+        "viewed": false,
+        "body": "hallo this is WA Bot on 1 Mei",
+        "type": "chat",
+        "t": 1714487225,
+        "from": {
+          "server": "c.us",
+          "user": "62811334932",
+          "_serialized": "62811334932@c.us"
+        },
+        "to": {
+          "server": "c.us",
+          "user": "62811334932",
+          "_serialized": "62811334932@c.us"
+        },
+        "ack": 3,
+        "invis": true,
+        "star": false,
+        "kicNotified": false,
+        "isFromTemplate": false,
+        "rcat": null,
+        "pollOptions": [],
+        "pollInvalidated": false,
+        "latestEditMsgKey": null,
+        "latestEditSenderTimestampMs": null,
+        "mentionedJidList": [],
+        "groupMentions": [],
+        "eventInvalidated": false,
+        "isVcardOverMmsDocument": false,
+        "isForwarded": false,
+        "hasReaction": false,
+        "disappearingModeInitiator": "chat",
+        "disappearingModeTrigger": "chat_settings",
+        "productHeaderImageRejected": false,
+        "lastPlaybackProgress": 0,
+        "isDynamicReplyButtonsMsg": false,
+        "isCarouselCard": false,
+        "parentMsgId": null,
+        "isMdHistoryMsg": false,
+        "stickerSentTs": 0,
+        "isAvatar": false,
+        "lastUpdateFromServerTs": 0,
+        "invokedBotWid": null,
+        "bizBotType": null,
+        "botPluginType": null,
+        "botReelPluginThumbnailCdnUrl": null,
+        "botMsgBodyType": null,
+        "requiresDirectConnection": false,
+        "bizContentPlaceholderType": null,
+        "hostedBizEncStateMismatch": false,
+        "senderOrRecipientAccountTypeHosted": false,
+        "placeholderCreatedWhenAccountIsHosted": false,
+        "links": []
+      },
+      "id": {
+        "fromMe": true,
+        "remote": "62811334932@c.us",
+        "id": "3EB0D398881DB74192A724",
+        "self": "out",
+        "_serialized": "true_62811334932@c.us_3EB0D398881DB74192A724_out"
+      },
+      "ack": 3,
+      "hasMedia": false,
+      "body": "hallo this is WA Bot on 1 Mei",
+      "type": "chat",
+      "timestamp": 1714487225,
+      "from": "62811334932@c.us",
+      "to": "62811334932@c.us",
+      "deviceType": "android",
+      "isForwarded": false,
+      "forwardingScore": 0,
+      "isStatus": false,
+      "isStarred": false,
+      "fromMe": true,
+      "hasQuotedMsg": false,
+      "hasReaction": false,
+      "vCards": [],
+      "mentionedIds": [],
+      "groupMentions": [],
+      "isGif": false,
+      "links": []
+    }
+  },
+  {
+    "id": {
+      "server": "c.us",
+      "user": "2817309143",
+      "_serialized": "2817309143@c.us"
+    },
+    "name": "+281 7309143",
+    "isGroup": false,
+    "isReadOnly": false,
+    "unreadCount": 0,
+    "timestamp": 1714487148,
+    "pinned": false,
+    "muteExpiration": 0,
+    "lastMessage": {
+      "_data": {
+        "id": {
+          "fromMe": true,
+          "remote": "2817309143@c.us",
+          "id": "3EB02E8B470D327F35E4D2",
+          "_serialized": "true_2817309143@c.us_3EB02E8B470D327F35E4D2"
+        },
+        "rowId": 1000000124,
+        "viewed": false,
+        "body": "hallo this is WA Bot on 1 Mei",
+        "type": "chat",
+        "t": 1714487148,
+        "from": {
+          "server": "c.us",
+          "user": "62811334932",
+          "_serialized": "62811334932@c.us"
+        },
+        "to": {
+          "server": "c.us",
+          "user": "2817309143",
+          "_serialized": "2817309143@c.us"
+        },
+        "ack": 1,
+        "invis": true,
+        "star": false,
+        "kicNotified": false,
+        "isFromTemplate": false,
+        "rcat": null,
+        "pollOptions": [],
+        "pollInvalidated": false,
+        "latestEditMsgKey": null,
+        "latestEditSenderTimestampMs": null,
+        "mentionedJidList": [],
+        "groupMentions": [],
+        "eventInvalidated": false,
+        "isVcardOverMmsDocument": false,
+        "isForwarded": false,
+        "hasReaction": false,
+        "productHeaderImageRejected": false,
+        "lastPlaybackProgress": 0,
+        "isDynamicReplyButtonsMsg": false,
+        "isCarouselCard": false,
+        "parentMsgId": null,
+        "isMdHistoryMsg": false,
+        "stickerSentTs": 0,
+        "isAvatar": false,
+        "lastUpdateFromServerTs": 0,
+        "invokedBotWid": null,
+        "bizBotType": null,
+        "botPluginType": null,
+        "botReelPluginThumbnailCdnUrl": null,
+        "botMsgBodyType": null,
+        "requiresDirectConnection": false,
+        "bizContentPlaceholderType": null,
+        "hostedBizEncStateMismatch": false,
+        "senderOrRecipientAccountTypeHosted": false,
+        "placeholderCreatedWhenAccountIsHosted": false,
+        "links": []
+      },
+      "id": {
+        "fromMe": true,
+        "remote": "2817309143@c.us",
+        "id": "3EB02E8B470D327F35E4D2",
+        "_serialized": "true_2817309143@c.us_3EB02E8B470D327F35E4D2"
+      },
+      "ack": 1,
+      "hasMedia": false,
+      "body": "hallo this is WA Bot on 1 Mei",
+      "type": "chat",
+      "timestamp": 1714487148,
+      "from": "62811334932@c.us",
+      "to": "2817309143@c.us",
+      "deviceType": "android",
+      "isForwarded": false,
+      "forwardingScore": 0,
+      "isStatus": false,
+      "isStarred": false,
+      "fromMe": true,
+      "hasQuotedMsg": false,
+      "hasReaction": false,
+      "vCards": [],
+      "mentionedIds": [],
+      "groupMentions": [],
+      "isGif": false,
+      "links": []
+    }
+  },
+  {
+    "id": {
+      "server": "c.us",
+      "user": "628119064601",
+      "_serialized": "628119064601@c.us"
+    },
+    "name": "+62 811-9064-601",
+    "isGroup": false,
+    "isReadOnly": false,
+    "unreadCount": 0,
+    "timestamp": 1714131244,
+    "archived": false,
+    "pinned": false,
+    "muteExpiration": 0,
+    "lastMessage": {
+      "_data": {
+        "id": {
+          "fromMe": false,
+          "remote": "628119064601@c.us",
+          "id": "A883C9A104414DC447",
+          "_serialized": "false_628119064601@c.us_A883C9A104414DC447"
+        },
+        "rowId": 999999505,
+        "viewed": false,
+        "body": "",
+        "type": "image",
+        "t": 1714131244,
+        "from": {
+          "server": "c.us",
+          "user": "628119064601",
+          "_serialized": "628119064601@c.us"
+        },
+        "to": {
+          "server": "c.us",
+          "user": "62811334932",
+          "_serialized": "62811334932@c.us"
+        },
+        "ack": 0,
+        "invis": true,
+        "star": false,
+        "kicNotified": false,
+        "caption": "*Checkout Wishlist tanpa Nangis 😜*\n\nCuma buat kamu, ada *diskon 50%* buat beli apa pun 🥳\n\nKamu juga bisa dapat *15 telur ayam* kalau belanja di Tokopedia NOW!\n\nCobain GoPayLater yuk, limit s.d. 30 juta, checkout jadi leluasa 🛒🤩\n\nDaftar GoPay Later sekarang!\nPsst, cuma butuh 2 menit loh 🏃🏻💨",
+        "interactiveAnnotations": [],
+        "deprecatedMms3Url": "https://mmg.whatsapp.net/d/f/Aq--ekWRd_5VbDvprXZCXPDenxPeuPt80kBqKG2TU26F.enc",
+        "directPath": "/v/t62.7118-24/11900171_809465017908199_557514362551292206_n.enc?ccb=11-4&oh=01_Q5AaIF9GJ6kVp-7gLIxmuEeI_gyBJFveYIdT8zF12Gxnoq4X&oe=6651735B&_nc_sid=e6ed6c",
+        "mimetype": "image/jpeg",
+        "filehash": "Y/suiUFiWxMAt/CzhvC3JiaT1tXtIl1PTtuy8U7Nu7g=",
+        "encFilehash": "Nz9oSBMjW/l/5if2LaoVA8KLZru4hN+TKIozPU55h+4=",
+        "size": 62449,
+        "mediaKey": "bJ6Fowex/QWP3TX/xQRWE2RZ8ePR+HFuxrMw5h5n9ZQ=",
+        "mediaKeyTimestamp": 1714027330,
+        "isViewOnce": false,
+        "width": 1200,
+        "height": 630,
+        "staticUrl": "",
+        "scanLengths": [],
+        "isFromTemplate": true,
+        "pollOptions": [],
+        "pollInvalidated": false,
+        "latestEditMsgKey": null,
+        "latestEditSenderTimestampMs": null,
+        "broadcast": false,
+        "mentionedJidList": [],
+        "groupMentions": [],
+        "footer": "Jangan balas pesan ini ya",
+        "hydratedButtons": [
+          {
+            "$$unknownFieldCount": 0,
+            "urlButton": {
+              "$$unknownFieldCount": 0,
+              "displayText": "Daftar Sekarang",
+              "url": "https://w.meta.me/s/1QVPRlqYJmimXog"
+            },
+            "index": 0
+          }
+        ],
+        "eventInvalidated": false,
+        "isVcardOverMmsDocument": false,
+        "isForwarded": false,
+        "hasReaction": false,
+        "productHeaderImageRejected": false,
+        "lastPlaybackProgress": 0,
+        "isDynamicReplyButtonsMsg": false,
+        "isCarouselCard": false,
+        "parentMsgId": null,
+        "isMdHistoryMsg": true,
+        "stickerSentTs": 0,
+        "isAvatar": false,
+        "lastUpdateFromServerTs": 0,
+        "invokedBotWid": null,
+        "botTargetSenderJid": null,
+        "bizBotType": null,
+        "botPluginType": null,
+        "botReelPluginThumbnailCdnUrl": null,
+        "botMsgBodyType": null,
+        "requiresDirectConnection": false,
+        "bizContentPlaceholderType": null,
+        "hostedBizEncStateMismatch": false,
+        "senderOrRecipientAccountTypeHosted": false,
+        "placeholderCreatedWhenAccountIsHosted": false,
+        "links": []
+      },
+      "mediaKey": "bJ6Fowex/QWP3TX/xQRWE2RZ8ePR+HFuxrMw5h5n9ZQ=",
+      "id": {
+        "fromMe": false,
+        "remote": "628119064601@c.us",
+        "id": "A883C9A104414DC447",
+        "_serialized": "false_628119064601@c.us_A883C9A104414DC447"
+      },
+      "ack": 0,
+      "hasMedia": true,
+      "body": "*Checkout Wishlist tanpa Nangis 😜*\n\nCuma buat kamu, ada *diskon 50%* buat beli apa pun 🥳\n\nKamu juga bisa dapat *15 telur ayam* kalau belanja di Tokopedia NOW!\n\nCobain GoPayLater yuk, limit s.d. 30 juta, checkout jadi leluasa 🛒🤩\n\nDaftar GoPay Later sekarang!\nPsst, cuma butuh 2 menit loh 🏃🏻💨",
+      "type": "image",
+      "timestamp": 1714131244,
+      "from": "628119064601@c.us",
+      "to": "62811334932@c.us",
+      "deviceType": "web",
+      "isForwarded": false,
+      "forwardingScore": 0,
+      "isStatus": false,
+      "isStarred": false,
+      "broadcast": false,
+      "fromMe": false,
+      "hasQuotedMsg": false,
+      "hasReaction": false,
+      "vCards": [],
+      "mentionedIds": [],
+      "groupMentions": [],
+      "isGif": false,
+      "links": []
+    }
+  },
+  {
+    "id": {
+      "server": "c.us",
+      "user": "6282312132187",
+      "_serialized": "6282312132187@c.us"
+    },
+    "name": "WA Center Al Muhajirin Rewwin",
+    "isGroup": false,
+    "isReadOnly": false,
+    "unreadCount": 0,
+    "timestamp": 1714120119,
+    "archived": false,
+    "pinned": false,
+    "muteExpiration": 0,
+    "lastMessage": {
+      "_data": {
+        "id": {
+          "fromMe": false,
+          "remote": "6282312132187@c.us",
+          "id": "3EB0AF00B6897C13B388E9",
+          "_serialized": "false_6282312132187@c.us_3EB0AF00B6897C13B388E9"
+        },
+        "rowId": 999999506,
+        "viewed": false,
+        "body": "📚 Kegiatan kajian / Tausiyah untuk satu pekan ke depan :\n\n# Kajian Sabtu subuh pekan ke 4, tgl 27 April\n👳‍♀️ Ust. Doni Septi. M.Pd.I.\nTema : Siroh Nabawi.\n\n# Kajian Ahad subuh pekn ke 4, tgl 28 April,\n👳‍♀️ Ust. Drs. H. M. Kemas Adil Mastjik. M.Pd.I.\nTema : Akhlak.\n\n# Kajian Ahad Maghrib pekan ke 4, tgl 28 April.\n👳‍♀️ Ust. H. M. Sya'roni. M.Pd.I.\nTema : Tarjim ( belajar menterjemahkan Al Qur'an ).\n\n# Kajian Selasa Maghrib pekan ke 5, tgl 30 April,\n👳‍♀️ Ust. M. Ramdhani. SP.MM.\nTema : Tahsin ( belajar membaca Al Qur'an sesuai maghroj dan tajwidnya ).\n\n# Kajian Kamis subuh pekan ke 1, tgl 2 Mei.\n👳‍♀️ Ust. H. Asmara Tambunan.\nTema : Tematik.\n\n➖➖➖➖➖➖➖➖➖\n\n🏥 *POLIKLINIK GRATIS*\nBuka setiap hari Selasa dan Jum'at,\nPukul 9.00 sampai selesai.\n\n➖➖➖➖➖➖➖➖➖\n💰 Infaq Jum''at 19 April 2024.\n💵 Rp  4.500.000._ \n\n",
+        "type": "chat",
+        "t": 1714120119,
+        "from": {
+          "server": "c.us",
+          "user": "6282312132187",
+          "_serialized": "6282312132187@c.us"
+        },
+        "to": {
+          "server": "c.us",
+          "user": "62811334932",
+          "_serialized": "62811334932@c.us"
+        },
+        "ack": 0,
+        "invis": true,
+        "star": false,
+        "kicNotified": false,
+        "isFromTemplate": false,
+        "thumbnail": "",
+        "richPreviewType": 0,
+        "pollOptions": [],
+        "pollInvalidated": false,
+        "latestEditMsgKey": null,
+        "latestEditSenderTimestampMs": null,
+        "broadcast": false,
+        "quotedMsg": {
+          "type": "chat",
+          "kind": "chat",
+          "body": ".layanan",
+          "pollOptions": []
+        },
+        "quotedStanzaID": "6540484F57CA3EE601D830F7539B1A83",
+        "quotedRemoteJid": {
+          "server": "c.us",
+          "user": "62811334932",
+          "_serialized": "62811334932@c.us"
+        },
+        "quotedParticipant": {
+          "server": "c.us",
+          "user": "62811334932",
+          "_serialized": "62811334932@c.us"
+        },
+        "mentionedJidList": [],
+        "groupMentions": [],
+        "eventInvalidated": false,
+        "isVcardOverMmsDocument": false,
+        "hasReaction": false,
+        "inviteGrpType": "DEFAULT",
+        "productHeaderImageRejected": false,
+        "lastPlaybackProgress": 0,
+        "isDynamicReplyButtonsMsg": false,
+        "isCarouselCard": false,
+        "parentMsgId": null,
+        "isMdHistoryMsg": true,
+        "stickerSentTs": 0,
+        "isAvatar": false,
+        "lastUpdateFromServerTs": 0,
+        "invokedBotWid": null,
+        "botTargetSenderJid": null,
+        "bizBotType": null,
+        "botPluginType": null,
+        "botReelPluginThumbnailCdnUrl": null,
+        "botMsgBodyType": null,
+        "requiresDirectConnection": false,
+        "bizContentPlaceholderType": null,
+        "hostedBizEncStateMismatch": false,
+        "senderOrRecipientAccountTypeHosted": false,
+        "placeholderCreatedWhenAccountIsHosted": false,
+        "links": [
+          {
+            "link": "http://SP.MM",
+            "isSuspicious": false
+          }
+        ]
+      },
+      "id": {
+        "fromMe": false,
+        "remote": "6282312132187@c.us",
+        "id": "3EB0AF00B6897C13B388E9",
+        "_serialized": "false_6282312132187@c.us_3EB0AF00B6897C13B388E9"
+      },
+      "ack": 0,
+      "hasMedia": false,
+      "body": "📚 Kegiatan kajian / Tausiyah untuk satu pekan ke depan :\n\n# Kajian Sabtu subuh pekan ke 4, tgl 27 April\n👳‍♀️ Ust. Doni Septi. M.Pd.I.\nTema : Siroh Nabawi.\n\n# Kajian Ahad subuh pekn ke 4, tgl 28 April,\n👳‍♀️ Ust. Drs. H. M. Kemas Adil Mastjik. M.Pd.I.\nTema : Akhlak.\n\n# Kajian Ahad Maghrib pekan ke 4, tgl 28 April.\n👳‍♀️ Ust. H. M. Sya'roni. M.Pd.I.\nTema : Tarjim ( belajar menterjemahkan Al Qur'an ).\n\n# Kajian Selasa Maghrib pekan ke 5, tgl 30 April,\n👳‍♀️ Ust. M. Ramdhani. SP.MM.\nTema : Tahsin ( belajar membaca Al Qur'an sesuai maghroj dan tajwidnya ).\n\n# Kajian Kamis subuh pekan ke 1, tgl 2 Mei.\n👳‍♀️ Ust. H. Asmara Tambunan.\nTema : Tematik.\n\n➖➖➖➖➖➖➖➖➖\n\n🏥 *POLIKLINIK GRATIS*\nBuka setiap hari Selasa dan Jum'at,\nPukul 9.00 sampai selesai.\n\n➖➖➖➖➖➖➖➖➖\n💰 Infaq Jum''at 19 April 2024.\n💵 Rp  4.500.000._ \n\n",
+      "type": "chat",
+      "timestamp": 1714120119,
+      "from": "6282312132187@c.us",
+      "to": "62811334932@c.us",
+      "deviceType": "android",
+      "forwardingScore": 0,
+      "isStatus": false,
+      "isStarred": false,
+      "broadcast": false,
+      "fromMe": false,
+      "hasQuotedMsg": true,
+      "hasReaction": false,
+      "vCards": [],
+      "mentionedIds": [],
+      "groupMentions": [],
+      "isGif": false,
+      "links": [
+        {
+          "link": "http://SP.MM",
+          "isSuspicious": false
+        }
+      ]
+    }
+  },
+  {
+    "id": {
+      "server": "c.us",
+      "user": "6285761678580",
+      "_serialized": "6285761678580@c.us"
+    },
+    "name": "Refanti Nur STIESIA skripsi",
+    "isGroup": false,
+    "isReadOnly": false,
+    "unreadCount": 0,
+    "timestamp": 1714115339,
+    "archived": false,
+    "pinned": false,
+    "muteExpiration": 0,
+    "lastMessage": {
+      "_data": {
+        "id": {
+          "fromMe": false,
+          "remote": "6285761678580@c.us",
+          "id": "BBE0A27299CCE9307162B528A503D4EB",
+          "_serialized": "false_6285761678580@c.us_BBE0A27299CCE9307162B528A503D4EB"
+        },
+        "rowId": 999999507,
+        "viewed": false,
+        "body": "terimakasih pak guntar🙏",
+        "type": "chat",
+        "t": 1714115339,
+        "from": {
+          "server": "c.us",
+          "user": "6285761678580",
+          "_serialized": "6285761678580@c.us"
+        },
+        "to": {
+          "server": "c.us",
+          "user": "62811334932",
+          "_serialized": "62811334932@c.us"
+        },
+        "ack": 0,
+        "invis": true,
+        "star": false,
+        "kicNotified": false,
+        "isFromTemplate": false,
+        "pollOptions": [],
+        "pollInvalidated": false,
+        "latestEditMsgKey": null,
+        "latestEditSenderTimestampMs": null,
+        "broadcast": false,
+        "mentionedJidList": [],
+        "groupMentions": [],
+        "eventInvalidated": false,
+        "isVcardOverMmsDocument": false,
+        "isForwarded": false,
+        "hasReaction": false,
+        "productHeaderImageRejected": false,
+        "lastPlaybackProgress": 0,
+        "isDynamicReplyButtonsMsg": false,
+        "isCarouselCard": false,
+        "parentMsgId": null,
+        "isMdHistoryMsg": true,
+        "stickerSentTs": 0,
+        "isAvatar": false,
+        "lastUpdateFromServerTs": 0,
+        "invokedBotWid": null,
+        "botTargetSenderJid": null,
+        "bizBotType": null,
+        "botPluginType": null,
+        "botReelPluginThumbnailCdnUrl": null,
+        "botMsgBodyType": null,
+        "requiresDirectConnection": false,
+        "bizContentPlaceholderType": null,
+        "hostedBizEncStateMismatch": false,
+        "senderOrRecipientAccountTypeHosted": false,
+        "placeholderCreatedWhenAccountIsHosted": false,
+        "links": []
+      },
+      "id": {
+        "fromMe": false,
+        "remote": "6285761678580@c.us",
+        "id": "BBE0A27299CCE9307162B528A503D4EB",
+        "_serialized": "false_6285761678580@c.us_BBE0A27299CCE9307162B528A503D4EB"
+      },
+      "ack": 0,
+      "hasMedia": false,
+      "body": "terimakasih pak guntar🙏",
+      "type": "chat",
+      "timestamp": 1714115339,
+      "from": "6285761678580@c.us",
+      "to": "62811334932@c.us",
+      "deviceType": "android",
+      "isForwarded": false,
+      "forwardingScore": 0,
+      "isStatus": false,
+      "isStarred": false,
+      "broadcast": false,
+      "fromMe": false,
+      "hasQuotedMsg": false,
+      "hasReaction": false,
+      "vCards": [],
+      "mentionedIds": [],
+      "groupMentions": [],
+      "isGif": false,
+      "links": []
+    }
+  },
+  {
+    "id": {
+      "server": "c.us",
+      "user": "0",
+      "_serialized": "0@c.us"
+    },
+    "name": "WhatsApp",
+    "isGroup": false,
+    "isReadOnly": false,
+    "unreadCount": 0,
+    "timestamp": 1713852811,
+    "archived": false,
+    "pinned": false,
+    "muteExpiration": 0,
+    "lastMessage": {
+      "_data": {
+        "id": {
+          "fromMe": false,
+          "remote": "0@c.us",
+          "id": "1275173096515169-1",
+          "participant": {
+            "server": "c.us",
+            "user": "0",
+            "_serialized": "0@c.us"
+          },
+          "_serialized": "false_0@c.us_1275173096515169-1_0@c.us"
+        },
+        "rowId": 999999509,
+        "viewed": false,
+        "body": "",
+        "type": "video",
+        "t": 1713852811,
+        "from": {
+          "server": "c.us",
+          "user": "0",
+          "_serialized": "0@c.us"
+        },
+        "to": {
+          "server": "c.us",
+          "user": "62811334932",
+          "_serialized": "62811334932@c.us"
+        },
+        "ack": 0,
+        "invis": true,
+        "star": false,
+        "kicNotified": false,
+        "caption": "*New: Pin important messages* 📌\nTired of repeating the who, what, where, when? No problem, pin it.\n\nJust press and hold the message and select \"Pin\" to keep it at the top of your group chat.",
+        "interactiveAnnotations": [],
+        "mimetype": "video/mp4",
+        "duration": "15",
+        "filehash": "/l8/H6P3llpeaAV8vGwxczxsFUJvDBAuLRs34UYB5es=",
+        "encFilehash": "pugq9lW3kAufuacPqGWVslm60q0xr0EkLtY5dLq0M7c=",
+        "size": 3719267,
+        "mediaKey": "C5Ruk/8elnnjs9Dk6XO2gPAGsf5t+c6QNdmzVINhYdY=",
+        "mediaKeyTimestamp": 1714229303,
+        "isViewOnce": false,
+        "staticUrl": "https://static.whatsapp.net/downloadable?category=PSA&id=240929606797788187&num=912075e1-8c79-4890-a9b1-186fa2e9367b&_nc_cat=1",
+        "isFromTemplate": true,
+        "pollOptions": [],
+        "pollInvalidated": false,
+        "latestEditMsgKey": null,
+        "latestEditSenderTimestampMs": null,
+        "broadcast": false,
+        "mentionedJidList": [],
+        "groupMentions": [],
+        "hydratedButtons": [
+          {
+            "$$unknownFieldCount": 0,
+            "urlButton": {
+              "$$unknownFieldCount": 0,
+              "displayText": "Learn more",
+              "url": "https://faq.whatsapp.com/294619079641794"
+            },
+            "index": 0
+          }
+        ],
+        "eventInvalidated": false,
+        "isVcardOverMmsDocument": false,
+        "isForwarded": false,
+        "hasReaction": false,
+        "productHeaderImageRejected": false,
+        "lastPlaybackProgress": 0,
+        "isDynamicReplyButtonsMsg": false,
+        "isCarouselCard": false,
+        "parentMsgId": null,
+        "isMdHistoryMsg": true,
+        "stickerSentTs": 0,
+        "isAvatar": false,
+        "lastUpdateFromServerTs": 0,
+        "invokedBotWid": null,
+        "botTargetSenderJid": null,
+        "bizBotType": null,
+        "botPluginType": null,
+        "botReelPluginThumbnailCdnUrl": null,
+        "botMsgBodyType": null,
+        "requiresDirectConnection": false,
+        "bizContentPlaceholderType": null,
+        "hostedBizEncStateMismatch": false,
+        "senderOrRecipientAccountTypeHosted": false,
+        "placeholderCreatedWhenAccountIsHosted": false,
+        "links": []
+      },
+      "mediaKey": "C5Ruk/8elnnjs9Dk6XO2gPAGsf5t+c6QNdmzVINhYdY=",
+      "id": {
+        "fromMe": false,
+        "remote": "0@c.us",
+        "id": "1275173096515169-1",
+        "participant": {
+          "server": "c.us",
+          "user": "0",
+          "_serialized": "0@c.us"
+        },
+        "_serialized": "false_0@c.us_1275173096515169-1_0@c.us"
+      },
+      "ack": 0,
+      "hasMedia": false,
+      "body": "",
+      "type": "video",
+      "timestamp": 1713852811,
+      "from": "0@c.us",
+      "to": "62811334932@c.us",
+      "deviceType": "web",
+      "isForwarded": false,
+      "forwardingScore": 0,
+      "isStatus": false,
+      "isStarred": false,
+      "broadcast": false,
+      "fromMe": false,
+      "hasQuotedMsg": false,
+      "hasReaction": false,
+      "duration": "15",
+      "vCards": [],
+      "mentionedIds": [],
+      "groupMentions": [],
+      "isGif": false,
+      "links": []
+    }
+  },
+  {
+    "groupMetadata": {
+      "id": {
+        "server": "g.us",
+        "user": "62817309143-1556008238",
+        "_serialized": "62817309143-1556008238@g.us"
+      },
+      "creation": 1556008238,
+      "owner": {
+        "server": "c.us",
+        "user": "62817309143",
+        "_serialized": "62817309143@c.us"
+      },
+      "subject": "Produktif Menulis",
+      "subjectTime": 1556008238,
+      "descTime": 0,
+      "restrict": false,
+      "announce": false,
+      "ephemeralDuration": 0,
+      "size": 0,
+      "support": false,
+      "suspended": false,
+      "terminated": false,
+      "uniqueShortNameMap": {},
+      "lastActivityTimestamp": 0,
+      "lastSeenActivityTimestamp": 0,
+      "incognito": false,
+      "participants": [
+        {
+          "id": {
+            "server": "c.us",
+            "user": "62817309143",
+            "_serialized": "62817309143@c.us"
+          },
+          "isAdmin": true,
+          "isSuperAdmin": true
+        },
+        {
+          "id": {
+            "server": "c.us",
+            "user": "62811334932",
+            "_serialized": "62811334932@c.us"
+          },
+          "isAdmin": false,
+          "isSuperAdmin": false
+        },
+        {
+          "id": {
+            "server": "c.us",
+            "user": "6281214619578",
+            "_serialized": "6281214619578@c.us"
+          },
+          "isAdmin": false,
+          "isSuperAdmin": false
+        },
+        {
+          "id": {
+            "server": "c.us",
+            "user": "628121652190",
+            "_serialized": "628121652190@c.us"
+          },
+          "isAdmin": false,
+          "isSuperAdmin": false
+        },
+        {
+          "id": {
+            "server": "c.us",
+            "user": "628123113020",
+            "_serialized": "628123113020@c.us"
+          },
+          "isAdmin": false,
+          "isSuperAdmin": false
+        },
+        {
+          "id": {
+            "server": "c.us",
+            "user": "628123167957",
+            "_serialized": "628123167957@c.us"
+          },
+          "isAdmin": false,
+          "isSuperAdmin": false
+        },
+        {
+          "id": {
+            "server": "c.us",
+            "user": "6281330745227",
+            "_serialized": "6281330745227@c.us"
+          },
+          "isAdmin": false,
+          "isSuperAdmin": false
+        },
+        {
+          "id": {
+            "server": "c.us",
+            "user": "6281331081880",
+            "_serialized": "6281331081880@c.us"
+          },
+          "isAdmin": false,
+          "isSuperAdmin": false
+        },
+        {
+          "id": {
+            "server": "c.us",
+            "user": "6281331375205",
+            "_serialized": "6281331375205@c.us"
+          },
+          "isAdmin": false,
+          "isSuperAdmin": false
+        },
+        {
+          "id": {
+            "server": "c.us",
+            "user": "6282140991381",
+            "_serialized": "6282140991381@c.us"
+          },
+          "isAdmin": false,
+          "isSuperAdmin": false
+        },
+        {
+          "id": {
+            "server": "c.us",
+            "user": "6285649778985",
+            "_serialized": "6285649778985@c.us"
+          },
+          "isAdmin": false,
+          "isSuperAdmin": false
+        },
+        {
+          "id": {
+            "server": "c.us",
+            "user": "6287856064443",
+            "_serialized": "6287856064443@c.us"
+          },
+          "isAdmin": false,
+          "isSuperAdmin": false
+        },
+        {
+          "id": {
+            "server": "c.us",
+            "user": "6287856247645",
+            "_serialized": "6287856247645@c.us"
+          },
+          "isAdmin": false,
+          "isSuperAdmin": false
+        }
+      ],
+      "pendingParticipants": [],
+      "pastParticipants": [],
+      "membershipApprovalRequests": [],
+      "subgroupSuggestions": []
+    },
+    "id": {
+      "server": "g.us",
+      "user": "62817309143-1556008238",
+      "_serialized": "62817309143-1556008238@g.us"
+    },
+    "name": "Produktif Menulis",
+    "isGroup": true,
+    "isReadOnly": false,
+    "unreadCount": 0,
+    "archived": true,
+    "pinned": false,
+    "muteExpiration": 0
+  },
+  {
+    "groupMetadata": {
+      "id": {
+        "server": "g.us",
+        "user": "628972924129-1562223553",
+        "_serialized": "628972924129-1562223553@g.us"
+      },
+      "creation": 1562223553,
+      "owner": {
+        "server": "c.us",
+        "user": "628972924129",
+        "_serialized": "628972924129@c.us"
+      },
+      "subject": "DokExpert RKAU",
+      "subjectTime": 1562223553,
+      "descTime": 0,
+      "restrict": false,
+      "announce": false,
+      "ephemeralDuration": 0,
+      "size": 0,
+      "support": false,
+      "suspended": false,
+      "terminated": false,
+      "uniqueShortNameMap": {},
+      "lastActivityTimestamp": 0,
+      "lastSeenActivityTimestamp": 0,
+      "incognito": false,
+      "participants": [
+        {
+          "id": {
+            "server": "c.us",
+            "user": "62817309143",
+            "_serialized": "62817309143@c.us"
+          },
+          "isAdmin": false,
+          "isSuperAdmin": false
+        },
+        {
+          "id": {
+            "server": "c.us",
+            "user": "62811334932",
+            "_serialized": "62811334932@c.us"
+          },
+          "isAdmin": true,
+          "isSuperAdmin": false
+        },
+        {
+          "id": {
+            "server": "c.us",
+            "user": "6281331375205",
+            "_serialized": "6281331375205@c.us"
+          },
+          "isAdmin": false,
+          "isSuperAdmin": false
+        },
+        {
+          "id": {
+            "server": "c.us",
+            "user": "6285649778985",
+            "_serialized": "6285649778985@c.us"
+          },
+          "isAdmin": true,
+          "isSuperAdmin": false
+        }
+      ],
+      "pendingParticipants": [],
+      "pastParticipants": [],
+      "membershipApprovalRequests": [],
+      "subgroupSuggestions": []
+    },
+    "id": {
+      "server": "g.us",
+      "user": "628972924129-1562223553",
+      "_serialized": "628972924129-1562223553@g.us"
+    },
+    "name": "DokExpert RKAU",
+    "isGroup": true,
+    "isReadOnly": false,
+    "unreadCount": 0,
+    "archived": true,
+    "pinned": false,
+    "muteExpiration": 0
+  },
+  {
+    "groupMetadata": {
+      "id": {
+        "server": "g.us",
+        "user": "628972924129-1562223709",
+        "_serialized": "628972924129-1562223709@g.us"
+      },
+      "creation": 1562223709,
+      "owner": {
+        "server": "c.us",
+        "user": "628972924129",
+        "_serialized": "628972924129@c.us"
+      },
+      "subject": "DokExpert TravelingScreen",
+      "subjectTime": 1562223709,
+      "descTime": 0,
+      "restrict": false,
+      "announce": false,
+      "ephemeralDuration": 0,
+      "size": 0,
+      "support": false,
+      "suspended": false,
+      "terminated": false,
+      "uniqueShortNameMap": {},
+      "lastActivityTimestamp": 0,
+      "lastSeenActivityTimestamp": 0,
+      "incognito": false,
+      "participants": [
+        {
+          "id": {
+            "server": "c.us",
+            "user": "62817309143",
+            "_serialized": "62817309143@c.us"
+          },
+          "isAdmin": false,
+          "isSuperAdmin": false
+        },
+        {
+          "id": {
+            "server": "c.us",
+            "user": "62811334932",
+            "_serialized": "62811334932@c.us"
+          },
+          "isAdmin": true,
+          "isSuperAdmin": false
+        }
+      ],
+      "pendingParticipants": [],
+      "pastParticipants": [],
+      "membershipApprovalRequests": [],
+      "subgroupSuggestions": []
+    },
+    "id": {
+      "server": "g.us",
+      "user": "628972924129-1562223709",
+      "_serialized": "628972924129-1562223709@g.us"
+    },
+    "name": "DokExpert TravelingScreen",
+    "isGroup": true,
+    "isReadOnly": false,
+    "unreadCount": 0,
+    "archived": true,
+    "pinned": false,
+    "muteExpiration": 0
+  },
+  {
+    "groupMetadata": {
+      "id": {
+        "server": "g.us",
+        "user": "628972924129-1562223772",
+        "_serialized": "628972924129-1562223772@g.us"
+      },
+      "creation": 1562223772,
+      "owner": {
+        "server": "c.us",
+        "user": "628972924129",
+        "_serialized": "628972924129@c.us"
+      },
+      "subject": "DokExpert BEO Operasi",
+      "subjectTime": 1562223772,
+      "descTime": 0,
+      "restrict": false,
+      "announce": false,
+      "ephemeralDuration": 0,
+      "size": 0,
+      "support": false,
+      "suspended": false,
+      "terminated": false,
+      "uniqueShortNameMap": {},
+      "lastActivityTimestamp": 0,
+      "lastSeenActivityTimestamp": 0,
+      "incognito": false,
+      "participants": [
+        {
+          "id": {
+            "server": "c.us",
+            "user": "62817309143",
+            "_serialized": "62817309143@c.us"
+          },
+          "isAdmin": false,
+          "isSuperAdmin": false
+        },
+        {
+          "id": {
+            "server": "c.us",
+            "user": "62811334932",
+            "_serialized": "62811334932@c.us"
+          },
+          "isAdmin": true,
+          "isSuperAdmin": false
+        },
+        {
+          "id": {
+            "server": "c.us",
+            "user": "628121733573",
+            "_serialized": "628121733573@c.us"
+          },
+          "isAdmin": false,
+          "isSuperAdmin": false
+        },
+        {
+          "id": {
+            "server": "c.us",
+            "user": "6281232850254",
+            "_serialized": "6281232850254@c.us"
+          },
+          "isAdmin": true,
+          "isSuperAdmin": false
+        },
+        {
+          "id": {
+            "server": "c.us",
+            "user": "6283856864876",
+            "_serialized": "6283856864876@c.us"
+          },
+          "isAdmin": false,
+          "isSuperAdmin": false
+        }
+      ],
+      "pendingParticipants": [],
+      "pastParticipants": [],
+      "membershipApprovalRequests": [],
+      "subgroupSuggestions": []
+    },
+    "id": {
+      "server": "g.us",
+      "user": "628972924129-1562223772",
+      "_serialized": "628972924129-1562223772@g.us"
+    },
+    "name": "DokExpert BEO Operasi",
+    "isGroup": true,
+    "isReadOnly": false,
+    "unreadCount": 0,
+    "archived": true,
+    "pinned": false,
+    "muteExpiration": 0
+  },
+  {
+    "groupMetadata": {
+      "id": {
+        "server": "g.us",
+        "user": "628972924129-1562223834",
+        "_serialized": "628972924129-1562223834@g.us"
+      },
+      "creation": 1562223834,
+      "owner": {
+        "server": "c.us",
+        "user": "628972924129",
+        "_serialized": "628972924129@c.us"
+      },
+      "subject": "DokExpert PLTU 1-2",
+      "subjectTime": 1562223834,
+      "descTime": 0,
+      "restrict": false,
+      "announce": false,
+      "ephemeralDuration": 0,
+      "size": 0,
+      "support": false,
+      "suspended": false,
+      "terminated": false,
+      "uniqueShortNameMap": {},
+      "lastActivityTimestamp": 0,
+      "lastSeenActivityTimestamp": 0,
+      "incognito": false,
+      "participants": [
+        {
+          "id": {
+            "server": "c.us",
+            "user": "62811334932",
+            "_serialized": "62811334932@c.us"
+          },
+          "isAdmin": true,
+          "isSuperAdmin": false
+        },
+        {
+          "id": {
+            "server": "c.us",
+            "user": "6285649972959",
+            "_serialized": "6285649972959@c.us"
+          },
+          "isAdmin": false,
+          "isSuperAdmin": false
+        },
+        {
+          "id": {
+            "server": "c.us",
+            "user": "6287856247645",
+            "_serialized": "6287856247645@c.us"
+          },
+          "isAdmin": false,
+          "isSuperAdmin": false
+        }
+      ],
+      "pendingParticipants": [],
+      "pastParticipants": [],
+      "membershipApprovalRequests": [],
+      "subgroupSuggestions": []
+    },
+    "id": {
+      "server": "g.us",
+      "user": "628972924129-1562223834",
+      "_serialized": "628972924129-1562223834@g.us"
+    },
+    "name": "DokExpert PLTU 1-2",
+    "isGroup": true,
+    "isReadOnly": false,
+    "unreadCount": 0,
+    "archived": true,
+    "pinned": false,
+    "muteExpiration": 0
+  },
+  {
+    "groupMetadata": {
+      "id": {
+        "server": "g.us",
+        "user": "628972924129-1562223894",
+        "_serialized": "628972924129-1562223894@g.us"
+      },
+      "creation": 1562223894,
+      "owner": {
+        "server": "c.us",
+        "user": "628972924129",
+        "_serialized": "628972924129@c.us"
+      },
+      "subject": "DokExpert Balancing",
+      "subjectTime": 1562223894,
+      "descTime": 0,
+      "restrict": false,
+      "announce": false,
+      "ephemeralDuration": 0,
+      "size": 0,
+      "support": false,
+      "suspended": false,
+      "terminated": false,
+      "uniqueShortNameMap": {},
+      "lastActivityTimestamp": 0,
+      "lastSeenActivityTimestamp": 0,
+      "incognito": false,
+      "participants": [
+        {
+          "id": {
+            "server": "c.us",
+            "user": "62811334932",
+            "_serialized": "62811334932@c.us"
+          },
+          "isAdmin": true,
+          "isSuperAdmin": false
+        }
+      ],
+      "pendingParticipants": [],
+      "pastParticipants": [],
+      "membershipApprovalRequests": [],
+      "subgroupSuggestions": []
+    },
+    "id": {
+      "server": "g.us",
+      "user": "628972924129-1562223894",
+      "_serialized": "628972924129-1562223894@g.us"
+    },
+    "name": "DokExpert Balancing",
+    "isGroup": true,
+    "isReadOnly": false,
+    "unreadCount": 0,
+    "archived": true,
+    "pinned": false,
+    "muteExpiration": 0
+  }
+]

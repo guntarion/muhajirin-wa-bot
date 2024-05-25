@@ -1,0 +1,223 @@
+[
+  {
+    "id": 1,
+    "name": "Alexis Surya",
+    "avatar": "img/avatar.png",
+    "lastonline": "2020-12-01T12:00:00Z",
+    "lastmessage": "Sama-sama, Alex! Kami akan menunggu detail dari Anda dan segera memulai pekerjaan. Jika ada pertanyaan lebih lanjut, jangan ragu untuk menghubungi kami.",
+    "messages": [
+      {
+        "type": "client",
+        "content": "Halo, saya memerlukan seragam untuk tim sales kami. Bisakah Anda membantu saya dengan pilihan bahan dan estimasi biaya?",
+        "time": "2024-04-02T08:30:00Z"
+      },
+      {
+        "type": "me",
+        "content": "Tentu, Alex! Kami dengan senang hati membantu. Untuk berapa banyak seragam yang Anda butuhkan dan apa preferensi bahan Anda?",
+        "time": "2024-04-02T08:35:00Z"
+      },
+      {
+        "type": "client",
+        "content": "Kami butuh sekitar 50 seragam. Kami ingin bahan yang nyaman dan profesional untuk dipakai sehari-hari. Apa yang Anda sarankan?",
+        "time": "2024-04-02T08:40:00Z"
+      },
+      {
+        "type": "me",
+        "content": "Untuk kebutuhan tersebut, saya merekomendasikan kain poliester-katun karena tahan lama dan mudah dirawat. Saya juga bisa menawarkan beberapa pilihan kain lain jika Anda tertarik.",
+        "time": "2024-04-02T08:45:00Z"
+      },
+      {
+        "type": "client",
+        "content": "Itu kedengarannya bagus. Bisa kirimkan saya beberapa sampel kain? Saya juga ingin tahu tentang pilihan warna dan desain.",
+        "time": "2024-04-02T08:50:00Z"
+      },
+      {
+        "type": "me",
+        "content": "Pasti, Alex. Kami akan mengirimkan sampel kain dan palet warna yang tersedia untuk Anda. Untuk desain, apakah Anda sudah memiliki ide atau ingin tim desain kami yang membuatkan?",
+        "time": "2024-04-02T08:55:00Z"
+      },
+      {
+        "type": "client",
+        "content": "Saya pikir lebih baik tim desain Anda yang membuatkan. Kami menginginkan sesuatu yang sederhana namun elegan.",
+        "time": "2024-04-02T09:00:00Z"
+      },
+      {
+        "type": "me",
+        "content": "Baik, kami akan mulai mengerjakan beberapa konsep desain dan mengirimkannya kepada Anda beserta sampel. Harap konfirmasi alamat pengiriman untuk sampel kain.",
+        "time": "2024-04-02T09:05:00Z"
+      },
+      {
+        "type": "client",
+        "content": "Saya akan mengirimkan alamat pengiriman melalui email. Terima kasih banyak atas bantuan cepat Anda!",
+        "time": "2024-04-02T09:10:00Z"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Antasari Setiawan",
+    "avatar": "img/avatar.png",
+    "lastonline": "2024-04-06T10:15:00Z",
+    "lastmessage": "Ada masalah dengan beberapa seragam yang baru saja kami terima.",
+    "messages": [
+      {
+        "type": "client",
+        "content": "Selamat pagi, saya ingin mengajukan keluhan tentang kualitas seragam yang kami terima kemarin. Beberapa di antaranya memiliki cacat jahitan dan bahan yang tidak sesuai spesifikasi yang kami setujui.",
+        "time": "2024-04-06T09:00:00Z"
+      },
+      {
+        "type": "me",
+        "content": "Selamat pagi, Pak Antasari. Kami sangat menyesal mendengar ada masalah dengan order Anda. Bisakah Anda memberikan detail lebih lanjut atau mungkin foto dari cacat produk tersebut agar kami dapat memahami masalahnya lebih baik?",
+        "time": "2024-04-06T09:05:00Z"
+      },
+      {
+        "type": "client",
+        "content": "Tentu, saya akan mengirimkan beberapa foto. Mohon ditindaklanjuti dengan serius karena ini sangat mengganggu operasional kami.",
+        "time": "2024-04-06T09:10:00Z"
+      },
+      {
+        "type": "me",
+        "content": "Terima kasih atas foto dan informasinya, Pak Antasari. Kami akan segera meninjau masalah ini dan menghubungi pemasok kami. Kami akan mengatur penggantian atau perbaikan seragam yang cacat secepat mungkin. Apakah ada hal lain yang bisa kami bantu?",
+        "time": "2024-04-06T09:20:00Z"
+      },
+      {
+        "type": "client",
+        "content": "Terima kasih atas respons cepatnya. Saya tunggu kabar selanjutnya dan harap ini tidak terjadi lagi di masa depan.",
+        "time": "2024-04-06T09:25:00Z"
+      },
+      {
+        "type": "me",
+        "content": "Kami memahami kekhawatiran Anda dan akan melakukan segala yang kami bisa untuk memastikan masalah ini tidak terulang. Kami akan memberi Anda update secara berkala. Terima kasih atas kesabaran dan pengertian Anda, Pak Antasari.",
+        "time": "2024-04-06T09:30:00Z"
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "name": "Dewi Kirana",
+    "avatar": "img/avatar.png",
+    "lastonline": "2024-04-05T15:30:00Z",
+    "lastmessage": "Apakah ada diskon untuk pemesanan dalam jumlah besar?",
+    "messages": [
+      {
+        "type": "client",
+        "content": "Selamat pagi, saya ingin menanyakan tentang pemesanan seragam dalam jumlah besar. Apakah ada diskon yang tersedia?",
+        "time": "2024-04-05T15:00:00Z"
+      },
+      {
+        "type": "me",
+        "content": "Selamat pagi, Dewi! Terima kasih telah menghubungi kami. Untuk pemesanan dalam jumlah besar, kami memang menawarkan diskon. Berapa banyak seragam yang Anda perlukan?",
+        "time": "2024-04-05T15:05:00Z"
+      },
+      {
+        "type": "client",
+        "content": "Kami memerlukan sekitar 200 seragam. Apa saja pilihan bahan dan warna yang bisa saya pilih?",
+        "time": "2024-04-05T15:10:00Z"
+      },
+      {
+        "type": "me",
+        "content": "Untuk jumlah tersebut, kami bisa menawarkan berbagai pilihan bahan seperti katun, polyester, dan rayon dengan palet warna yang luas. Saya akan mengirimkan katalog bahan dan warna ke email Anda. Apakah Anda juga memerlukan bantuan dengan desain seragam?",
+        "time": "2024-04-05T15:15:00Z"
+      },
+      {
+        "type": "client",
+        "content": "Ya, saya akan sangat menghargai bantuan desain. Saya ingin seragam yang representatif dan nyaman digunakan sehari-hari.",
+        "time": "2024-04-05T15:20:00Z"
+      },
+      {
+        "type": "me",
+        "content": "Kami dengan senang hati akan membantu Anda dengan desain. Tim desainer kami akan bekerja sama dengan Anda untuk menciptakan seragam yang tidak hanya nyaman tetapi juga representatif. Saya akan mengatur pertemuan dengan desainer kami, bisa tolong konfirmasi waktu yang tersedia untuk Anda?",
+        "time": "2024-04-05T15:25:00Z"
+      },
+      {
+        "type": "client",
+        "content": "Saya bisa bertemu pada hari Jumat pagi minggu depan. Mohon diatur.",
+        "time": "2024-04-05T15:28:00Z"
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "name": "Rina Irawan",
+    "avatar": "img/avatar.png",
+    "lastonline": "2020-12-01T12:00:00Z",
+    "lastmessage": "Saya mencari kain yang nyaman untuk cuaca panas, karena tim kami banyak yang beraktivitas di luar ruangan.",
+    "messages": [
+      {
+        "type": "client",
+        "content": "Selamat pagi, saya tertarik untuk membuat seragam perusahaan dengan Vido Garment. Bisakah saya mendapatkan informasi lebih lanjut tentang opsi kain yang Anda tawarkan?",
+        "time": "2024-04-01T12:00:00Z"
+      },
+      {
+        "type": "me",
+        "content": "Selamat pagi, Rina! Terima kasih telah menghubungi kami. Kami menyediakan berbagai pilihan kain seperti katun, polyester, dan campuran khusus yang nyaman untuk seragam. Anda membutuhkan kain jenis apa?",
+        "time": "2024-04-01T12:00:00Z"
+      },
+      {
+        "type": "client",
+        "content": "Saya mencari kain yang nyaman untuk cuaca panas, karena tim kami banyak yang beraktivitas di luar ruangan.",
+        "time": "2024-04-01T12:00:00Z"
+      }
+    ]
+  },
+  {
+      "id": 5,
+      "name": "Apsari Riris",
+      "avatar": "img/avatar.png",
+      "lastonline": "2024-05-04T09:30:00Z",
+      "lastmessage": "Saya tertarik dengan penawaran sablon dan ingin tahu lebih banyak tentang jenis kain dan harga.",
+      "messages": [
+          {
+              "type": "client",
+              "content": "Halo, saya Apsari Riris dari Warung Pecel Bu Dhanik. Kami berencana membuat seragam kaos t-shirt dan tertarik dengan jasa Anda. Bisakah Anda beri informasi tentang pilihan sablon dan kain yang Anda tawarkan?",
+              "time": "2024-05-04T09:35:00Z"
+          },
+          {
+              "type": "me",
+              "content": "Selamat pagi, Bu Apsari! Terima kasih telah menghubungi kami. Untuk kaos t-shirt, kami menyediakan beberapa pilihan kain seperti katun combed, polyester, dan CVC (Cotton-Polyester Blend) yang sangat nyaman dipakai. Untuk sablon, kami menawarkan sablon digital, sablon plastisol, dan sablon rubber. Kira-kira, berapa banyak kaos yang akan dipesan?",
+              "time": "2024-05-04T09:40:00Z"
+          },
+          {
+              "type": "client",
+              "content": "Kami membutuhkan sekitar 100 kaos. Apa perbedaan utama antara sablon digital dengan plastisol dan rubber?",
+              "time": "2024-05-04T09:45:00Z"
+          },
+          {
+              "type": "me",
+              "content": "Untuk sablon digital, hasilnya sangat detail dengan warna yang cerah dan cocok untuk desain kompleks, tetapi lebih mahal. Sablon plastisol memberikan hasil yang sangat tahan lama dan elastis, cocok untuk produksi massal. Sablon rubber memiliki tekstur yang lebih lembut dan nyaman, bagus untuk desain sederhana dan tidak terlalu rumit. Berdasarkan kebutuhan Warung Pecel Bu Dhanik, kami sarankan menggunakan sablon plastisol untuk durabilitas yang baik.",
+              "time": "2024-05-04T09:50:00Z"
+          },
+          {
+              "type": "client",
+              "content": "Terima kasih atas informasinya. Bagaimana dengan harga per unit jika menggunakan kain katun combed dan sablon plastisol?",
+              "time": "2024-05-04T09:55:00Z"
+          },
+          {
+              "type": "me",
+              "content": "Untuk kain katun combed dengan sablon plastisol, harga per unitnya adalah Rp 75.000 untuk pemesanan 100 kaos. Harga sudah termasuk biaya desain dan persiapan sablon.",
+              "time": "2024-05-04T10:00:00Z"
+          },
+          {
+              "type": "client",
+              "content": "Apakah ada biaya tambahan lain yang perlu kami ketahui? Dan bagaimana prosedur pemesanannya?",
+              "time": "2024-05-04T10:05:00Z"
+          },
+          {
+              "type": "me",
+              "content": "Tidak ada biaya tambahan lain, Bu Apsari. Untuk prosedur pemesanan, Anda hanya perlu mengirimkan desain kaos yang diinginkan. Kami akan membuatkan mockup desain untuk disetujui sebelum proses produksi dimulai. Setelah desain disetujui, kami akan membutuhkan pembayaran DP sebesar 50%, dan sisanya dibayar setelah kaos selesai diproduksi dan siap dikirim.",
+              "time": "2024-05-04T10:10:00Z"
+          },
+          {
+              "type": "client",
+              "content": "Baik, saya akan mengumpulkan desain dari tim kami dan mengirimkannya kepada Anda. Terima kasih atas bantuan dan informasi yang sangat jelas!",
+              "time": "2024-05-04T10:15:00Z"
+          },
+          {
+              "type": "me",
+              "content": "Sama-sama, Bu Apsari. Kami menantikan desain dari Warung Pecel Bu Dhanik dan siap membantu Anda. Jika ada pertanyaan lain, jangan ragu untuk menghubungi kami kembali.",
+              "time": "2024-05-04T10:20:00Z"
+          }
+      ]
+  }
+
+]

@@ -1,0 +1,149 @@
+
+# PEMESANAN KAOS SINGKAT
+
+Jenis kaos apa yang Anda butuhkan?
+1. Kaos Oblong
+2. Kaos Kerah
+3. Kaos Raglan
+
+Apakah lengan panjang?
+1. Iya
+2. Tidak
+
+Ada berapa jumlah titik sablonannya?
+0 - 6
+
+Berapa jumlahnya?
+
+
+
+
+# PEMESANAN KAOS
+
+Jenis kaos apa yang Anda butuhkan?
+1. Kaos Oblong
+2. Kaos Kerah
+3. Kaos Raglan
+
+Jenis kainnya?
+1. Combed 24s
+2. Combed 30s
+3. Carded 24s
+4. Carded 30s
+5. Lacoste TC
+6. Lacoste 20s
+7. Lacoste 24s
+8. Lacoste 30s
+9. Semi Katun Generik
+10. TC Tebal Generik
+
+Jenis sablonnya?
+1.	Sablon Plastisol 
+2.	Sablon Rubber 
+3.	Sablon CMYK
+4.	Sablon Spotcolor 
+
+Apakah lengan panjang?
+1. Iya
+2. Tidak
+
+Ada berapa jumlah titik sablonannya?
+0 - 6
+
+Apakah ada saku/kantongnya?
+1. Iya
+2. Tidak
+
+Berapa jumlahnya?
+
+
+
+# Testimoni Generator
+
+Apa yang membuat Anda memilih Vido?
+1. Atas rekomendasi teman/relasi
+2. Review yang banyak dan bagus
+3. Lokasi mudah ditemukan
+4. Mendapat masukan bermanfaat
+5. Mendapat rekomendasi bagus
+6. Banyak referensi pilihan
+7. Harganya kompetitif
+8. (alasan lain, harap disebutkan)
+
+Layanan mana yang berkesan atau positif bagi Anda?
+1. Lokasi cukup nyaman
+2. Pilihan desain/bahan/warna beragam
+3. Proses pra produksi efektif & positif
+4. Mendapatkan harga terbaik
+5. Hasil jahitan rapi/kuat
+6. Hasil sablonan/bordiran bagus
+7. Ketepatan waktu delivery
+8. Penanganan komplain baik
+
+Kesan Anda atas Vido Garment
+
+Di antara 1-10, seberapa Anda ingin merekomendasikan Vido ke rekan/orang lain
+
+
+
+
+
+Produk menarik, di Indonesia belum ada.
+Harganya sendiri Rp 2,5 juta
+Dan ada biaya langganan, Rp 2,9 juta per tahun
+
+Lebih murah pake recording, terus di-transcribe dg google 
+
+
+https://ptprogress.co.id/
+
+
+Buatkan prompt agar model AI membuat rekomendasi jenis baju seragam semacam apa yang cocok, berdasarkan informasi profil perusahaan yang diambil dari frontpage website perusahaan. Informasi profil yg tersedia merupakan hasil scrap, sehingga tidak terstruktur. Dari informasi yang tersedia, buatlah semacam identifikasi jenis dan nature usahanya. 
+Berdasarkan nature usahanya, rekomendasikan jenis seragam yang tepat, misal seragam kaos untuk industri yang tampak padat karya, seragam wearpack untuk usaha yang sekiranya terdapat unsur pekerja yang membutuhkan safety dan regulasi, seragam retail yang mencerminkan branding toko dengan model polo kasual, seragam kemeja untuk usaha yg bersifat kantoran, seragam kemeja atau polo untuk pekerja yg banyak di luar ruangan dengan mementingkan keyamanan dan durabilitas.
+Rekomendasi disertai dengan alasan mengapa seragam jenis tertentu dibutuhkan, yang bisa karena dan tidak terbatas pada Peningkatan Citra Perusahaan, Pemersatu Karyawan, Promosi dan Branding, Keamanan dan Keselamatan, Identifikasi Mudah, Kenyamanan dan Fungsionalitas, Persyaratan Regulasi, Pengurangan Biaya untuk Karyawan.
+
+Sertakan beberapa detail 
+
+Jaket Bomber: Biasanya digunakan di lingkungan kerja yang memerlukan ketahanan terhadap cuaca dingin dan angin, seperti di lapangan terbuka atau di area dengan suhu yang lebih rendah. Jaket ini juga sering dipilih untuk pekerjaan yang memerlukan mobilitas tinggi karena memberikan kehangatan tanpa mengorbankan gerak.
+Jaket Hoodie: Cocok untuk lingkungan kerja kasual yang memerlukan kenyamanan dan fleksibilitas. Jaket hoodie sering digunakan di industri kreatif, startup, atau perusahaan teknologi, di mana suasana yang lebih santai dan tidak terlalu formal dihargai.
+Jaket Biasa: Ideal untuk lingkungan kerja luar ruangan yang membutuhkan perlindungan dari cuaca, tetapi tidak seintens jaket bomber. Bisa juga digunakan dalam setting kasual di kantor yang memiliki suhu yang sejuk akibat penggunaan AC.
+Kaos Raglan: Kaos dengan lengan yang sering berbeda warna dari bagian badan kaos. Kaos ini nyaman dan memberikan keleluasaan gerak yang baik, cocok untuk lingkungan kerja yang aktif atau untuk acara perusahaan yang lebih santai.
+Kaos T-shirt: Seragam dasar yang sangat umum di banyak industri. Cocok untuk pekerjaan dalam ruangan atau cuaca hangat, serta dalam event promosi atau sebagai seragam harian yang praktis dan nyaman.
+Kaos Polo: Menawarkan tampilan yang lebih rapi dibandingkan kaos t-shirt biasa dan sering digunakan di lingkungan yang membutuhkan tampilan semi-formal seperti di perbankan, hotel, atau acara perusahaan. Juga populer di industri jasa dan ritel.
+Kemeja Lengan Pendek: Sesuai untuk lingkungan kerja yang semi-formal dan cuaca panas. Sering digunakan di kantor atau oleh pekerja lapangan yang membutuhkan kesan rapi namun tetap ingin kenyamanan dalam cuaca yang lebih hangat.
+Kemeja Lengan Panjang: Pilihan untuk lingkungan kerja formal. Memberikan tampilan yang profesional dan sering diwajibkan dalam setting bisnis tradisional, pertemuan penting, atau acara resmi perusahaan.
+
+
+Jaket Bomber: lingkungan kerja yang memerlukan ketahanan terhadap cuaca dingin dan angin, seperti di lapangan terbuka atau di area dengan suhu yang lebih rendah. Jaket ini juga sering dipilih untuk pekerjaan yang memerlukan mobilitas tinggi karena memberikan kehangatan tanpa mengorbankan gerak.
+Jaket Hoodie: lingkungan kerja kasual yang memerlukan kenyamanan dan fleksibilitas. Jaket hoodie sering digunakan di industri kreatif, startup, atau perusahaan teknologi, di mana suasana yang lebih santai dan tidak terlalu formal dihargai.
+Jaket Biasa: Ideal untuk lingkungan kerja luar ruangan yang membutuhkan perlindungan dari cuaca, tetapi tidak seintens jaket bomber. Bisa juga digunakan dalam setting kasual di kantor yang memiliki suhu yang sejuk akibat penggunaan AC.
+Kaos Raglan: Kaos dengan lengan yang sering berbeda warna dari bagian badan kaos. Kaos ini nyaman dan memberikan keleluasaan gerak yang baik, cocok untuk lingkungan kerja yang aktif atau untuk acara perusahaan yang lebih santai.
+Kaos T-shirt: Seragam dasar yang sangat umum di banyak industri. Cocok untuk pekerjaan dalam ruangan atau cuaca hangat, serta dalam event promosi atau sebagai seragam harian yang praktis dan nyaman.
+Kaos Polo: Menawarkan tampilan yang lebih rapi dibandingkan kaos t-shirt biasa dan sering digunakan di lingkungan yang membutuhkan tampilan semi-formal seperti di perbankan, hotel, atau acara perusahaan. Juga populer di industri jasa dan ritel.
+Kemeja Lengan Pendek: Sesuai untuk lingkungan kerja yang semi-formal dan cuaca panas. Sering digunakan di kantor atau oleh pekerja lapangan yang membutuhkan kesan rapi namun tetap ingin kenyamanan dalam cuaca yang lebih hangat.
+Kemeja Lengan Panjang: Pilihan untuk lingkungan kerja formal. Memberikan tampilan yang profesional dan sering diwajibkan dalam setting bisnis tradisional, pertemuan penting, atau acara resmi perusahaan.
+
+
+Saku Tunggal biasanya cukup untuk pekerjaan yang tidak memerlukan banyak alat atau aksesori. Cocok untuk pekerjaan administrasi atau di lingkungan kantor.
+Saku Ganda lebih praktis untuk pekerjaan lapangan yang memerlukan penyimpanan alat kerja kecil seperti obeng, pensil, atau alat tulis lainnya. Ini sering ditemukan pada seragam teknisi, insinyur, atau pekerja konstruksi.
+Tutup saku digunakan untuk melindungi isi saku dari debu atau untuk mencegah barang jatuh. Sangat direkomendasikan untuk pekerja lapangan di lingkungan yang berdebu atau berpotensi membuat isi saku terjatuh, seperti pada pekerja di pertambangan atau pertanian.
+
+
+
+Berdasarkan informasi profil perusahaan yang telah diperoleh dari frontpage website perusahaan melalui proses scraping, silakan identifikasi jenis dan nature dari usaha perusahaan tersebut. Gunakan informasi yang tersedia untuk memahami sektor industri, lingkungan kerja, dan nilai-nilai perusahaan. Setelah memahami konteks bisnisnya, buatlah rekomendasi tentang jenis seragam yang paling sesuai untuk karyawan perusahaan tersebut.
+
+Rekomendasikan salah satu atau beberapa dari jenis seragam berikut berdasarkan nature usahanya:
+
+1. Seragam Jaket Bomber: Biasanya digunakan di lingkungan kerja yang memerlukan ketahanan terhadap cuaca dingin dan angin, seperti di lapangan terbuka atau di area dengan suhu yang lebih rendah. Jaket ini juga sering dipilih untuk pekerjaan yang memerlukan mobilitas tinggi karena memberikan kehangatan tanpa mengorbankan gerak.
+2. Wearpack - untuk usaha yang melibatkan pekerjaan berisiko tinggi dan memerlukan perlindungan serta kepatuhan terhadap regulasi keselamatan.
+3. Seragam Retail dengan model Polo Kasual - untuk perusahaan ritel yang ingin menonjolkan branding toko dan menciptakan tampilan yang profesional namun santai.
+4. Seragam Jaket Hoodie: Cocok untuk lingkungan kerja kasual yang memerlukan kenyamanan dan fleksibilitas. Jaket hoodie sering digunakan di industri kreatif, startup, atau perusahaan teknologi, di mana suasana yang lebih santai dan tidak terlalu formal dihargai.
+5. Seragam Jaket Biasa: Ideal untuk lingkungan kerja luar ruangan yang membutuhkan perlindungan dari cuaca, tetapi tidak seintens jaket bomber. Bisa juga digunakan dalam setting kasual di kantor yang memiliki suhu yang sejuk akibat penggunaan AC.
+6. Seragam Kaos Raglan: Kaos dengan lengan yang sering berbeda warna dari bagian badan kaos. Kaos ini nyaman dan memberikan keleluasaan gerak yang baik, cocok untuk lingkungan kerja yang aktif atau untuk acara perusahaan yang lebih santai.
+7. Seragam Kaos T-shirt: untuk industri yang tampak padat karya dan membutuhkan kenyamanan serta fleksibilitas. Cocok untuk pekerjaan dalam ruangan atau cuaca hangat, serta dalam event promosi atau sebagai seragam harian yang praktis dan nyaman.
+8. Seragam Kaos Polo: Menawarkan tampilan yang lebih rapi dibandingkan kaos t-shirt biasa dan sering digunakan di lingkungan yang membutuhkan tampilan semi-formal seperti di perbankan, hotel, atau acara perusahaan. Juga populer di industri jasa dan ritel.
+9. Seragam Kemeja Lengan Pendek: Sesuai untuk lingkungan kerja yang semi-formal dan cuaca panas. Sering digunakan di kantor atau oleh pekerja lapangan yang membutuhkan kesan rapi namun tetap ingin kenyamanan dalam cuaca yang lebih hangat.
+10. Seragam Kemeja Lengan Panjang: Pilihan untuk lingkungan kerja formal. Memberikan tampilan yang profesional dan sering diwajibkan dalam setting bisnis tradisional, pertemuan penting, atau acara resmi perusahaan.
+
+
+'Buatkan surat penawaran resmi dari Vido Garment Indonesia, sebuah perusahaan yang berpengalaman selama 14 tahun dalam pembuatan seragam, dengan ulasan positif dari lebih dari 1000 reviewer di Google. Surat ini ditujukan kepada ' + + '  dengan tujuan mengajukan penawaran untuk pembuatan seragam yang telah disesuaikan berdasarkan profil usaha mereka, yakni sebagai berikut: ' + + '. Surat harus ditulis dalam bahasa Indonesia dengan gaya bahasa yang sangat ramah dan menarik. Sertakan penjelasan bahwa seragam yang direkomendasikan oleh Vido Garment adalah hasil pengamatan cermat terhadap profil usaha klien untuk memastikan seragam tersebut mendukung kebutuhan spesifik mereka. Alasan utama pembuatan seragam ini harus mencakup, tetapi tidak terbatas pada Peningkatan Citra Perusahaan, Pemersatu Karyawan, Promosi dan Branding, Keamanan dan Keselamatan, Identifikasi Mudah, Kenyamanan dan Fungsionalitas, Persyaratan Regulasi, Pengurangan Biaya untuk Karyawan. Akhir surat harus menawarkan untuk menjawab pertanyaan lebih lanjut atau mengatur pertemuan untuk mendiskusikan detail lebih lanjut. Berikan informasi kontak Vido Garment untuk menghubungi customer service di nomor 08123456789. Pastikan surat tersebut mencerminkan profesionalisme dan dedikasi Vido Garment dalam memberikan pelayanan terbaik kepada klien mereka.

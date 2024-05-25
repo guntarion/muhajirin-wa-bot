@@ -1,0 +1,219 @@
+<div class="chat">
+   <div class="sidebar">
+      <div class="search">
+         <input type="text" placeholder="Cari person...">
+         <i class="fa fa-search"></i>
+      </div>
+      <div class="contacts">
+         <ul>
+            {{#each chats}}
+            <li id="{{this.id}}">
+               <!-- Using an onclick event to call loadMessages with the chat id -->
+               <a href="javascript:void(0);" onclick="loadMessages({{this.id}})">
+                  <img src="{{this.avatar}}" alt="Avatar">
+                  <div class="contact">
+                     <div class="name">{{this.name}}</div>
+                     <div class="message">{{truncate this.lastmessage 10}}</div>
+                  </div>
+               </a>
+            </li>
+            {{/each}}
+         </ul>
+      </div>
+   </div>
+   <div class="content">
+      <div class="message-header">
+         <div class="user-info">
+            <img src="img/avatar.png" id="chat-avatar">
+            <div class="user">
+               <div class="name" id="chat-name">Select a chat</div>
+               <div class="time" id="chat-last-online">-</div>
+            </div>
+         </div>
+         <div class="actions">
+            <ul>
+               <li><a href="#"><i class="fa fa-info-circle"></i></a></li>
+               <li><a href="#"><i class="fa fa-ellipsis-v"></i></a></li>
+            </ul>
+         </div>
+      </div>
+      <div class="message-content" id="chat-messages"></div>
+      <div class="message-form">
+         <ul>
+            <li class="emoji-btn">
+               <a href="">
+               <i class="fa fa-laugh"></i>
+               </a>
+            </li>
+            <li class="input">							
+               <input type="text" placeholder="Ketikkan pesan..">
+            </li>
+            <li class="sound-btn">
+               <a href="">
+               <i class="fa fa-microphone"></i>
+               </a>
+            </li>
+            <li class="image-btn">
+               <a href="">
+               <i class="fa fa-image"></i>
+               </a>
+            </li>
+         </ul>
+      </div>
+   </div>
+</div>
+
+<div class="form-group">
+
+
+
+   <br>
+   <div class="col-12">
+      <button id="get-content" type="button" name="get-content" class="btn btn-secondary" style="display: none;">Get Content</button>
+   </div>
+   
+   <!-- Hidden elements -->
+   <div id="chat-content" style="display: none;"></div>
+   <div id="last-sender" style="display: none;"></div>
+
+
+   <div class="col-12">
+      <button id="get-summary" type="button" name="get-summary" class="btn btn-secondary">Get Summary</button>
+   </div>
+   <br>
+   <textarea name="chat-summary" id="chat-summary" class="form-control required" cols="30" rows="5" disabled></textarea>
+
+
+
+   <br>
+   {{!-- <label>Response Recommendation:</label> --}}
+
+   <div class="col-12">
+      <button id="response-recommendation" type="button" name="response-recommendation" class="btn btn-secondary">Get Response Recommendation</button>
+   </div>
+   <br>
+   <div class="css3-spinner" style="--cnvs-loader-color:var(--cnvs-themecolor); display: none;">
+      <div class="css3-spinner-rect1"></div>
+      <div class="css3-spinner-rect2"></div>
+      <div class="css3-spinner-rect3"></div>
+      <div class="css3-spinner-rect4"></div>
+      <div class="css3-spinner-rect5"></div>
+   </div>
+   <br>
+   <textarea name="openai-output" id="openai-output" class="form-control required" cols="30" rows="5">{{message}}</textarea>
+</div>
+
+<script>
+
+document
+.getElementById('get-summary')
+.addEventListener('click', function () {
+   const chatMessages = document.getElementById('chat-messages');
+   const chatContent = document.getElementById('chat-content');
+   const lastSender = document.getElementById('last-sender');
+
+   // Get the text content and type of all .message elements within #chat-messages
+   const messages = Array.from(chatMessages.querySelectorAll('.message')).map(
+      (message) => {
+         const content = message.querySelector('.bubble').textContent;
+         const type = message.classList.contains('me') ? 'CS' : 'Clients';
+         return { type, content };
+      }
+   );
+
+   // Join the messages into a single string with line breaks between each message
+   const messagesText = messages
+      .map((message) => `${message.type}: ${message.content}`)
+      .join('\n');
+
+   // Insert the messages into #chat-content
+   chatContent.textContent = messagesText;
+
+   // Insert the type of the last message into #last-sender
+   lastSender.textContent = messages[messages.length - 1].type;
+
+   // console.log('chatContent:', chatContent.textContent);
+
+   // Show the spinner
+   document.querySelector('.css3-spinner').style.display = 'block';
+
+   fetch('/api/openai-chat-summary', {
+         method: 'POST',
+         headers: {
+            'Content-Type': 'application/json',
+         },
+         body: JSON.stringify({ chatContent: chatContent.textContent, lastSender: lastSender.textContent }),
+   })
+         .then((response) => response.json())
+         .then((data) => {
+            // Hide the spinner
+            document.querySelector('.css3-spinner').style.display =  'none';
+            document.getElementById('chat-summary').value = data.message;
+         })
+         .catch((error) => {
+            // Hide the spinner in case of error
+            document.querySelector('.css3-spinner').style.display ='none';
+            console.error('Error:', error);
+         });
+});
+
+
+
+document
+   .getElementById('response-recommendation')
+   .addEventListener('click', function () {
+      const chatMessages = document.getElementById('chat-messages');
+      const chatContent = document.getElementById('chat-content');
+      const lastSender = document.getElementById('last-sender');
+
+      // Get the text content and type of all .message elements within #chat-messages
+      const messages = Array.from(chatMessages.querySelectorAll('.message')).map(
+         (message) => {
+            const content = message.querySelector('.bubble').textContent;
+            const type = message.classList.contains('me') ? 'CS' : 'Clients';
+            return { type, content };
+         }
+      );
+
+      // Join the messages into a single string with line breaks between each message
+      const messagesText = messages
+         .map((message) => `${message.type}: ${message.content}`)
+         .join('\n');
+
+      // Insert the messages into #chat-content
+      chatContent.textContent = messagesText;
+
+      // Insert the type of the last message into #last-sender
+      lastSender.textContent = messages[messages.length - 1].type;
+
+      console.log('chatContent:', chatContent.textContent);
+
+      // Show the spinner
+      document.querySelector('.css3-spinner').style.display = 'block';
+
+      fetch('/api/openai-response-recommendation', {
+            method: 'POST',
+            headers: {
+               'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ chatContent: chatContent.textContent, lastSender: lastSender.textContent }),
+      })
+            .then((response) => response.json())
+            .then((data) => {
+               // Hide the spinner
+               document.querySelector('.css3-spinner').style.display =
+                  'none';
+
+               document.getElementById('openai-output').value =
+                  data.message;
+            })
+            .catch((error) => {
+               // Hide the spinner in case of error
+               document.querySelector('.css3-spinner').style.display ='none';
+               console.error('Error:', error);
+            });
+   });
+
+
+
+</script>

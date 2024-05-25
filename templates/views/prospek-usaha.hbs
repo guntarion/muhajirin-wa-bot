@@ -1,0 +1,573 @@
+<div>
+    <h1>Daftar Prospek PT</h1>
+</div>
+
+
+<div class="form-group">
+    <label>Web Sasaran:</label>
+	<input type="text" name="website" id="website" class="form-control" value="" placeholder="https://">
+</div>
+
+<div class="col-7">
+	<div class="d-flex justify-content-evenly">
+		<button id="fetch-seo" type="button" class="btn btn-secondary">Fetch SEO Data</button>
+		<button id="capture-data" type="button" name="capture-data" class="btn btn-primary">Fetch FrontPage Data</button>
+	</div>
+</div>
+
+<div class="form-group">
+    <label>Info Usaha:</label>
+	<textarea name="info-usaha" id="info-usaha" class="form-control" cols="30" rows="2"></textarea>
+	<br>
+	<label>Konten Frontpage:</label>
+    <textarea name="konten-frontpage" id="konten-frontpage" class="form-control" cols="30" rows="4"></textarea>
+</div>
+<br>
+<div class="col-7">
+    <div class="d-flex justify-content-evenly">
+        <button id="buat-rekomendasi" type="button" name="buat-rekomendasi" class="btn btn-primary">Rekomendasi Produk</button>
+        <button id="buat-penawaran" type="button" name="buat-penawaran" class="btn btn-success">Buat Penawaran</button>
+    </div>
+</div>
+
+<div class="css3-spinner" style="--cnvs-loader-color:var(--cnvs-themecolor); display: none;">
+	<div class="css3-spinner-rect1"></div>
+	<div class="css3-spinner-rect2"></div>
+	<div class="css3-spinner-rect3"></div>
+	<div class="css3-spinner-rect4"></div>
+	<div class="css3-spinner-rect5"></div>
+</div>
+
+<br>
+<div class="form-group">
+	<label>Rekomendasi Produk:</label>
+	<textarea name="rekomendasi-produk" id="rekomendasi-produk" class="form-control" cols="30" rows="4"></textarea>
+</div>
+<br>
+<div class="form-group">
+	<label>Penawaran:</label>
+	<textarea name="narasi-penawaran" id="narasi-penawaran" class="form-control" cols="30" rows="4"></textarea>
+</div>
+
+
+
+<br>
+
+
+<div class="content">
+	<div class="table-responsive">
+		<table id="chatDataTable" class="table table-striped table-bordered" cellspacing="0" width="100%">
+            <thead>
+                <tr>
+                    <th>Nama Usaha</th>
+                    <th>Rating</th>
+                    <th>Pereview</th>
+                    <th>Alamat</th>
+                    <th>Website</th>
+                    <th>Lokasi</th>
+                </tr>
+            </thead>
+            <tfoot>
+            <tr>
+                <th>Nama Usaha</th>
+                <th>Rating</th>
+                <th>Pereview</th>
+                <th>Alamat</th>
+                <th>Website</th>
+                <th>Lokasi</th>
+            </tr>
+            </tfoot>
+			<tbody>
+				<tr><td>	Multi Centra Alkesindo	</td><td>	5	</td><td>	1	</td><td>	Grahapena Building, Jalan A Yani no. 88, Kelurahan Ketintang, Kecamatan Gayugan Floor 16 No. 1604, Ketintang, Surabaya	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJlchSGzD71y0RistmUQqn2DE" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT Citra Margatama Surabaya	</td><td>	4.5	</td><td>	62	</td><td>	Jl. Wisata Menanggal No.21, Dukuh Menanggal, Surabaya	</td><td>	http://www.cms.co.id/	</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJmZ-3xXX81y0RhukNfVxCaJQ" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT. BAHTERA ANUGERAH INDONESIA	</td><td>	4.8	</td><td>	4	</td><td>	Jl. Jojoran III No.41, Mojo, Surabaya	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJo6dDPC361y0RIrGBiWXJbo0" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT Yuwana Catur Manunggal - Jawa Timur Area	</td><td>	4.5	</td><td>	40	</td><td>	Jl. Raya Surabaya - Malang No.km51, RW.4, Mekar Raya Binangun, Janti, Pasuruan	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJU5Int0r71y0RMi9YHHgXz7k" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT BERJAYA LANCAR TERUS BLOK H 33	</td><td>	4.5	</td><td>	10	</td><td>	H, Jl. Kencanasari Timur II No.33 blok h, Gn. Sari, Surabaya	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJz0NFwIj71y0RlLiAIvvcQww" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT. Bisma Citra Nusantara	</td><td>	4.7	</td><td>	3	</td><td>	Jl.Wisma Pagesangan II No.24, RT002 RW 004 Kota SBY, Pagesangan, Surabaya	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJr6aw-1f71y0RijBpVvizabM" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	Panatronics. PT - Surabaya	</td><td>	0	</td><td>	0	</td><td>	Jl. Simpang Dukuh No.38-40 Ruko Andika Plaza Blok B 38 AA, Genteng, Surabaya	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJ132j2Gb51y0RRqojN2a1jXU" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT. Jakarta Raya Golden Industri	</td><td>	4.3	</td><td>	7	</td><td>	Kawasan SIER Jalan Rungkut Industri III No. 25 Gunung Anyar, Kutisari, Surabaya	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJhdLbiNj61y0RgZIOToK0jpc" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT Pelabuhan Terakhir Langgeng Sejahtera	</td><td>	5	</td><td>	18	</td><td>	Jl. Lombok No.22, Ngagel, Surabaya	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJj9jYrFr71y0R6htnvqpCxIo" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT. Gawih Jaya (Wismilak Group)	</td><td>	4.4	</td><td>	43	</td><td>	Komplek Pergudangan Tanjungsari Mas Blok D1-D2, Jalan Tanjungsari, Sukomanunggal, Tanjungsari, Surabaya	</td><td>	http://www.wismilak.com/	</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJ4VuozKL-1y0Rn1qw6s2c6Kc" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT. Adi CitraMakmur	</td><td>	5	</td><td>	2	</td><td>	MP26+6WQ, Jl. Ketegan Barat Gang III, Ketegan, Sidoarjo Regency	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJy7-1DZPj1y0RauEALn7j8lQ" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT. NIKITA SAKA	</td><td>	4	</td><td>	4	</td><td>	Jl. Kolonel Sugiono No.35, Ngingas, Kabupaten Sidoarjo	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJ422TScnk1y0RBPprm7clWak" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT Asia Lian Tan	</td><td>	4.7	</td><td>	3	</td><td>	MPVV+CX3 泗水 City, Bendul Merisi, Surabaya	</td><td>	http://www.joss-sticks.com/	</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJTzHKUqf71y0R1RsE3z1xf8s" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT. Mikatasa Agung Head Office	</td><td>	4.8	</td><td>	76	</td><td>	Jl. Rungkut Industri I No.15, Kendangsari, Surabaya	</td><td>	http://www.mikatasa.com/	</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJsyW6CCL71y0RWYRN41JwSgM" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT Trijaya Corporation	</td><td>	4.4	</td><td>	5	</td><td>	No., Jl. Ketintang Madya No.167, Karah, Surabaya	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJ7StwhWT71y0RSp0GwNsd-KE" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT. Alvindo	</td><td>	4.7	</td><td>	22	</td><td>	C No. 601, Jl. Margorejo Indah XIV, Margorejo, Surabaya	</td><td>	http://alvindo.co.id/	</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJXYMGexL71y0RVRsEUB8bJkI" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT. Intecs Teknikatama Industri	</td><td>	5	</td><td>	6	</td><td>	Puncak CBD ruko Mall 9i, Jl. Keramat I, Jajar Tunggal, Surabaya	</td><td>	http://intecs.co.id/	</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJvTuocWP71y0RUhBkjA6ksIQ" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT.Catur Putra Surya	</td><td>	1.2	</td><td>	318	</td><td>	Jl. Rungkut Industri III No.36, Rungkut Menanggal, Surabaya	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJL71P7CX71y0RgbRNoBFlL9k" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT. Internasional Raya Pengembang	</td><td>	0	</td><td>	0	</td><td>	Jl. Darmo Permai Sel. I No.50, Pradahkalikendal, Surabaya	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJQfVzBz381y0RG3mKJKbwcVc" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT Hanjaya Mandala Sampoerna Tbk	</td><td>	4.4	</td><td>	866	</td><td>	Jl. Rungkut Industri Raya No.18, Kali Rungkut, Surabaya	</td><td>	http://www.sampoerna.com/	</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJWR489d_61y0Rr36k00Sm8Sg" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT Siantar Top Tbk	</td><td>	4	</td><td>	424	</td><td>	Jl. Tambak Sawah No.21-23, Jabon, Tambakrejo, Kabupaten Sidoarjo	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJ44G9GCXl1y0RPeF5SKj10TQ" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT. Cakra Megah Perdana	</td><td>	4.6	</td><td>	269	</td><td>	MPP5+JVH pt cakra, Kedurus, Surabaya	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJx72wT4H81y0RZlZYIgNHBcM" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT. ORELA SHIPYARD	</td><td>	4.8	</td><td>	44	</td><td>	Jl. WR. Supratman No.23, DR. Soetomo, Surabaya	</td><td>	http://www.orela.co.id/	</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJKUMpxOn71y0RC-MY3uQcuU4" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT. Pelayaran Nasional Ekalya Purnamasari Tbk	</td><td>	4.5	</td><td>	63	</td><td>	Jl. WR. Supratman No.23, DR. Soetomo, Surabaya	</td><td>	https://pnep.co.id/	</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJ7bBGw-n71y0RrGePSj9fHeM" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT HEINZ ABC INDONESIA	</td><td>	3.9	</td><td>	81	</td><td>	Jl. Rungkut Industri III No.39-43, Rungkut Menanggal, Surabaya	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJrUEhzyf71y0RqJm44px3XgY" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	Gedung Griyo Mapan	</td><td>	4.4	</td><td>	54	</td><td>	Jl. M. Jasin Jl. Polisi Istimewa No.30, Keputran, Surabaya	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJN5zMS8L71y0Rn9-CUmkM8ng" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT. Central Jasatama Indonesia	</td><td>	4.6	</td><td>	21	</td><td>	Jl. Sidosermo I No.2A, Sidosermo, Surabaya	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJCxmulqf71y0RI_kkZv2QzxA" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT Berhasil Indonesia Gemilang	</td><td>	4.7	</td><td>	35	</td><td>	Jl. Dr. Ir. H. Soekarno No.531, Penjaringan Sari, Surabaya	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJUT7a4G771y0R9Hig2fACCzo" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT PERSONEL ALIH DAYA . PERSADA SURABAYA	</td><td>	4.8	</td><td>	30	</td><td>	Jl. Sidosermo Airdas RUKO SOHO 6-7, Sidosermo, Surabaya	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJ7QaaFVz71y0RTgBlhPKHzZM" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT Surabaya Industrial Estate Rungkut	</td><td>	4.4	</td><td>	2674	</td><td>	Jl. Rungkut Industri Raya No.10, Rungkut Tengah, Surabaya	</td><td>	https://sier.id/	</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJb1ABzCD71y0RIxe6IvXP0yc" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT. Lawangmas Primapack Indonesia	</td><td>	4.7	</td><td>	49	</td><td>	Jl. Manyar Kertoarjo Gg. 4 No.35, Mojo, Surabaya	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJyVc_UDL61y0Rbk4A790h7yU" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT. Paradigma Nusantara Membangun (Studio)	</td><td>	4.6	</td><td>	8	</td><td>	Jl. Pagesangan Asri II No.1, Pagesangan, Surabaya	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJRTHfs6f81y0Ro9EfBzNxl6E" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT. Tatacipta Teknologi Indonesia (PT. TATI)	</td><td>	5	</td><td>	26	</td><td>	Jl. Dr. Ir. H. Soekarno No.247, Semolowaru, Surabaya	</td><td>	http://www.pttati.co.id/	</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJf8B0F8j71y0RP-YhdCBOz6Y" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT. ASABA SURABAYA	</td><td>	4.5	</td><td>	34	</td><td>	Jl. Taman AIS Nasution No.39, Embong Kaliasin, Surabaya	</td><td>	http://asaba-indo.com/	</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJq9PlXt_71y0RiCMMABXko1o" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT Miura Indonesia	</td><td>	5	</td><td>	7	</td><td>	Jl. Mayjen Sungkono Ruko No.154 Unit H, Dukuh Pakis, Surabaya	</td><td>	http://miura.co.id/	</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJTa26BBz71y0RTMp8BteU3ig" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT. YAKULT INDONESIA PERSADA SURABAYA	</td><td>	4.5	</td><td>	58	</td><td>	Jl. Raya Kletek No.166-168, Menyanggong, Kletek, Kabupaten Sidoarjo	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJNX-UWTDj1y0RQj6eIryB5Hk" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	Sekar Group	</td><td>	4.7	</td><td>	73	</td><td>	Jl. Raya Darmo No.23-25, Keputran, Surabaya	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJyUA1WML71y0RiiKO61La_Qk" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT. Kertopaten Kencana	</td><td>	4.6	</td><td>	28	</td><td>	Jl. Ambengan No.20, Ketabang, Surabaya	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJOVu_e2_51y0RDIXZc-ZJIO0" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT. Fishnesia Mitra Bersama	</td><td>	4.9	</td><td>	15	</td><td>	Jl. Rungkut Industri III No.75, Rungkut Tengah, Surabaya	</td><td>	http://www.fishnesia.com/	</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJw73cl9j61y0RA3OtJ_MZ7uU" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT Sumber Cipta Multiniaga (RSO Surabaya)	</td><td>	4.5	</td><td>	167	</td><td>	Jl. Kedung Doro No.34, Sawahan, Surabaya	</td><td>	https://djarum.com/	</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJVUDYv1v51y0RAeridhJHmE4" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT Prima Indojaya Mandiri	</td><td>	4.5	</td><td>	21	</td><td>	Jl. Raya Dukuh Kupang No.93, Pakis, Surabaya	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJQ5iT-fX71y0RZv_KLUzfPzo" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT. Mitra Caraka Paramitha	</td><td>	4.9	</td><td>	8	</td><td>	Komp. Darmo Square, B-9, Ruko, Jl. Raya Darmo No.56, DR. Soetomo, Surabaya	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJeYV2MhD71y0R1m6N_T8_N9A" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT. ANTARMITRA SEMBADA	</td><td>	4.6	</td><td>	24	</td><td>	Jl. Balas Klumprik No.118, Balas Klumprik, Surabaya	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJh_LRbsD81y0RwYgQTOaUchA" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	pt total cipta persada	</td><td>	4.7	</td><td>	29	</td><td>	Jl. Raya Wisma Pagesangan No.115, Pagesangan, Surabaya	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJK3v9BFj71y0Rm31VMd-semw" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT Cahaya Indocompress Pahala Satria	</td><td>	5	</td><td>	8	</td><td>	Gg. Mangga, Kebraon, Surabaya	</td><td>	http://cips.web.indotrading.com/compressorparts-88585	</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJ-39axfD81y0RTk6_jFUnENw" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT. Danan Anugrah Sejahtera	</td><td>	5	</td><td>	2	</td><td>	Perum, Jl. Taman Permata Indah No.D24-25, Kalijaten Timur, Kalijaten, Kabupaten Sidoarjo	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJucqGmgfj1y0RR4u_Hvclg-I" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT. MERRINDO TOTAL SOLUSI	</td><td>	4.8	</td><td>	4	</td><td>	Jl. Kh.Misbakh No.08, DR. Soetomo, Surabaya	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJWd44ncL71y0RCHIJ7Ik5bhA" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT. OPMC INDONESIA	</td><td>	4.7	</td><td>	23	</td><td>	Jl. Kalibutuh No.152, RT.006/RW.03, Tembok Dukuh, Surabaya	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJyVD61tn51y0R-Nx9h9Lxq0k" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT.BRANTAS ABIPRAYA SURABAYA	</td><td>	4.5	</td><td>	17	</td><td>	MP5J+HV6, Jl. Kertomenanggal VI, Dukuh Menanggal, Surabaya	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJW0mA0E771y0RRctbtey2MVo" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT. Graha Ksatria Envirotama (IPAL & INCINERATOR GREEN LEAF)	</td><td>	4.7	</td><td>	28	</td><td>	Rungkut Asri VIII No.4, Kali Rungkut, Surabaya	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJz-5HQ9361y0R2xF40dmtk30" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT. Esandar Arthamas Berjangka, cabang Surabaya	</td><td>	4.6	</td><td>	30	</td><td>	Jl. Diponegoro No.58, DR. Soetomo, Surabaya	</td><td>	http://www.esandar.co.id/	</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJQRjy2t371y0RvIChw8SHRIc" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT Keikira Bersama Nusantara	</td><td>	5	</td><td>	4	</td><td>	Jl. Embong Malang No.1, Kedungdoro, Surabaya	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJBRctV2f51y0RHSZx6q09WOw" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT. ROBUTECH	</td><td>	4.9	</td><td>	73	</td><td>	Jl. Semolowaru Selatan V No.25, Semolowaru, Surabaya	</td><td>	http://www.robutech.com/	</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJseaxnln61y0RampW7DyYBqM" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT Beauty Kasatama Indonesia	</td><td>	5	</td><td>	3	</td><td>	Jl. Raya Darmo No.54-56 Blok B8, DR. Soetomo, Surabaya	</td><td>	https://www.beautykasatama.com/	</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJVYLcInr71y0RTVzILB8uT84" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT. Bandartrisula Surabaya	</td><td>	4.5	</td><td>	30	</td><td>	Jl. Petemon Kali No.58, Petemon, Surabaya	</td><td>	http://www.atlanticoceanpaint.com/	</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJddLNH1f51y0RCRNEfMSfYvU" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT Citra Karya Terpercaya	</td><td>	4.6	</td><td>	34	</td><td>	Perumahan Jaya Maspion Permata No.3 Blok A2, Dusun Bangah Timur, Bangah, Kabupaten Sidoarjo	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJjz9Celzl1y0R4RWP967WS_s" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT. Surindo Teguh Gemilang - HQ | Corrugated Box	</td><td>	4.7	</td><td>	17	</td><td>	Jl. Margorejo Indah No.A-114, Margorejo, Surabaya	</td><td>	http://www.teguhgroup.com/	</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJmc3rnhL71y0R8K5SRb1XTb0" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT EDMAR MANDIRI JAYA	</td><td>	5	</td><td>	5	</td><td>	Jl. Kertomenanggal III No.4 and. 7, Dukuh Menanggal, Surabaya	</td><td>	http://edmarmandiri.com/	</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJ-02T7U771y0RA6YAecFAoUI" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT.Selindo Mitra Sejahtera	</td><td>	5	</td><td>	15	</td><td>	Jl. Perumahan Taman Pd. Legi 5 Q No.12, Legi, Pepelegi, Kabupaten Sidoarjo	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJv1fqdqDj1y0Ruvsp5QSgSPU" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT.	</td><td>	1	</td><td>	1	</td><td>	Jl. Raya Sidokerto No.69, Tlogo, Sidokerto, Kabupaten Sidoarjo	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJCaB612jn1y0RKpBbdH05HOY" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT	</td><td>	5	</td><td>	1	</td><td>	HM32+GHX, Pilang, Kabupaten Sidoarjo	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJr-z3AQDh1y0R4m-BFeh8tFA" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT. PARAGON INTI SEJAHTERA	</td><td>	0	</td><td>	0	</td><td>	HM6V+Q47, Sumput, Sidoarjo Regency	</td><td>	https://www.bangunjayaperkasa.com/	</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJRcZqXUbh1y0RnKFf0V4rMEE" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	Kantor PTABU / PT.MBB.	</td><td>	0	</td><td>	0	</td><td>	HP45+PJ2, Gg. Buntu, Gajah Timur, Magersari, Kabupaten Sidoarjo	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJi6eDw1_h1y0RbUDc_XPyKEg" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT. Pandungo Mitra Utama	</td><td>	0	</td><td>	0	</td><td>	Jl. Raya Kludan No.02/03, Kludan, Kabupaten Sidoarjo	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJuWiu6brg1y0RA0S6GxOReW0" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT. Surya Timur Artha Rajasa (PT.STAR)	</td><td>	4.3	</td><td>	6	</td><td>	Jalan Kapasan No. 17 RT 21 RW 05, Cangkring, Sidokare, Kabupaten Sidoarjo	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJ9QZDvzHh1y0RMY2mW1V7NlM" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT INTEKINDO	</td><td>	4.7	</td><td>	3	</td><td>	HP32+9V3, Jati, Sidoarjo Regency	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJMS9jFkbh1y0RMZ7LBZRPbKk" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT. TENSAN INDONESIA	</td><td>	4.2	</td><td>	138	</td><td>	Jl. Kahuripan Raya Kav. 16 Jati, Sumput, Kabupaten Sidoarjo	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJrSvrIeDj1y0R0FatQDmxm5Q" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT MAS	</td><td>	0	</td><td>	0	</td><td>	JQ43+XW9, Dusun Gemurung Kidul, Gemurung, Kabupaten Sidoarjo	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJYZqbMVHk1y0RD2XgGT8zuis" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT. TBK Sidoarjo	</td><td>	3.5	</td><td>	2	</td><td>	GQP3+758, Rangkah Kidul, Sidoarjo Regency	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJXRDx7Pzm1y0R0055TzPXl4s" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT. Sanjaya Mitra Mulya	</td><td>	5	</td><td>	1	</td><td>	Griya Permata Gedangan Blok i1 No. 05, RT.001/RW.007, Keboansikep, Gedangan, Sikep, Keboansikep, Kabupaten Sidoarjo	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJt9WFaYDk1y0Rz90vNjD469E" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT pintu mas	</td><td>	0	</td><td>	0	</td><td>	Jl. Raya Banar Pilang No.1, Pilang, Kabupaten Sidoarjo	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJDwhSMq3h1y0RItWqqpW1Lr0" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT. PRIMA TOTAL SAINTIFIKA	</td><td>	5	</td><td>	4	</td><td>	Perum. Griya Permata Gedangan Blok B1 No. 6, Sikep, Keboansikep, Kabupaten Sidoarjo	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJHw31a37j1y0R6_RC7PjZJZk" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT PUTRA DELTA ABADI	</td><td>	0	</td><td>	0	</td><td>	Ruko surya square blok AA 19, Balumn, Sidodadi, Kabupaten Sidoarjo	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJswupURTh1y0Rb2xEnitL1vE" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT. JAE	</td><td>	4.5	</td><td>	21	</td><td>	Jl. Panjunan No.49, Sukadono, Sukodono, Kabupaten Sidoarjo	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJrZ3KLQTj1y0RObmvnwTsBG8" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT. Tjipto Langgeng Abadi	</td><td>	4.7	</td><td>	3	</td><td>	Jl. Surowongso No.121, Rw. 8, Karangbong, Kabupaten Sidoarjo	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJ1WbCIHXk1y0RlVrCGvP5jV8" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT. Central Sahabat Baru	</td><td>	4	</td><td>	2	</td><td>	Jl. Raya Sukodono No.9, Sukadono, Sukodono, Kabupaten Sidoarjo	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJ_zgGbnnj1y0RIndjRjTGCzc" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT PRADASA	</td><td>	5	</td><td>	1	</td><td>	Perumahan Pucang Permai, Jl. Jenggolo IIC Blok AB No. 22, Pucang, Kabupaten Sidoarjo	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJR1WV6aDn1y0RVGWhA1lmpe8" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT Yasinta Mitra Mandiri	</td><td>	3.8	</td><td>	10	</td><td>	GMWW+7HJ, Banjarpoh, Banjarbendo, Sidoarjo Regency	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJYVSxk0fh1y0R0awB8tHZDkY" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT. PANCADAYA MANUNGGALSENTOSA. PT	</td><td>	5	</td><td>	1	</td><td>	Jln. Lingkar Timur Km 5.5, Komp. Industri dan Pergudangan Safe n Lock Blok Block Ai No. 5901, Rangkah Kidul, Kabupaten Sidoarjo	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJj4JeuNHn1y0R1JfcwjJ9vOE" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT. SUNSTREAM INDONESIA (SURABAYA)	</td><td>	0	</td><td>	0	</td><td>	Pergudangan Safe & Lock Blok AJ5920, Jalan Lingkar Timur No.KM 5.5, Rangkah Kidul, Kabupaten Sidoarjo	</td><td>	http://www.sunstream-industries.com/	</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJ60oeIt7n1y0REpguSHiz_qo" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT. Rizky Jaya Energy Group	</td><td>	5	</td><td>	6	</td><td>	Jalan Lingkar Timur No.170A, Wadung, Wadungasih, Kabupaten Sidoarjo	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJNaSZJp_n1y0Rhw2SncGw8EU" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT.Tarunakusuma Purinusa TKPN Surabaya	</td><td>	3.6	</td><td>	10	</td><td>	Komplek Pergudangan Tanrise Westgate B.45, Jalan Jenggolo, Gedangan, Dusun Gemurung Kidul, Gemurung, Kabupaten Sidoarjo	</td><td>	http://www.selectioncotton.com/	</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJSYuKqTGEcC4RlKPxIvJO_zM" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT. Kencana Lintasindo Internasional (KLI)	</td><td>	3.7	</td><td>	6	</td><td>	GPQP+V83, Rangkah Kidul, Sidoarjo Regency	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJDcEa4dzm1y0RIgJ2pLZSG84" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT. Sila Sukses Bersama	</td><td>	5	</td><td>	3	</td><td>	Jl. Mutiara Tim. IV No.20, Banjarbendo, Kabupaten Sidoarjo	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJSVt2WmDh1y0R866iI-QJfkA" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT. Garda Ata Perkasa, Head Office	</td><td>	4.7	</td><td>	19	</td><td>	GMVH+8GM, Sudo, Sidodadi, Kabupaten Sidoarjo	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJ_Re4D7Dh1y0Rk55jnzl1zGQ" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	Garasi PT Pusaka	</td><td>	5	</td><td>	1	</td><td>	Rw. 9, Karangbong 199, Rw. 9, Karangbong, Sidoarjo Regency	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJy6E59WLj1y0R7S54qLebviU" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT. SINAREKPUTRA JATIM	</td><td>	0	</td><td>	0	</td><td>	Pergudangan Safe N' Lock Blok K1719-K1721, Jalan Lingkar Timur, Rangkah Kidul, Kabupaten Sidoarjo	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJ6duGSJHn1y0RMV3EeUWCcF0" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	Pt Kurnia Aneka Gemilang	</td><td>	4.6	</td><td>	5	</td><td>	JQ84+W23, Jl. Raya Bandara Juanda No.5, Dukuh, Sedati Agung, Kabupaten Sidoarjo	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJF1sRb_nk1y0RBUDvKnXEgu4" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT. Yahata Industry Indonesia	</td><td>	4.3	</td><td>	33	</td><td>	Komplek Pergudangan & Industri Safe N Lock Blok T-1889, Jl. Lkr. Timur No.Km, RW.5, Rangkah Kidul, Sidoarjo Regency	</td><td>	http://www.yahata-net.com/eng/index.html	</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJ-SeWy_zm1y0RsbycoNDjIbQ" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT. Mitra Kualita Presindo	</td><td>	3	</td><td>	2	</td><td>	Blok AN-, Taman Pd. Indah No.04, Sungon, Wiyung, Surabaya City	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJKwRHkxTh1y0RVZzGuLHBLSE" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	Pt	</td><td>	0	</td><td>	0	</td><td>	Rangkah Kidul, Sidoarjo Regency	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJn9Z6bNnn1y0RcqLeZTs9YVk" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT United Transindo - Sidoarjo Office	</td><td>	4.2	</td><td>	15	</td><td>	Jl. Raya Lingkar Timur, Sinar Buduran II Blok A No. 9, Prasung, Buduran, Jalan, Prasungtani, Prasung, Kabupaten Sidoarjo	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJActMdiLk1y0R4tzlL8Rbgh8" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT. Delta Winasha	</td><td>	0	</td><td>	0	</td><td>	HPF5+GH7, Jl. Kesatrian, Sidopurno 2, Sidokepung, Kabupaten Sidoarjo	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJwSb6WEnj1y0RX0Zs5xW0p28" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT. Alfrindo Karya Tama	</td><td>	4.7	</td><td>	6	</td><td>	Sentra Niaga Melrose Place Blok A No. 14, Perum Citra Garden, Entalsewu, Kabupaten Sidoarjo	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJr5UVBkTh1y0RdA21l4mtxpU" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT Pusaka Transindo	</td><td>	4.1	</td><td>	22	</td><td>	Jl. Ahmad Yani No.29, Megersari, Gedangan, Kabupaten Sidoarjo	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJL06iZIjk1y0RhTPoEocFbbs" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT.WIRATANU PERSADA TAMA SIDOARJO	</td><td>	4.5	</td><td>	15	</td><td>	HP48+8G4, Gajah Timur, Magersari, Sidoarjo Regency	</td><td>	http://wiratanupersadatama.com/	</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJwz58W7Pm1y0RsL0Z7ZGj3Lg" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT . Murni Anugrah Mandiri	</td><td>	4.7	</td><td>	20	</td><td>	HPRF+77M, Jl. Gatot Subroto, Tebel Barat, Tebel, Kabupaten Sidoarjo	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJS94Vldzl1y0Rbaw1Qcmdlt4" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT. SUNCITY ANUGERAH MANDIRI	</td><td>	0	</td><td>	0	</td><td>	Komp. Ruko Pd. Mutiara, N-12, Jl. Pahlawan No.9C, Jetis, Lemahputro, Sidoarjo Regency	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJvUTL3Ufh1y0R-D0y6VTLKIM" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT. Senopati Mega Nusantara	</td><td>	5	</td><td>	5	</td><td>	HP23+XGQ, Jl. Jatisari Indah, Wismasarinadi, Magersari, Kabupaten Sidoarjo	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJGze2cFzh1y0RpgRE94Ueu-4" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT. Rajawali Hiyoto Dan PT. Osindo Bahagia Bersama Cabang Surabaya	</td><td>	4	</td><td>	26	</td><td>	Jl. Santren No.51, Dusun Gambir Anom, Keboananom, Kabupaten Sidoarjo	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJXY8O7Ifj1y0RVWWxZzg5ICQ" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	Tensindo Kreasi Nusantara, PT	</td><td>	4.6	</td><td>	5	</td><td>	HM2M+FX7, Puri Indah Blok P no, 12, Suko, Sidoarjo Regency	</td><td>	http://www.tensindo-mstgroup.com/	</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJ46dHgGzh1y0RjTcnRSyBUfU" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT.United Technindo Selaras	</td><td>	4.5	</td><td>	10	</td><td>	Kompleks pergudangan permata gedangan Ac-29, Bohar Timur, Bohar, Kabupaten Sidoarjo	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJmWSc-ILk1y0RyRs1jgQuSNs" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT. Saraswanti Utama	</td><td>	4.9	</td><td>	9	</td><td>	Jl. Raya Bandara Juanda Surya Inti Permata Juanda, Super Blok A52, Sedati Kulon, Wedi, Kabupaten Sidoarjo	</td><td>	http://www.saraswanti.com/	</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJL3DlsjHl1y0RcQdOCwaYjtA" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT Selnet Optima EJ	</td><td>	4	</td><td>	5	</td><td>	HM9R+JX9, Sumput, Sidoarjo Regency	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJifXf9V_h1y0RBz-e5mrCwvc" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT MUSTIKA DHARMAJAYA (new era lama)	</td><td>	4.5	</td><td>	14	</td><td>	JQ54+MQX, Jl. Raya Betro, Kepuh, Wedi, Kabupaten Sidoarjo	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJRSeCS7vl1y0RvUQOO9Z0Phw" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT Hisamitsu Pharma Indonesia	</td><td>	4.3	</td><td>	59	</td><td>	HPMF+PXX, Jl. HR. Moch. Mangundiprojo, Buduran, Banjarkemantren, Kabupaten Sidoarjo	</td><td>	https://id.hisamitsu/home	</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJMWDBK6zm1y0RpHJA2aas1O8" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT USAHA BAKTI PERKASA	</td><td>	4.4	</td><td>	26	</td><td>	Jalan Lingkar Timur No.1, Area Sawah, Kemiri, Kabupaten Sidoarjo	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJE7ulNbTn1y0R7AUhldCwZY8" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT. Ardendi Jaya Sentosa	</td><td>	4.3	</td><td>	11	</td><td>	Jl. Surowongso No.359, Rw. 9, Karangbong, Kabupaten Sidoarjo	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJ3W1Y-Yrj1y0R0Eb42oUhEEU" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT. Bumi Lancang Kuning Pusaka (Surabaya)	</td><td>	4.6	</td><td>	20	</td><td>	Pergudangan Central Industrial Park (CIP, Jl. Lingkar Timur No.KM. 4 Kav. C1-C6, Area Sawah, Kemiri, Kabupaten Sidoarjo	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJexcpI1Dk1y0Rc-CVeE7e1yk" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT Integra Indocabinet	</td><td>	3.8	</td><td>	214	</td><td>	JQ54+RHM, Jl. Raya Betro, Wedi, Kabupaten Sidoarjo	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJm_JdGljk1y0R0obOl6BMsN0" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT. Berkah Lancar Abaditama	</td><td>	3.7	</td><td>	36	</td><td>	Griya Taman Cipta Karya, Jalajn Edelweis Blok E 185, Bohar, Taman, Balun, Bohar, Kabupaten Sidoarjo	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJ2WzgSHDj1y0RIJJaU990abY" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	Pt Arina Multikarya Buduran	</td><td>	4.3	</td><td>	16	</td><td>	HPHJ+M38, Jl. Jawa, Binangun, Wadungasih, Kabupaten Sidoarjo	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJOzErVhrk1y0RGA_HWL1IEng" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT HERVITAMA INDONESIA	</td><td>	4.6	</td><td>	40	</td><td>	Sungon, Suko, Sidoarjo Regency	</td><td>	https://hervitama.co.id/	</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJTVUpU9Xh1y0R2luSkE143e8" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	Kurnia Inti Pratama, PT	</td><td>	4.4	</td><td>	39	</td><td>	Griya Villa Derma, Jalan Griya Villa Derma Blk. A No.1, Dusun Kemendung, Sidodadi, Kabupaten Sidoarjo	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJDXasxu3i1y0Rr5fAL6PBRzE" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT. Laban Raya Samodra	</td><td>	5	</td><td>	7	</td><td>	GPQW+J7C, Rangkah Kidul, Sidoarjo Regency	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJR6JgLeTm1y0RCDzAuGDpbW8" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT. Young Tree	</td><td>	4.1	</td><td>	336	</td><td>	Jl. Raya Banar Pilang No.19, Banar, Pilang, Kabupaten Sidoarjo	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJTxlLw5Xh1y0RkLSVggJ7-Mo" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT. SIKAB - Instalasi Gas Medis	</td><td>	4.9	</td><td>	14	</td><td>	KOMPLEK INDUSTRI DAN PERGUDANGAN SAFE N LOCK BLOK AJ NO. 5973 - JL. LINGKAR TIMUR KM 5 RW.5, Pucanganom, Rangkah Kidul, Kabupaten Sidoarjo	</td><td>	https://sahabatinti.co.id/	</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJiW0MDM3n1y0RF0AzPHx4Bdg" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT. Kharisma Surya Semesta	</td><td>	5	</td><td>	5	</td><td>	HPHR+F28, Prasungtani, Prasung, Kabupaten Sidoarjo	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJyUmfZSLk1y0R6dzqqn2h_4s" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT. ANIG	</td><td>	4.9	</td><td>	15	</td><td>	GQM4+3C9, Pucanganom, Kabupaten Sidoarjo	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJMxRXoaHn1y0RqXZSIRVCVNs" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT.APN	</td><td>	4	</td><td>	3	</td><td>	PT. Arthatama Pelita Nusa (Hannochs, Jl. Kalianak Barat No.51-D, RT.002/RW.01, Kalianak, Surabaya	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJZxNqAUH_1y0RmBMxr9xYWKM" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT. TIRTA MAHAKAM RESOURCES. Tbk Bukuan	</td><td>	4	</td><td>	2	</td><td>	Jl. Raya Roomo Sekar Sore No.387, Maduran, Roomo, Kabupaten Gresik	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJx88i6ZwA2C0RqFzXPnA2Ad4" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	Warna Cemerlang Industri PT	</td><td>	4.7	</td><td>	6	</td><td>	VJG7+M9M, Tenger, Roomo, Kabupaten Gresik	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJG7DuUBv-dy4RaVKesREF7vM" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	Pt Terang Dunia Internusa	</td><td>	4	</td><td>	3	</td><td>	RJ2Q+FMF, Segoromadu, Gresik Regency	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJkyqKjW7_1y0RddR_gwlLy8o" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT Tricakra Indonesia	</td><td>	5	</td><td>	6	</td><td>	Jl. Veteran, Kebonpoh, Segoromadu, Kabupaten Gresik	</td><td>	http://www.tricakraindonesia.com/	</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJQ73N1AwB2C0RGgB1Ik3-4ms" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT. Indro Joyo	</td><td>	4.7	</td><td>	3	</td><td>	Jl. Veteran Gg. V No.8, Injen Timur, Gapurosukolilo, Kabupaten Gresik	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJhVCNhjkA2C0R7N5fvte2z5M" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT. MITRA PETANI INDONESIA	</td><td>	5	</td><td>	11	</td><td>	Komplek Pergudangan Bumi Maspion. Jl. Bumi Maspion Timur (BMT) Kav. 48-B, Romokalisari, Surabaya	</td><td>	http://www.mitrapetaniindonesia.com/	</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJ4b9YVpn_1y0RyfpqhzXK-Z0" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT PILAREN Gresik	</td><td>	3.9	</td><td>	8	</td><td>	Jl. Ikan Lodan Besar No.: 12, Perum. BP Kulon, Pekauman, Kabupaten Gresik	</td><td>	http://www.pilaren.com/	</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJjz4UBEQA2C0RViVUL68pzUE" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT Tatsumi Seruni Indonesia	</td><td>	4.8	</td><td>	11	</td><td>	Maduran, Roomo, Gresik Regency	</td><td>	http://pttsi.co.id/	</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJBw184xUB2C0RPJdBNouiFB0" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT Indospring Tbk, Plant 3	</td><td>	4	</td><td>	3	</td><td>	RJ6F+GGV, Napes, Gulomantung, Gresik Regency	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJv6Gej_kB2C0Rk54ER-HKc-E" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT Bintang Timur	</td><td>	4.4	</td><td>	23	</td><td>	Jl. Greges Jaya II Blok A No.7, Greges, Surabaya	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJs53KJAP_1y0Rj3IdhTJrDqw" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT Barata Indonesia (Persero)	</td><td>	4.6	</td><td>	146	</td><td>	Jl. Veteran No.241, Panggang, Gending, Kabupaten Gresik	</td><td>	http://www.barata.id/	</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJF0IT_zgA2C0RhQ94hZ2Jjc8" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT. PADMA TIRTA WISESA	</td><td>	3.9	</td><td>	21	</td><td>	Jl. Kedanyang - Gresik No.69a, Sekarkurung, Kabupaten Gresik	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJ61l-w-L_dy4REvBvT8se7JY" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT. GMCP Gresik	</td><td>	4.5	</td><td>	40	</td><td>	Jalan Veteran Madya No.16, Singosari, Malang, Gending Wetan, Singosari, Kabupaten Gresik	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJ193bBiMA2C0RJWQzXQdQC8Q" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT Ateka Jaya Primantara	</td><td>	5	</td><td>	1	</td><td>	Jl. Kalianak Barat No.73 Blok C-03, RT.001/RW.02, Genting, Kalianak, Surabaya	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJaUuxgcv_1y0Ri0zmOgsrnsw" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT. Bridge Fortune	</td><td>	3.3	</td><td>	3	</td><td>	RJ8C+C3P, Sekarkurung, Gresik Regency	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJS63Zl8cB2C0RL_aEP02i4BI" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	Pt. Inti group	</td><td>	5	</td><td>	3	</td><td>	Jl. Laksda Moh. Nazir No.40, Perak Utara, Surabaya	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJZ13Hkjn51y0RUAcs6N8r_bc" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT. SWPI Kalianak 66	</td><td>	4.2	</td><td>	26	</td><td>	Jl. Kalianak Barat No.66 Blok A1, Kalianak, Surabaya	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJvwlMA9H-1y0REpWeNKhHlVo" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT Unggul Mulia Mandiri	</td><td>	4.3	</td><td>	4	</td><td>	Jl. Raya Roomo No.166, Maduran, Roomo, Kabupaten Gresik	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJb8mN04gA2C0RGTBQMmc1mf8" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT Puspetindo	</td><td>	4.4	</td><td>	46	</td><td>	Jl. Raya Roomo, Maduran, Roomo, Kabupaten Gresik	</td><td>	https://puspetindo.com/	</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJTUQrCyH-dy4RRlWqxDH2Yac" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT. Harum Alam Segar	</td><td>	4.3	</td><td>	170	</td><td>	VJC7+HWW, Tenger, Roomo, Kabupaten Gresik	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJYyZUuh7-dy4RVDIJrFTcbYo" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT. Nankai Indonesia	</td><td>	4.3	</td><td>	115	</td><td>	Jl. Mayjend Sungkono No.21-2, Jagongan, Ngargosari, Kabupaten Gresik	</td><td>	https://www.nankai-indonesia.com/	</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJ_3LVyAIA2C0Rd3BWVQhF-WU" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT.PanganSari Utama Mitra	</td><td>	4.4	</td><td>	70	</td><td>	Jl. Kalianak Timur No.73c, Kalianak, Surabaya	</td><td>	http://www.pum-mitra.com/pum/	</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJv7xMw9_-1y0Rg4s1lMlWSac" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT. Panen Raya	</td><td>	4.2	</td><td>	38	</td><td>	Blok C 12, Jl. Mayjend Sungkono No.5, Jagongan, Ngargosari, Gresik Regency	</td><td>	http://panenraya.com/	</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJua3sjPX_1y0RTDv4h7iu1UY" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	Pt.Cahaya Mekar Jaya	</td><td>	4.8	</td><td>	81	</td><td>	Ruko citi 9, Blk. D No.11, Randuboyo, Ngipik, Kabupaten Gresik	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJ8VAeH9H_dy4RyLh_Z7W_LcM" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT. SMELTING	</td><td>	4.5	</td><td>	444	</td><td>	Maduran, Jl. Raya Roomo No.224, Kabupaten Gresik	</td><td>	http://www.ptsmelting.com/	</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJYTqFm48A2C0REm3n2jCTzRE" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT. Gerbang Cahaya Utama	</td><td>	4	</td><td>	1	</td><td>	JL. Tanjung Batu No. 25-27, West Perak, Surabaya	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJsaM2Q9r41y0RJnyem_l70_s" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT. Alas Petala Makmur	</td><td>	4.1	</td><td>	29	</td><td>	Jl. Tambak Langon No.18, Tambak Langon, Surabaya	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJc90WRfT-1y0RXab986p-2pI" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	Gramitrama Jaya Steel. PT	</td><td>	4.3	</td><td>	100	</td><td>	Jl. Mayjend Sungkono No.28, Sekarkurung, Kabupaten Gresik	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJB_gPgAwA2C0RKBc3qqtTdAM" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT. PERWITA NUSARAYA MJI GRESIK	</td><td>	4.2	</td><td>	31	</td><td>	Jl. Surakarta III No.02, Randuagung, Kabupaten Gresik	</td><td>	https://www.facebook.com/perwitanusarayagresik/	</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJnRYw6yr-dy4RVuNPIBikZz0" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT. MITRA DRAJAT SENTOSA	</td><td>	4.8	</td><td>	38	</td><td>	BLOK E/31 PERUM GREEN HILL, Sekarkurung, Kabupaten Gresik	</td><td>	http://mitradrajatsentosa.co.id/	</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJpxLRS6b_dy4Rizty0-aZ54k" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT.SPS Cabang Gresik	</td><td>	4.5	</td><td>	4	</td><td>	Jl. Airlangga No.77, Sekarkurung, Kabupaten Gresik	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJMSuzEeP_dy4RHUT5PagAyts" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	Perikanan Nusantara. PT Persero - Surabaya	</td><td>	4.1	</td><td>	34	</td><td>	Jl. Nilam Barat No.16, Perak Utara, Surabaya	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJrXqDi7P41y0R-DeetX1Pd-M" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT. RANTEINDO TEKNIK MANDIRI	</td><td>	4.6	</td><td>	10	</td><td>	VJ3H+925, Sekarsore, Roomo, Kabupaten Gresik	</td><td>	https://ranteindo.com/	</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJf6ZIteQB2C0RtiZ1NC-GqME" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT.Samudra Raya Jaya	</td><td>	4	</td><td>	4	</td><td>	Greges jaya 1 no 6, Greges, Surabaya	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJjTwAzQL_1y0RtjOhptdrkgU" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT. Salim Ivomas Pratama, Tbk	</td><td>	4.4	</td><td>	320	</td><td>	Jl. Tj. Tembaga No.2-6, Perak Bar., Surabaya	</td><td>	http://www.simp.co.id/	</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJyyGEuM_41y0RYj5ZNfZcsuc" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT. Manunggal Karya Jati	</td><td>	4.1	</td><td>	77	</td><td>	Blok A1 No. 8 Ruko Manyar Resort, Jl. Raya Sukomulyo, Wonorejo, Yosowilangun, Kabupaten Gresik	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJrztXCyH-dy4RRKhho9Hv4Po" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	ACID PLANT WWTP (PT. SMELTING CORP)	</td><td>	4.3	</td><td>	91	</td><td>	VJ6P+5FM, Roomo Vilage Manyan Distrct, Roomo, Manyar, Maduran, Roomo, Kabupaten Gresik	</td><td>	http://www.ptsmelting.com/	</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJ89NSwpEA2C0Rz4dSRmagZq0" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT Cakraindo Mitra Internasional	</td><td>	4.6	</td><td>	5	</td><td>	Jalan Osowilangun no 8D - 9, RW.9, Tambak Osowilangun, Surabaya	</td><td>	https://cakraindo.com/	</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJuX2qDQL_1y0RsgCNmfOgbqc" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT. Samator Gas Industri Veterantama	</td><td>	4.3	</td><td>	45	</td><td>	RM84+FP5, Leker, Kramatinggil, Gresik Regency	</td><td>	http://samator.com/	</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJUeFMci8A2C0RJdiiTUU8VNM" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT Petrokopindo Cipta Selaras	</td><td>	4.5	</td><td>	82	</td><td>	Jl. Raya Roomo No.242, Maduran, Roomo, Kabupaten Gresik	</td><td>	http://www.petrokopindo.com/	</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJrdqSI18B2C0RxQQcG7YVMfU" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT. Masa Manunggal Mandiri	</td><td>	4.4	</td><td>	21	</td><td>	Jl. Kepatihan Industri No.10, Guntung, Kepatihan, Kabupaten Gresik	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJm1CPKYwAeC4RtNQ8gwWD_aA" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT. SAMUDRA TEKNIK INDONESIA	</td><td>	4.5	</td><td>	2	</td><td>	Jl. Jati Regency I, Kembangan, Gresik Regency	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJv4SlcX7_dy4RrP03CauLa_M" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT. Gresik Migas	</td><td>	4.4	</td><td>	34	</td><td>	Jl. DR. Wahidin Sudiro Husodo No.708, Kembangan, Kabupaten Gresik	</td><td>	http://gresikmigas.co.id/	</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJU1mtXUEA2C0Rl51b7dXYA_I" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT INDOTANK	</td><td>	4.2	</td><td>	24	</td><td>	Jl. Kalianak Barat No.57A, Asem Rowo, Surabaya	</td><td>	http://www.indotank.com/	</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJxdVFENn-1y0R1uvBn4jQUrw" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT Rukun Aman Sejahtera	</td><td>	4.7	</td><td>	21	</td><td>	B,, Jl. Kalianak Timur No.73, Kalianak, Surabaya	</td><td>	https://www.rukunamansejahtera.co.id/	</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJ3Wcxb-D-1y0Rz1NX6Gayqlo" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT. Varia Usaha Fabrikasi	</td><td>	4.3	</td><td>	29	</td><td>	Jl. DR. Wahidin Sudiro Husodo No.100, Setingi, Randuagung, Kabupaten Gresik	</td><td>	http://vufabrikasi.id/	</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJva21_qEB2C0RXqBrfHZBvwg" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT. AKR Corporindo	</td><td>	4.2	</td><td>	35	</td><td>	Pergudangan Surimulia Permai blok A6, 7, 8, Margomulyo No.44, Greges, Surabaya	</td><td>	http://www.akr.co.id/	</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJ9wQmVub-1y0RDkpvMtVd2qs" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT Bina Karya Prima	</td><td>	3.9	</td><td>	89	</td><td>	Jl. Kig Raya Barat No.Kav. L, Randuagung, Kabupaten Gresik	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJAYXIE4EA2C0RzasWzEfC3XM" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT. Arthatama Pelita Nusa	</td><td>	5	</td><td>	8	</td><td>	Jl. Kalianak Barat No.51-D, RT.002/RW.01, Kalianak, Surabaya	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJuSDBzlf_1y0RG64OFNG-eTs" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT. Pusaka Bawean Group	</td><td>	4.3	</td><td>	3	</td><td>	Jl. Green Garden Regency Blk. D1 No.1, Dahanrejo, Kabupaten Gresik	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJcQff7RMA2C0RRY609IOga9g" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT Jaya Baru Malanti	</td><td>	4.5	</td><td>	23	</td><td>	Jl. Kalianak Barat No.68, Kalianak, Surabaya	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJrwjwOCf_1y0Rpp_66TbSeWk" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT. REXLINE ENGINEERING INDONESIA (HEAD OFFICE)	</td><td>	4.3	</td><td>	35	</td><td>	Margomulyo Angtropolis No.46 Blok H-9, Greges, Surabaya	</td><td>	https://rexlineengineering.com/	</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJpVvlqf3laS4RQFpqKtBYnhg" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	Nilam Port Terminal Indonesia, PT (Container Yard Office)	</td><td>	4.4	</td><td>	68	</td><td>	Jl. Nilam Barat No.Timur, Perak Utara, Surabaya	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJz8puZLb41y0RQJk_tne3IX8" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT. Agri Timur Mas	</td><td>	4.2	</td><td>	28	</td><td>	VJH6+M5C, Tenger, Roomo, Kabupaten Gresik	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJZ1BMBAX-dy4Re5q3QTChoiE" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT. Karya Brother Nusamesindo Surabaya	</td><td>	5	</td><td>	8	</td><td>	QMF4+R67, Tambak Osowilangun, Surabaya	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJL9vVOzv_1y0RN2SdiOol_0Q" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	AMG	</td><td>	4.7	</td><td>	9	</td><td>	Jl. DR. Wahidin Sudiro Husodo No.76, Setingi, Randuagung, Kabupaten Gresik	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJ9Q5LT3gA2C0RVLlbOytcij4" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT. Bahtera Adi Jaya	</td><td>	4.5	</td><td>	11	</td><td>	Jl. Margomulyo No.70, Tambak Sarioso, Surabaya	</td><td>	http://www.bahteraadijaya.com/	</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJgy4pfPb-1y0R3xwrn6rsb_k" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT SAPTA AJI MANUNGGAL PRIMA	</td><td>	4.3	</td><td>	6	</td><td>	Jl. Tambak Osowilangun No.35 Blok B-12, Tambak Osowilangun, Surabaya	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJ0akIIyL_1y0RA0OH4B8HNKM" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	PT. Asal Jaya	</td><td>	5	</td><td>	4	</td><td>	Jl. Ikan Teri, Perak Bar., Surabaya	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJKx8xjyj51y0RJy1OSklt-Fc" target="_blank">lokasi</a>	</td></tr>
+
+				<tr><td>	CV PERDANA	</td><td>	5	</td><td>	7	</td><td>	Jl. Kombes Pol. Moh. Duryat No.14/16, RT.001/RW.003, Tegalsari, Surabaya	</td><td>	http://www.perdana-tech.com/	</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJSVgx19_71y0RSETCrmnu1rY" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	CV Trunojoyo	</td><td>	4.3	</td><td>	10	</td><td>	Jl. Ngagel No.31 - 33, Ngagel, Surabaya	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJq32MhMT71y0RVP1FDv4Bo0w" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	CV NIKI	</td><td>	5	</td><td>	4	</td><td>	Jl. Sidosermo PDK IA No.368, Sidosermo, Surabaya	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJG_4eYIL71y0RGs-7VfuZZQc" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	CV RUBIKON Waru	</td><td>	5	</td><td>	4	</td><td>	Jl. SD Kedungrejo No.35, RT.08/RW.02, Kedungrejo, Kabupaten Sidoarjo	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJlWCm_l7l1y0RH83zGVey6Gs" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	cv berkat	</td><td>	4.5	</td><td>	2	</td><td>	MQXM+CR4, Semolowaru, Surabaya	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJ1TEsoov71y0R-YNuNuJkqw0" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	Cv Davindo Anugrah Unggul	</td><td>	0	</td><td>	0	</td><td>	Blok 4 No, Jl. Mayjen Sungkono, Pakis, Surabaya	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJR6nurYv71y0R9HuXl7tw1iQ" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	Cv Cahaya Baru	</td><td>	0	</td><td>	0	</td><td>	Jl. Medayu Utara No.3, Medokan Ayu, Surabaya	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJxz9TgZf61y0RyGQ19SVUTAk" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	CV. Dharmaya Laksana	</td><td>	0	</td><td>	0	</td><td>	Taman Gn. Anyar Asri D No.10, Gn. Anyar Tambak, Surabaya	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJg77a97L71y0RbQ7U1aivBrc" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	CV. Kencana Kembar	</td><td>	4.7	</td><td>	15	</td><td>	Jalan, Babatan Pilang III No.2, Babatan, Surabaya	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJ96CySPb81y0RPOUppANL0oM" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	CV UTAMA	</td><td>	4.8	</td><td>	4	</td><td>	Jl. Brigjend Katamso No.70, Mekar Raya Binangun, Janti, Kabupaten Sidoarjo	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJEewl3nPl1y0RmhmMlSIRujM" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	CV Maju Bersama	</td><td>	4.3	</td><td>	15	</td><td>	Jl. Pucangan Alun Alun No.2, RT.003/RW.07, Kertajaya, Surabaya	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJp_nIGMb71y0RdPTmlw7dzjY" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	CV. Exalutions	</td><td>	4.7	</td><td>	21	</td><td>	Jl. H. Syukur VII, Sedati Gede, Kabupaten Sidoarjo	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJHW9meOPk1y0RiGOWsiwHBbo" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	CV Flash Jasa (Jasa Pembuatan Pengurusan Pendirian PT,CV,NIB,UD,PBG diSurabaya, Sidoarjo, Gresik, Lamongan Murah&Terpercaya)	</td><td>	5	</td><td>	160	</td><td>	Jl. Pakis Wetan Gg. V No.80, RT10 RW03, Surabaya	</td><td>	https://www.flashjasa.com/	</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJp-XZFff71y0RHq4hca3YPY8" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	CV TIRTO WENING	</td><td>	4.8	</td><td>	10	</td><td>	Jl. Kalijudan No.8 B, Kalijudan, Surabaya	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJE10fJYb51y0R4sMhgkoUsMw" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	CV KES Surabaya	</td><td>	5	</td><td>	1	</td><td>	Gg. VI No.35, Penjaringan Sari, Surabaya	</td><td>	http://www.cv-kresnaetamsejahtera.com/	</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJ-XEhdOr61y0Rf_ax5jA86RU" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	CV. Team Wisnu (Workshop)	</td><td>	4.3	</td><td>	3	</td><td>	Jl. Keramat I No.29, Wiyung, Surabaya	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJFRoBAB_91y0REgAmYNtJgKM" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	CV Sejahtera Gemilang - Panasonic & CCTV Center Surabaya	</td><td>	5	</td><td>	25	</td><td>	Ruko RMI Blok K-12, Baratajaya, Jalan Ngagel Jaya Selatan, Pucang Sewu, Gubeng, Baratajaya, Surabaya	</td><td>	http://sejahteragemilang.id/	</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJubSIe6371y0RujC_KRoEdkE" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	cv. Mawar Jaya	</td><td>	5	</td><td>	3	</td><td>	PMMX+W2H, Jalan, Sukomanunggal, Surabaya	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJBd7ys6b-1y0RBK-9e6a0aIw" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	CV. MULTI RAYA	</td><td>	3.5	</td><td>	2	</td><td>	Jl. Simo Hilir Barat Raya 6, G No.18, Simomulyo, Surabaya	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJZ3FlkHz91y0R6Wv2dV1H4ac" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	CV Surya Jaya	</td><td>	5	</td><td>	1	</td><td>	Jl. Jolotundo Baru I No.12, Pacar Keling, Surabaya	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJ6w0l6fv51y0RQWaJkK7L1n8" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	CV. KHALIFAH INDONESIA	</td><td>	5	</td><td>	4	</td><td>	No., Jl. Kedung Tarukan Baru I No.14, RT.001/RW.06, Mojo, Surabaya	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJN5zDXdX71y0RJebTdYqDDvk" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	Karunia Sejahtera	</td><td>	3.4	</td><td>	45	</td><td>	Jl. Rinjani U35B, Jl. Raya Kepuh Permai, Kundi, Kepuhkiriman, Kabupaten Sidoarjo	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJBfzX8inl1y0RGoyUt65nH9c" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	CV. Griya Teknika	</td><td>	4.8	</td><td>	10	</td><td>	Jl. Garuda No.31, Wedoro, Raya, Kabupaten Sidoarjo	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJsbX6gTL71y0RIKqjpsrPQWs" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	CV. CAHAYA MANDIRI	</td><td>	5	</td><td>	3	</td><td>	Jl. Petemon V No.79, Petemon, Surabaya	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJc2sv4VX51y0R8-94iceZ54g" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	CV Premier	</td><td>	4.7	</td><td>	12	</td><td>	Jl. Permata Jambangan No.2, Jambangan, Surabaya	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJf-QBJZz81y0RFjxqtlJFMGg" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	CV. Sahi Kencana	</td><td>	4	</td><td>	2	</td><td>	Jl. Pisces No.6, Ploso, Surabaya	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJEa_BmZr51y0R0FKyAzmrZEI" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	CV. Victory Jaya Indonesia	</td><td>	4.6	</td><td>	10	</td><td>	Jl. Ketintang Permai blok BD no. 12, Karah, Surabaya	</td><td>	http://vji.co.id/	</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJZTXpHu371y0RcYJE7Teq45E" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	CV. TUNGGAL JAYA	</td><td>	4.6	</td><td>	5	</td><td>	Dukuh Kupang Barat XX No.15, Dukuh Kupang, Surabaya	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJbfSuyyD91y0RyV_Uq7WHN64" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	CV.Sumber Jasa	</td><td>	5	</td><td>	6	</td><td>	Jl. Genteng Bandar II No.11, Genteng, Surabaya	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJlZblAmf51y0Rod0vth9Cg3Y" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	Cv Mulia Mukti	</td><td>	0	</td><td>	0	</td><td>	Jl. Simo Gn. Baru No.47, Banyu Urip, Surabaya	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJ0RDPtwH81y0Ru7ZxC88Szjo" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	CV. TUNAS JAYA	</td><td>	5	</td><td>	2	</td><td>	Jl. Jend. S.Parman IV No.4, Krajan Kulon, Waru, Kabupaten Sidoarjo	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJXcAuo9vl1y0R83vYfXmfpVE" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	CV. GUNA SEJAHTERA	</td><td>	0	</td><td>	0	</td><td>	JQMR+3XG, Jabon, Tambaksawah, Kabupaten Sidoarjo	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJ_4g6aozl1y0Rf8DnUaYJ1J0" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	CV. AGRA KRIYA	</td><td>	4.8	</td><td>	6	</td><td>	Jalan Kalidami VIII No.18A, RT.004/RW.10, Mojo, Surabaya	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJe7wdra771y0RmDW3a3ORP-4" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	CV KALIJAYA TEKNIK	</td><td>	4.8	</td><td>	9	</td><td>	Dusun Legok, Suko, Sidoarjo Regency	</td><td>	http://www.kalijayateknik.com/	</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJYZcg123j1y0R-z7HT0RV-z0" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	CV Rajawali Sejahtera Marindo	</td><td>	5	</td><td>	27	</td><td>	Jl. Basuki Rahmat No.122-138, Embong Kaliasin, Surabaya	</td><td>	https://www.rajawalisejahteramarindo.com/	</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJ58ffr_j71y0RnfBYrwkl384" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	CV MANDIRI SEJAHTERA	</td><td>	0	</td><td>	0	</td><td>	JPXP+Q58, Jl. Brigjen Katamso II, Bandilan, Kedungrejo, Kabupaten Sidoarjo	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJLa-EvCbl1y0RNi0Q3lbs5fg" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	Rajawali Glass CV	</td><td>	0	</td><td>	0	</td><td>	No.48 PX 38, Jl. Raya Sutorejo Prima, Dukuh Sutorejo, Surabaya	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJtdWpM_T51y0RhiQ1VVaYh3U" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	Cv Citra Pratama	</td><td>	0	</td><td>	0	</td><td>	Jl. Rungkut Mapan Utara R P. Vii No.timur no EG 27, Rungkut Tengah, Surabaya	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJxYv5OfP71y0RTjPJglxWP84" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	Cv Wujud Unggul	</td><td>	5	</td><td>	1	</td><td>	Jl. Bendul Merisi Selatan No.17, Bendul Merisi, Surabaya	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJv2ldxAj71y0RQVUj5arwcGw" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	CV. WARNA MURNI	</td><td>	0	</td><td>	0	</td><td>	PQ8G+9WR, Unnamed Road, Klampis Ngasem, Surabaya	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJaWF6Zzj61y0R_Of3VHPKXXo" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	CV.Berlian Mandiri	</td><td>	0	</td><td>	0	</td><td>	Jl. Jolotundo Baru III No.33, Pacar Keling, Surabaya	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJ9U31bnj51y0RqNuBSgzUlpU" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	CV. Alaska Puspa Production	</td><td>	4.3	</td><td>	6	</td><td>	Jl. Bratang Binangun I No.85-A, RT.002/RW.09, Baratajaya, Surabaya	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJEboYaWj71y0R7Di_3MpB03Y" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	Karunia Pratama CV	</td><td>	4.6	</td><td>	5	</td><td>	Jl. Pattimura No.3, Sonokwijenan, Surabaya	</td><td>	https://www.karuniapratama.com/	</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJ1w6dZRn81y0RMcqcXn9xvx8" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	CV. Karya Cipta Gemilang	</td><td>	4	</td><td>	2	</td><td>	MPQC+X62, Gg. Lap., Karah, Surabaya	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJe1VzP1v71y0Rg4hITodViis" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	CV.BINTANG NUSANTARA SURABAYA	</td><td>	0	</td><td>	0	</td><td>	Karang Asem VII No.27, Ploso, Surabaya	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJ6yjT0Ub51y0Rk4pBXG6i4Uk" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	CV.LESTARI	</td><td>	0	</td><td>	0	</td><td>	Jl. Bogen No.24-A, Tambaksari, Surabaya	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJQ-mTonb51y0RATnzBm4Ty_U" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	CV. Mitra Teknik	</td><td>	0	</td><td>	0	</td><td>	Jl. Ki Suryojati Utara No.95, Medaeng Kulon, Kedungturi, Kabupaten Sidoarjo	</td><td>	http://cv-mitrateknik.com/	</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJUQk56ePj1y0RYArl4W6vpHo" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	Cv Sinar Pasundan	</td><td>	1	</td><td>	1	</td><td>	Jl. Dupak Rukun No.204, Asem Rowo, Surabaya	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJ441a7ef_1y0R4IIq-TEoLrs" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	CV JLS	</td><td>	4.5	</td><td>	11	</td><td>	Jl. Kalianak Madya II No.15-17, Asem Rowo, Surabaya	</td><td>	http://alustaraluminium.com/	</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJAb9bMMX-1y0Ruz5nVtkqkYU" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	Cv Arifin Abadi	</td><td>	5	</td><td>	7	</td><td>	Daras, Pabean, Sidoarjo Regency	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJC2GR3ODk1y0Ra_xt0qGbpdw" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	CV Paracom	</td><td>	4.5	</td><td>	25	</td><td>	Jl. Tj. Sari No.44 Blok B-17, Tandes, Surabaya	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJYduSrpz_1y0RRlwNR1uo8g0" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	CV. CEMORO SEWU	</td><td>	4.8	</td><td>	4	</td><td>	Jl. Barata Jaya IV No.70 B, Baratajaya, Surabaya	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJ6SauWan71y0RQBm53dBDm_c" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	CV Star Jaya Sejahtera	</td><td>	4	</td><td>	23	</td><td>	Komplek, Jl. Galaxi Bumi Permai No.H5 No.11, RT.000/RW.00, Semolowaru, Surabaya	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJ-zC4XHr71y0R1YKJJvUhWrw" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	CV Hidayat Corporation	</td><td>	5	</td><td>	1	</td><td>	Jl. Tambak Medokan Ayu perumahan sinar amerta medayu selatan blok c12B, Medokan Ayu, Surabaya	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJJTTAZRv71y0ROLZl-jRZ9_I" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	CV Papua Jaya Mandiri	</td><td>	3	</td><td>	1	</td><td>	PPW6+R35, Jl. Simorejo I Bar., Simomulyo, Surabaya	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJU9YP_vn_1y0RfhwmZWGcKrY" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	Cv Distributor sembako	</td><td>	1.3	</td><td>	6	</td><td>	Jl. Tambak Sawah No.75, Kel, Tambak Kidul, Tambakrejo, Kabupaten Sidoarjo	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJEbcp6STl1y0RK3vDmFeWuR0" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	CV Dasan Putra Perkasa	</td><td>	4	</td><td>	7	</td><td>	Putro Agung Wetan No.58A, Gading, Surabaya	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJGUpGzJj51y0Rgb2ZKhfy2s0" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	Alfa Grafika, CV	</td><td>	5	</td><td>	4	</td><td>	Jl. Petojo No.2, Pacar Kembang, Surabaya	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJy_pN8oH51y0Rvk7y-z-8VlI" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	CV. Tiga Putra Jaya	</td><td>	0	</td><td>	0	</td><td>	Jl. Dukuh Setro 1 Tengah No.8 001, RT.001/RW.18, Gading, Surabaya	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJ2ahajMX51y0RDBuW2hPNLGE" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	Cv.Multi Abadi Teknik	</td><td>	4.5	</td><td>	2	</td><td>	Jl. Ki Suryo Jati Rt.13 Rw.08, Medaeng Kulon, Kedungturi, Sidoarjo Regency	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJcche32zj1y0RwhakloSOcKk" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	CV HABERJU	</td><td>	0	</td><td>	0	</td><td>	Jl. Ikan Trowani II No.3, Perak Bar., Surabaya	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJww5mRLL51y0RXhC0gryOOt0" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	CV. JAYA PUTRA ASYARI	</td><td>	0	</td><td>	0	</td><td>	Jl. Ikan Tengiri Gg. Buntu No.23a, Perak Bar., Surabaya	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJ6xXnPSb51y0RuutsQRYonpk" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	CV Cakra Nenggala Konsultan	</td><td>	5	</td><td>	1	</td><td>	RJF4+X79, Kembangan, Gresik Regency	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJSZShC-P_dy4R7_x9l80l9UI" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	CV. SARIJAYA	</td><td>	0	</td><td>	0	</td><td>	VP87+8G7, Tim., Kamal, Kabupaten Bangkalan, Jawa, Bindung, Gili Tim., Kabupaten Bangkalan	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJJUYRamIB2C0RkAa_d0jgljU" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	Cv.multiguna	</td><td>	0	</td><td>	0	</td><td>	jl.mayjen sungkono no36A, Sekarkurung, Kabupaten Gresik	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJa5-5pAkA2C0R56K0Y_nmxR0" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	CV. MITRA BERDIKARI	</td><td>	0	</td><td>	0	</td><td>	No., Jl. Ikan Lumba-Lumba No.15, Perak Bar., Surabaya	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJs1m2QSn51y0RcE6Wx-n8I5M" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	CV. Jawa Timur Baru	</td><td>	0	</td><td>	0	</td><td>	Jl. Mayjend Sungkono No.38, Sukorejo, Kabupaten Gresik	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJ37Adz53_1y0RHPiLEsUWPes" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	CV INDO JAYA PUTRA	</td><td>	4.3	</td><td>	3	</td><td>	Jl. Kepatihan Industri I No 5, Guntung, Kepatihan, Gresik Regency	</td><td>	http://ijpchem.com/	</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJO76khvgBeC4RN93fDRbZJac" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	CV. Hidup Mulia	</td><td>	5	</td><td>	2	</td><td>	VJ79+87Q, Jl. Raya Sukomulyo, Maduran, Roomo, Kabupaten Gresik	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJd9YyPNX_dy4R1ItqAkmaeKo" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	CV UJUNG GALUH NUSANTARA	</td><td>	0	</td><td>	0	</td><td>	Jl. Palem Sememi Bar. V No.11, Sememi, Surabaya	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJJdY1nBr_1y0RzMzqogcy5D0" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	CV Anggun Jaya	</td><td>	0	</td><td>	0	</td><td>	Perum Dinari Blok B No 7, Jl. Kyai H. Syafiꞌi No.1, Dahanrejo, Kabupaten Gresik	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJ25eytLP_dy4Rz2EbAEazRTs" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	CV Surabaya Trading & CO	</td><td>	5	</td><td>	2	</td><td>	Jl. Mayjend Sungkono No.35-A, Sekarkurung, Kabupaten Gresik	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJ3UBgStwB2C0RwbJJUI7RozQ" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	CV ANTARIKSA	</td><td>	5	</td><td>	2	</td><td>	VJ49+5JC, Wonorejo, Yosowilangun, Kabupaten Gresik	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJ7b1WKeL_dy4RkLYjbXGr0eI" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	Cv Pelita Mandiri	</td><td>	4.4	</td><td>	12	</td><td>	Blok, Jl. Kig Raya Utara KM No.1, Sekarsore, Roomo, Gresik Regency	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJRU_bf4MA2C0Rq7W_NjYRQwY" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	CV. Nabila	</td><td>	3	</td><td>	1	</td><td>	Jl. Cimanuk I No.18, Pedukuhan, Kebomas, Kabupaten Gresik	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJ24-pqHAA2C0R2TqDZ1tnstc" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	Kantor CV Aneka Berkah Ukur	</td><td>	4.3	</td><td>	6	</td><td>	Jl. Raya Banjarsari Asri No.19, Beturing, Danau/Waduk, Kabupaten Gresik	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJvdIqRJf_dy4Rr4RPJASM-fc" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	cv gouwtama	</td><td>	5	</td><td>	4	</td><td>	QJ62+9XX, Jl. Kepatihan Industri, Guntung, Kepatihan, Kabupaten Gresik	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJjQOOU4kAeC4R4saJUVigs3g" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	CV KHS	</td><td>	0	</td><td>	0	</td><td>	RJ8R+9WW, Jl. Umum, Gunungsari, Sidomoro, Kabupaten Gresik	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJuc4YfwAB2C0Rbw_jIzAtxF4" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	CV. Dwi Jaya Mulia	</td><td>	4.8	</td><td>	4	</td><td>	Jl. Sindujoyo Gg. XIV No.32, Telogopojok Satu, Kemuteran, Kabupaten Gresik	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJF5rM8CMB2C0RKsDdLp8MfkU" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	Cv. Moro Jaya Putra	</td><td>	5	</td><td>	1	</td><td>	No.51 T, Jl. Kalianak Barat, Kalianak, Surabaya	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJL4KHvJv_1y0RmbvTX6Hmeb4" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	CV. ADI JAYA	</td><td>	0	</td><td>	0	</td><td>	Jl. Cimanuk No.29, Pedukuhan, Randuagung, Kabupaten Gresik	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJXStDf94B2C0R9SU-_qQt6Jw" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	CV. Santoso	</td><td>	3.3	</td><td>	7	</td><td>	Jl. DR. Wahidin Sudiro Husodo No.74, Setingi, Randuagung, Kabupaten Gresik	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJzwbYSHgA2C0RZ2V5KGPEP3k" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	CV ZULFIKAR PRATAMA JAYA	</td><td>	4	</td><td>	1	</td><td>	RJ67+CV7, Jl. Kedanyang - Gresik, Prambangan, Ngipik, Kabupaten Gresik	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJnVVWt_7_dy4RJ1Ap2uct1xM" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	CV Catur Karya Mandiri	</td><td>	0	</td><td>	0	</td><td>	Jl. Balikpapan I No.24, Wonorejo, Yosowilangun, Kabupaten Gresik	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJIXEJjTP_dy4RrHeGqGwRBkk" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	Cv. Surabaya Trading & Co	</td><td>	4.2	</td><td>	39	</td><td>	Jl. Veteran No.142, Gending, Kabupaten Gresik	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJU4bJMyMA2C0RD6je2cOodQ4" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	CV. Jaya Berkah Lindraksy	</td><td>	0	</td><td>	0	</td><td>	Jl. Gubernur Suryo No.23, Lumpur, Kabupaten Gresik	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJ3WYllh8B2C0RwRSDJMEcEoo" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	CV. Lentera DIA	</td><td>	4	</td><td>	2	</td><td>	RJF6+C95, Kembangan, Gresik Regency	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJ5aon9ub_dy4R9rnz1a9Y45M" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	CV.PSM	</td><td>	5	</td><td>	4	</td><td>	Jl. Maluku No.22, Jegong, Pulopancikan, Kabupaten Gresik	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJy5I0-B4B2C0Ru5jaSh1PnRY" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	CV Daun Jaya	</td><td>	5	</td><td>	1	</td><td>	Jl. Tanah Masa No.6, RT.03/RW.07Kel, Setingi, Randuagung, Kabupaten Gresik	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJlRHnbV__dy4RbtoP7juKhdo" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	CV. Karya Indah	</td><td>	0	</td><td>	0	</td><td>	Jalan Kalianak Barat No.55-PK, Kalianak, Surabaya	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJA6svNd_-1y0R51ic-7Wz_wQ" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	CV. RIMBA MAS JAYA	</td><td>	5	</td><td>	1	</td><td>	Jl. Mayjend Sungkono No.17, Napes, Gulomantung, Kabupaten Gresik	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJx5LSP9cB2C0RgNoMWvbWGg4" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	CV TJB RAYA	</td><td>	5	</td><td>	1	</td><td>	Jl. Sunan Giri 13 L, Sudomukti, Tlogopatut, Kabupaten Gresik	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJ71DVp1cB2C0R0-lXr0KZZI4" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	Cv sejati	</td><td>	0	</td><td>	0	</td><td>	Jl. Raya Sukomulyo No.20, Maduran, Roomo, Kabupaten Gresik	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJ8avh1bL_dy4RHKTfSkRAuZc" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	CV Maju Mundur Berkah	</td><td>	0	</td><td>	0	</td><td>	Jl. Berlian VIII Perum Pondok Permata No.15, Suci, Kabupaten Gresik	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJfZg9FQf_dy4RnskcN4CFvT4" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	CV Bangkit Eka Jaya	</td><td>	0	</td><td>	0	</td><td>	RMQ3+F83, Gg. IV, Tlogobendung, Bedilan, Kabupaten Gresik	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJ594sVxkB2C0RAKMac9Dl204" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	CV. PASARIBU	</td><td>	5	</td><td>	1	</td><td>	RHWV+2M4, Dahanrejo, Gresik Regency	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJzbLotOz_dy4RmJV0c3IPVgs" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	CV. Global Jaya Indo	</td><td>	5	</td><td>	5	</td><td>	Blk. C3 No.46, Gn. Malang, Randuagung, Gresik Regency	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJlVxZ5Kv_dy4R3tw0BPWuBGM" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	CV. INDO BERSAMA SEJAHTERA	</td><td>	5	</td><td>	6	</td><td>	Perum Griya Peganden Asri Blok C3 No.17, Pongangan Indah, Peganden, Kabupaten Gresik	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJNcNKdnn_dy4RlnzVcMhdqx0" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	Workshop Cv MadedadiTeknik	</td><td>	5	</td><td>	1	</td><td>	Jl. Panggang No.99B, Suci, Kabupaten Gresik	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJocfYDgD_dy4RSa4SwJPcfd4" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	Cahaya Mulya. CV	</td><td>	1	</td><td>	1	</td><td>	JL. Mayjen Sungkono, 606, Gresik, 61121, Kebodalem, Giri, Gresik Regency	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJB_gPgAwA2C0R5tSrfpD0gUI" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	CV.MAKMURINDO SEJAHTERA ABADI	</td><td>	4.9	</td><td>	22	</td><td>	Belakang cafe daun jati, Jl. Panggang, RT.04/RW.05, Suci, Kabupaten Gresik	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJrQecSGH_dy4RqkCHTNghuHc" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	CV. Sejahtera Food Pearls	</td><td>	4.9	</td><td>	27	</td><td>	Perumahan, Graha Surya Nata No.27, Sumberrejo, Surabaya	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJaWxISHAAeC4R-2letsvTDEg" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	CV BINTANG BERKAH BERSINAR	</td><td>	4.8	</td><td>	4	</td><td>	Sumberrejo, Surabaya	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJ0buzaBABeC4RCFGbscOdl44" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	CV.TRISAKA UTAMA	</td><td>	4	</td><td>	4	</td><td>	RJ96+G85, Kedanyang, Gresik Regency	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJXyyYAuX_dy4Rjvxq8CU_mKg" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	Cv maju mapan jaya	</td><td>	5	</td><td>	1	</td><td>	Jl. Margomulyo 44 blok OO 38, Jl. Pergudangan Suri Mulia permai, Asem Rowo, Surabaya	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJ_S-wgCX_1y0RstyeXiGUTKM" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	Kantor CV.KHARISMA JOEL ABADI	</td><td>	4.7	</td><td>	14	</td><td>	Suci, Gresik Regency	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJIZoXS8H_dy4RdNqgiKnzvkA" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	CV. Karya Makmur Pratama	</td><td>	5	</td><td>	2	</td><td>	kalianak madya III No.6, Kalianak, Surabaya	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJY8LVzZr_1y0RnyiosBvUnuU" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	CV. SINAR ANUGERAH & ABADI MAKMUR	</td><td>	4.7	</td><td>	22	</td><td>	Romokalisari, Surabaya	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJ8w3n3HL_1y0Re3S-_tkB8xs" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	Cv bumi jasmine	</td><td>	5	</td><td>	1	</td><td>	Jl. Banjar Baru No.14, Ponganganrejo, Yosowilangun, Kabupaten Gresik	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJCc30rOT_dy4RbCVcd0l1oJQ" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	CV. CAHYATRI ABADI	</td><td>	5	</td><td>	3	</td><td>	No.29, Blok B7, Jl. Laksda Moh. Nazir No.29 Blok E18, Perak Bar., Surabaya	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJz5OD4sP41y0RwU3gISFrXIA" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	CV ora et labora	</td><td>	4	</td><td>	1	</td><td>	RJW9+G8P, Setingi, Randuagung, Gresik Regency	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJJxi7823_dy4ROPQzBxlGV8c" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	CV. Cipta Mandiri Teknik	</td><td>	5	</td><td>	2	</td><td>	Jl. I BMU 02 Romokalisari Kota SBY, 60192, Romokalisari, Surabaya	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJyygV1oz_1y0RQGvTMylaG28" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	CV. Threefindo	</td><td>	5	</td><td>	4	</td><td>	Jl. Kyai H. Syafiꞌi No.212, Dahanrejo, Kabupaten Gresik	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJi8AYjrD_dy4RLSTjt-LyVjM" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	CV CAHAYA AGUNG SURABAYA & PT PERISAI AMPAT SEKAWAN	</td><td>	4.7	</td><td>	52	</td><td>	Jl. Raya Purwodadi No.15, RT.012/RW.04, Jepara, Surabaya	</td><td>	https://cv-cas-pt-pas.business.site/	</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJBQKOql751y0RYiDzoZHeDIo" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	CV. BERKAH	</td><td>	3	</td><td>	1	</td><td>	No., Jl. Pasir V No.8, Suci, Pongangan, Kabupaten Gresik	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJV_ltQiX-dy4R8odFgqQgtOI" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	CV. Mekar Sejahtera	</td><td>	4.8	</td><td>	4	</td><td>	Pergudangan Osowilangun Permai Blok A No.17, Surabaya	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJgxlW-yv_1y0ROtqIpmq-cfA" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	CV. PANDAWA LIMA	</td><td>	2.5	</td><td>	2	</td><td>	Rejosari baru RT 06 RW 03 NO. 27 Kota SBY, Benowo, Surabaya	</td><td>	http://pandawalima2016.blogspot.co.id/	</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJYZIgyIUAeC4R7XepCJcqedI" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	CV TIGA PUTRA JAYA	</td><td>	5	</td><td>	1	</td><td>	Jl. Banjar Baru No.2 no.6, Wonorejo, Yosowilangun, Kabupaten Gresik	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJ955o-bv_dy4RLHxrd6EKfXM" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	CV. Mitra Pratama Electrindo	</td><td>	5	</td><td>	1	</td><td>	Blk. A, Jl. Tambak Langon Indah No.I No.35, RT.000/RW.00, Tambak Langon, Surabaya	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJz5Y2UxH_1y0Rdbzgm2yQE0Y" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	CV. Cakra Nusa	</td><td>	5	</td><td>	4	</td><td>	Jl. Raya Amira I No.15, Balun, Bohar, Kabupaten Sidoarjo	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJ9wU0lDbj1y0RVzGkceMT6_0" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	Cv Cahaya	</td><td>	0	</td><td>	0	</td><td>	Tulangan Timur, Tulangan, Sidoarjo Regency	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJ9XJJbUng1y0RF1yBSDwsWZY" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	CV Anak Kandung	</td><td>	5	</td><td>	1	</td><td>	Jl. Kidemang Singomenggolo No.98, Sidomulyo, Kabupaten Sidoarjo	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJu9TMR1rl1y0R0dRYGPELDlo" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	CV Maheswari Teknik Jaya	</td><td>	5	</td><td>	4	</td><td>	Makam Islam Dusun Beciro, Jl. Sidopurno No.RT 06, RT.06/RW.02, Beciro, Jumputrejo, Kabupaten Sidoarjo	</td><td>	http://servisinverter.com/	</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJ8Rbbl6nj1y0RRTvT7mSnN0g" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	CV KRINCING EMAS	</td><td>	5	</td><td>	1	</td><td>	Jl. Kelurahan No.568, RT.04/RW.01, Bulu Sidokare, Bulusidokare, Sidoarjo Regency	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJFYyU_QXn1y0RRT3Ct2ADjsc" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	CV Wijaya Kusuma	</td><td>	4	</td><td>	6	</td><td>	Jl. Delima No.9, Pekorungan, Pekarungan, Kabupaten Sidoarjo	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJ2xMKW7Xj1y0RWwVYjJ1YdBI" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	CV Manunggal Sejahtera	</td><td>	4.8	</td><td>	18	</td><td>	Puri Surya Jaya, Cluster, Jl. Taman Athena No.H3/27, Demeling, Gedangan, Sidoarjo Regency	</td><td>	http://www.sorbdry.co.id/	</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJ8XxbEGTk1y0RWmZfxJVnpxA" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	CV.JAYANDARU PERKASA	</td><td>	5	</td><td>	1	</td><td>	HP87+HR6, Sono, Sidokerto, Kabupaten Sidoarjo	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJgYGPt1Th1y0RMalrX4wQ5yI" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	CV HIMALAYA	</td><td>	5	</td><td>	1	</td><td>	Perum pondok jati CI No.17, Jati, Kabupaten Sidoarjo	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJRUh2Uvzh1y0RqlGkXwSv4qc" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	CV SETU KANAKA	</td><td>	5	</td><td>	3	</td><td>	BLOK D3-01, Jl. Perum Mutiara Citra Graha No.D3-01, Dusun Minggir, Bligo, Kabupaten Sidoarjo	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJVQVL3d_n1y0RrCOtbCLpmpE" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	CV Bintang Pratama Teknik	</td><td>	3	</td><td>	2	</td><td>	Gg. Mbah Sarah II No.5, Windu Asri, Wadungasih, Kabupaten Sidoarjo	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJF_gdhNrl1y0RXoTPPqbZvT4" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	Cv gelora wijaya teknik	</td><td>	4.6	</td><td>	8	</td><td>	HPVF+2F5, Tebel Barat, Tebel, Kabupaten Sidoarjo	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJhzt1xzbl1y0RrdE90xwB-FU" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	cv.star indonesia	</td><td>	4.8	</td><td>	5	</td><td>	HP9M+GH2, Jl. Raya Siwalanpanji, Siwalan Panji, Siwalanpanji, Kabupaten Sidoarjo	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJwzvOCw_n1y0R2zxoJMc_H2I" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	CV SUKSESINDO SUPPLIES	</td><td>	5	</td><td>	13	</td><td>	Jl. Pd. Jati No.E-15, Jati, Kabupaten Sidoarjo	</td><td>	https://siplah.tokoladang.co.id/official-store/cv-suksesindo-supplies.502	</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJj9JFfI3h1y0Ri6_sDfwJl-I" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	CV.BAROTEK	</td><td>	5	</td><td>	4	</td><td>	Masangankulon rt05 rw02, Masangan, Masangankulon, Kabupaten Sidoarjo	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJDXf4ZJvj1y0Ry2ruWHhogik" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	CV BERKAH MANDIRI	</td><td>	5	</td><td>	2	</td><td>	FPV4+VPC, Kedunganten, Kalitengah, Kabupaten Sidoarjo	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJ9bPKi1Lh1y0RlEiukiP5J8E" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	CV MARGA JAYA	</td><td>	5	</td><td>	1	</td><td>	HP27+JVG, Mangersari, Magersari, Sidoarjo Regency	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJ7_axyUrh1y0RoFo4goEuM50" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	CV. ADIPRAMANA KARYA	</td><td>	5	</td><td>	3	</td><td>	GPW7+CCX, Kwadengan Timur, Lemahputro, Sidoarjo Regency	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJs8eglTTh1y0RXH-Nltpmm9Y" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	CV. KAWAN LAMA JAYA	</td><td>	4.2	</td><td>	15	</td><td>	Jl. Wagir indah No. 47, RT. 11 / 06, Kwangsan, Sedati, Wagir, Kwangsan, Kabupaten Sidoarjo	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJQ1mDfVLk1y0RY9J6tVnA43w" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	CV BINTANG ANAK	</td><td>	5	</td><td>	1	</td><td>	JP39+XR7, Dusun Sruni, Sruni, Kabupaten Sidoarjo	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJ1URH8zbl1y0RAc_Ser7nXtg" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	CV LINDA WIRA KARYA	</td><td>	0	</td><td>	0	</td><td>	perum puri surya jaya, Jl. Taman Athena No.33, Demeling, Gedangan, Kabupaten Sidoarjo	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJ3cApU-7l1y0RL-ZfUmEbWGM" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	CV Grow Sejahtera	</td><td>	5	</td><td>	1	</td><td>	Citra Mandiri Regency blok C-7, Kebonagung, Kabupaten Sidoarjo	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJT6Jh1_7j1y0RAA-pWA-nMCs" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	Cv. Adi Jaya	</td><td>	5	</td><td>	2	</td><td>	JM59+V5H, Dukuh, Bangsri, Kabupaten Sidoarjo	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJI2tRtJjj1y0RKsIdCGe4uN0" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	CV. Dua Bintang	</td><td>	0	</td><td>	0	</td><td>	jl. Raya Anwar VIII, gang 8 No.5, RT.01/RW.01, Bohar, Kabupaten Sidoarjo	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJb_J_Vijj1y0RsM5lvYcoMBQ" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	CV. Agung Notonegoro	</td><td>	5	</td><td>	1	</td><td>	Jl. Perum Pd. Jati No.7 blok O, Jati, Kabupaten Sidoarjo	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJ5Zms3BHh1y0RPn3_IYd83zo" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	Cv. Putra Daerah	</td><td>	0	</td><td>	0	</td><td>	Jl. Raden Patah No.60B, Pucanganom, Kabupaten Sidoarjo	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJ6Y3g1M3m1y0RGibQCOx2qoQ" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	3 Remaja Satu. CV	</td><td>	3	</td><td>	2	</td><td>	Jl. Raya Pulungan No.27, Kepuh, Pulungan, Kabupaten Sidoarjo	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJWzHNCarl1y0RHgeQgaNilKg" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	CV. Kasih Karunia Chemindo (Warehouse)	</td><td>	4	</td><td>	4	</td><td>	Pergudangan Safe N Lock Blok AH 5825, Rangkah Kidul, Sidoarjo Regency	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJuxSE4jXn1y0R9g6E_XYfkmQ" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	CV. EKHABIMA INDOJAYA	</td><td>	5	</td><td>	1	</td><td>	Jl. Teratai Kemiri Indah No.3 blok A5, Bluru Cilik, Kemiri, Kabupaten Sidoarjo	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJd3QJzOrn1y0RyYed5tpADY4" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	CV. Sumber Agung Sejahtera (CV.SAS)	</td><td>	0	</td><td>	0	</td><td>	Karangbong 590B, RT.03/RW.05, Rw. 8, Karangbong, Kabupaten Sidoarjo	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJcXKYVdfl1y0RCArRfQt2dqc" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	CV.SAHABAT	</td><td>	0	</td><td>	0	</td><td>	Perumahan Bumi Citra Fajar Jl. Sekawan indah blok E-no.9 Kelurahan Rangkah Kidul, Rangkah Kidul, Kabupaten Sidoarjo	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJe-yOMNvm1y0R6vBfSRojQJI" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	CV. SRI REJEKI	</td><td>	5	</td><td>	1	</td><td>	Komplek Pergudangan Sinar Gedangan Blok E-03, Dusun Gemurung Kidul, Gemurung, Kabupaten Sidoarjo	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJ6909gRbl1y0RAv4LNQ_Czgw" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	CV Sinar Baru / indopot keramik	</td><td>	1	</td><td>	1	</td><td>	Jl. Raya Sedati No.102, Tumapel, Wedi, Kabupaten Sidoarjo	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJQypR25_l1y0R-4M5BER3TSo" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	CV Citra Karya Abadi	</td><td>	5	</td><td>	2	</td><td>	Gg. Sawah No.90, RT.02/RW.01, Panjunan, Kabupaten Sidoarjo	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJlesMcWXj1y0R4qgacAMgHZE" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	Cv.semoga Jaya Sidoarjo	</td><td>	4.8	</td><td>	6	</td><td>	Kranggan I Jasem Gang-4 No.14, Rw4, Sidokumpul, Kabupaten Sidoarjo	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJf5V2PWbh1y0R2OGbUVA1EJ4" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	CV Prima Media	</td><td>	3.8	</td><td>	6	</td><td>	Perum Prima Regency No.36, Kemiri, Kabupaten Sidoarjo	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJU5j5daXm1y0RuH3mr2fbJFU" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	CV. Alam Jaya	</td><td>	0	</td><td>	0	</td><td>	office :, jl kuyuk persada darmasih, jl Raya No.17, Cangkring, Kwangsan, Kabupaten Sidoarjo	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJg2Cm-Kbh1y0R6IitTYvaG6Y" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	CV. Delta Advice	</td><td>	0	</td><td>	0	</td><td>	GMMJ+956, Pesantren, Jambangan, Kabupaten Sidoarjo	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJ6wh4WRvh1y0RafecC2wBLOU" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	CV. WAHYU KARYA	</td><td>	5	</td><td>	2	</td><td>	Jl. Bluru Kidul No.50, Dusun Bluru Kidul, Bluru Kidul, Kabupaten Sidoarjo	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJObrTKIfn1y0RewifmKce-kY" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	CV. Mahardika Jaya Sejahtera	</td><td>	5	</td><td>	22	</td><td>	Pergudangan SiRIE, Jl. Lingkar Timur No.KM 5.5 Blok Q-75, Rangkah Kidul, Kabupaten Sidoarjo	</td><td>	http://www.kertassublim.com/	</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJHxHyodvh1y0RSlHHNV_Xg3I" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	CV MITRA SEJAHTERA ABADI	</td><td>	4	</td><td>	1	</td><td>	Perumahan GKSP Blok I NO 21, Gebang, Sedati Gede, Kabupaten Sidoarjo	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJgU3MbXzl1y0RL9j-hCGx_Ls" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	CV IDEA TEKNIK	</td><td>	5	</td><td>	2	</td><td>	HM8R+CXX, Sumput, Sidoarjo Regency	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJTbQR8vDh1y0Ra2j77rPUkbA" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	cv. dimensi peraga ( peraga pendidikan sidoarjo )	</td><td>	0	</td><td>	0	</td><td>	jalan raya cemeng kapuk rt9 rw 4, No.10, Cemengkalang, Cemeng Kalang, Kabupaten Sidoarjo	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJ7WdwP2_h1y0RQxKZXLJw4HM" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	CV. Karya Agung	</td><td>	5	</td><td>	1	</td><td>	Jl. Jogoyudho No.203, Plipir, Sekardangan, Kabupaten Sidoarjo	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJd3SGrNbm1y0R8avu_Lc9G38" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	CV.tehcnostarindo	</td><td>	0	</td><td>	0	</td><td>	puri indah No.BA 17, Suko, Kabupaten Sidoarjo	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJecSwdBjh1y0RRzuhOpxt8lI" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	CV Isslah Jaya	</td><td>	0	</td><td>	0	</td><td>	Pandean II No 394, Jl. Pasar, Pekauman, Kabupaten Sidoarjo	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJ2eV0Fc3m1y0RD6wkvFT7YUs" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	CV INDRA JAYA	</td><td>	0	</td><td>	0	</td><td>	Perumahan Kemiri Indah A1 Nomor 14, Bluru Cilik, Kemiri, Kabupaten Sidoarjo	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJB5zaQLrm1y0RionDU-IBfEI" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	Studio CV. Sigra Asanka Consultant	</td><td>	4.8	</td><td>	4	</td><td>	HMXG+RCV, Jl. Permata Sukodono Raya, Sukadono, Sukodono, Kabupaten Sidoarjo	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJuS_zGLLj1y0RrwXg4eszxQk" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	cv garuda jaya	</td><td>	0	</td><td>	0	</td><td>	GMP7+MRC, harmoni kota, Grogol, Kabupaten Sidoarjo	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJ8wIIiKjh1y0Rfe3TDyKlr_A" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	Cv. Fitrah Cemerlang	</td><td>	0	</td><td>	0	</td><td>	Jl. Raya Suko No.32, Suko, Kabupaten Sidoarjo	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJCTTYaG7h1y0RXfwjylf2Nz8" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	CV TITIAN BERKAH	</td><td>	4	</td><td>	3	</td><td>	GPW3+H75, Banjarbendo, Sidoarjo Regency	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJK7aT1znh1y0RptaXaWTWJnQ" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	CV. GAYUNG MAS	</td><td>	4.1	</td><td>	9	</td><td>	Griya Permata Gedangan D4, Jl. Mangga No.10, RT.02/RW.06, Sikep, Keboansikep, Kabupaten Sidoarjo	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJHRP16YPk1y0R8JWC9nqyozk" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	CV. CIPTA NUSA	</td><td>	3.7	</td><td>	6	</td><td>	Pergudangan Safe n Lock J-1657, Kelurahan, Rangkah Kidul, Kabupaten Sidoarjo	</td><td>	https://www.ciptanusa.com/	</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJ56D6J-Tm1y0RXeg-01dtPR4" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	CV. SURYA CIPTA JAYA	</td><td>	5	</td><td>	2	</td><td>	Ruko Natura Resident EE10, Bedrek, Siwalanpanji, Kabupaten Sidoarjo	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJ17c2lM3n1y0Rm6g4JVBy_Jk" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	CV.BAROKAH JAYA	</td><td>	0	</td><td>	0	</td><td>	HP68+PW9, Pucang, Sidoarjo Regency	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJIYtvEq3m1y0RQlGBasJTCvI" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	CV. PRASETYA	</td><td>	4.7	</td><td>	7	</td><td>	Ruko Permata Regency R6 No, RW.4, Kludan, Kabupaten Sidoarjo	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJAQAAwFPn1y0RBt3JaoQ8044" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	CV. RAFANSA	</td><td>	0	</td><td>	0	</td><td>	HPJQ+QP4, Jl. Banjarsari, Prasungtani, Prasung, Kabupaten Sidoarjo	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJV-W_lGjl1y0Rm-qhoiiRkko" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	CV SINAR AGUNG	</td><td>	4.5	</td><td>	8	</td><td>	Pergudangan Safe & Lock Lingkar Timur AH-5810, Rangkah Kidul, Kabupaten Sidoarjo	</td><td>	https://sinaragungsda.com/	</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJVwwVbaPn1y0RTr4aDrxzhWs" target="_blank">lokasi</a>	</td></tr>
+				<tr><td>	Berkah Mulia. CV	</td><td>	5	</td><td>	1	</td><td>	JL. Urangagung, No. 405 RT.11/RW.04, Ngemplak, Cemeng Kalang, Kabupaten Sidoarjo	</td><td>		</td><td>	<a href="https://www.google.com/maps/place/?q=place_id:ChIJUaNr027h1y0RegUCK3RdEo0" target="_blank">lokasi</a>	</td></tr>
+
+			</tbody>
+		</table>
+	</div>
+</div>
+
+
+<script>
+	document.getElementById('capture-data').addEventListener('click', function () {
+		var websiteUrl = document.getElementById('website').value;
+		if (websiteUrl) {
+			fetch('/api/fetch-text', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify({ url: websiteUrl })  // Send the URL as part of the request body
+			})
+				.then(response => response.json())
+				.then(data => {
+					if (data.success) {
+						document.getElementById('konten-frontpage').value = data.data;  // Display fetched text in the textarea
+						console.log('Fetched Text:', data.data);
+					} else {
+						console.error('Failed to fetch text:', data.message);
+						alert('Failed to fetch text: ' + data.message);
+					}
+				})
+				.catch(error => {
+					console.error('Error:', error);
+					alert('An error occurred while fetching text');
+				});
+		} else {
+			alert('Please enter a valid URL.');
+		}
+	});
+
+	document.getElementById('fetch-seo').addEventListener('click', function () {
+    var websiteUrl = document.getElementById('website').value;
+    if (websiteUrl) {
+        fetch('/api/fetch-seo', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ url: websiteUrl })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                console.log('SEO Data:', data.data);
+                // Update the textarea with SEO information
+                var infoTextArea = document.getElementById('info-usaha');
+                var seoText = `Title: ${data.data.title}\n` +
+                              `Meta Description: ${data.data.metaDescription}\n` +
+                              `First H1: ${data.data.firstH1}`;
+                infoTextArea.value = seoText;
+                // alert('SEO data fetched successfully! Check the textarea for details.');
+            } else {
+                console.error('Failed to fetch SEO data:', data.message);
+                alert('Failed to fetch SEO data: ' + data.message);
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('An error occurred while fetching SEO data');
+        });
+    } else {
+        alert('Please enter a valid URL.');
+    }
+});
+
+document.getElementById('buat-rekomendasi').addEventListener('click', function () {
+	var seometadata = document.getElementById('info-usaha').value;
+	var kontenfrontpage = document.getElementById('konten-frontpage').value;
+
+	// Show the spinner
+	document.querySelector('.css3-spinner').style.display = 'block';
+
+	fetch('/api/openai-rekomendasi-seragam', {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json',
+		},
+		body: JSON.stringify({
+			seometadata: seometadata,
+			kontenfrontpage: kontenfrontpage,
+		}),
+	})
+	.then(response => response.json())
+	.then(data => {
+		// Hide the spinner
+		document.querySelector('.css3-spinner').style.display = 'none';
+		// handle the response data
+		document.getElementById('rekomendasi-produk').value = data.message;
+	})
+	.catch((error) => {
+		// Hide the spinner in case of error
+		document.querySelector('.css3-spinner').style.display ='none';
+		console.error('Error:', error);
+	});
+});
+
+	document.getElementById('buat-penawaran').addEventListener('click', function () {
+		var seometadata = document.getElementById('info-usaha').value;
+		var rekomendasiproduk = document.getElementById('rekomendasi-produk').value;
+
+		// Show the spinner
+		document.querySelector('.css3-spinner').style.display = 'block';
+
+		fetch('/api/openai-buat-penawaran', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({
+				seometadata: seometadata,
+				rekomendasiproduk: rekomendasiproduk,
+			}),
+		})
+			.then(response => response.json())
+			.then(data => {
+				// Hide the spinner
+				document.querySelector('.css3-spinner').style.display = 'none';
+				// handle the response data
+				document.getElementById('narasi-penawaran').value = data.message;
+			})
+			.catch((error) => {
+				// Hide the spinner in case of error
+				document.querySelector('.css3-spinner').style.display = 'none';
+				console.error('Error:', error);
+			});
+	});
+
+</script>

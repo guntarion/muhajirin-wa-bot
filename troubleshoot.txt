@@ -1,0 +1,50 @@
+
+/home/guntar/vido-wabot-2/node_modules/puppeteer-core/lib/cjs/puppeteer/common/ExecutionContext.js:229
+        throw new Error('Evaluation failed: ' + (0, util_js_1.getExceptionMessage)(exceptionDetails));
+              ^
+
+Error: Evaluation failed: TypeError: Cannot read properties of undefined (reading 'default')
+    at pptr://__puppeteer_evaluation_script__:5:95
+    at ExecutionContext._ExecutionContext_evaluate (/home/guntar/vido-wabot-2/node_modules/puppeteer-core/lib/cjs/puppeteer/common/ExecutionContext.js:229:15)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async ExecutionContext.evaluate (/home/guntar/vido-wabot-2/node_modules/puppeteer-core/lib/cjs/puppeteer/common/ExecutionContext.js:107:16)
+    at async Client.initialize (/home/guntar/vido-wabot-2/src/Client.js:378:9)
+
+
+my solution is
+
+delete .wwebjs_auth folder
+delete node_modules folder
+update package to version "whatsapp-web.js": "^1.18.4"
+run yarn install or npm install
+run app
+nb : im using node version v16.18.1
+
+https://github.com/pedroslopez/whatsapp-web.js/issues/1920
+
+
+client = new Client({
+    authStrategy: new LocalAuth(),
+    puppeteer: {
+        headless: true,
+        args: [ '--no-sandbox', '--disable-gpu', ],
+    },
+    webVersionCache: { type: 'remote', remotePath: 'https://raw.githubusercontent.com/wppconnect-team/wa-version/main/html/2.2412.54.html', }
+});
+
+ const client = new Client({
+  webVersionCache: {
+    type: "remote",
+    remotePath:
+      "https://raw.githubusercontent.com/wppconnect-team/wa-version/main/html/2.2412.54.html",
+  },
+});
+
+
+https://stackoverflow.com/questions/78275662/error-after-scanning-qr-code-for-whatsapp-web-js
+
+https://stackoverflow.com/questions/78409692/whatsapp-web-js-cannot-read-properties-of-undefined-reading-default
+
+
+https://wwebjs.dev/guide/creating-your-bot/authentication.html
+https://github.com/wppconnect-team/wa-version/tree/main/html
