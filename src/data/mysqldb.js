@@ -84,4 +84,14 @@ async function saveRegistration(contactId, data) {
     }
 }
 
-module.exports = { saveContact, saveRegistration };
+async function saveMessage(data) {
+    const { dateTime, msgTimestamp, msgFrom, msgTo, msgBody, contactId } = data;
+    await pool.query(
+        `INSERT INTO chat_personal (dateTime, msgTimestamp, msgFrom, msgTo, msgBody, contactId)
+         VALUES (?, ?, ?, ?, ?, ?)`,
+        [dateTime, msgTimestamp, msgFrom, msgTo, msgBody, contactId]
+    );
+}
+
+
+module.exports = { saveContact, saveRegistration, saveMessage };

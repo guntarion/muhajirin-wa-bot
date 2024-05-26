@@ -7,7 +7,11 @@ const nasehatList = require('../models/nasehatData');
 const haditsData = require('../models/haditsMuslimData');
 const kiatSehatList = require('../models/kiatSehatData');
 
-const { saveContact, saveRegistration } = require('../src/data/mysqldb');
+const {
+    saveContact,
+    saveRegistration,
+    saveMessage,
+} = require('../src/data/mysqldb');
 
 const {
     getUserState,
@@ -91,7 +95,7 @@ client.on('message', async (msg) => {
     let info = client.info;
     const chat = await msg.getChat();
     const sender = await msg.getContact();
-    console.log(`Sender: ${sender.pushname}, Number: ${sender.number}`);
+    console.log(`Sender: ${sender.pushname}, Number: ${sender.number}, timestamp: ${msg.timestamp}, from: ${msg.from}, to: ${msg.to}`);
     const userId = sender.number;
 
     const userState = getUserState(userId);    
@@ -107,6 +111,21 @@ client.on('message', async (msg) => {
         contactSavedName: sender.name,
     };
     const contactId = await saveContact(contactData);
+
+    // Remove @c.us suffix from msg.from and msg.to
+    const msgFrom = msg.from.replace('@c.us', '');
+    const msgTo = msg.to.replace('@c.us', '');
+
+    // Save message information
+    const messageData = {
+        dateTime: dateTime,
+        msgTimestamp: msg.timestamp,
+        msgFrom: msgFrom,
+        msgTo: msgTo,
+        msgBody: msg.body,
+        contactId: contactId
+    };
+    await saveMessage(messageData);
 
     if (msg.body === '.status') {
         chat.sendSeen();
