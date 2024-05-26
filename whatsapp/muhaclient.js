@@ -179,7 +179,7 @@ client.on('message', async (msg) => {
 \`info\`
     Menampilkan informasi ini.
 
-\`panitiaqurban\`
+\`panitia qurban\`
     Mendaftar sbg panitia qurban & daftar ukuran kaos. Syarat: bersedia ditempatkan di sie manapun.
 
 \`nasehat\`
