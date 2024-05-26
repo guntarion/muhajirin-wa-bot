@@ -6,12 +6,12 @@ const { engine } = require('express-handlebars');
 require('dotenv').config();
 
 
-const client = require('../whatsapp/waclient');
+const client = require('../whatsapp/muhaclient');
 const viewRoutes = require('../routes/viewRoutes');
 const apiRoutes = require('../routes/apiRoutes');
 
 const app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3050;
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -65,7 +65,7 @@ process.on('SIGINT', async () => {
 });
 
 http.createServer(app).listen(port, () => {
-    console.info('Server listening on port ' + port);
+    console.info('Muhajirin Server listening on port ' + port);
 });
 
 

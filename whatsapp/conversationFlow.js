@@ -48,52 +48,38 @@ const conversationTestimoni = {
     },
 };
 
-const conversationDesainKaos = {
-    type: 'desainKaos',
-    steps: {
-        askJenisKaos: {
-            message:
-                'Jenis kaos apa yang rencana Anda buat?\n(Silahkan merespon dg menulis angka 1 atau 2 atau 3)\n\n1 Kaos T-Shirt Biasa\n2 Kaos Berkerah (Polo)\n3 Kaos Raglan',
-            nextStep: 'askWarnaKaos',
-        },
-        askWarnaKaos: {
-            message:
-                'Sebutkan warna bagian tubuhnya',
-            nextStep: 'askWarnaLengan',
-        },
-        askWarnaLengan: {
-            message:
-                'Sebutkan warna bagian lengannya',
-            nextStep: 'askDeskripsiSablon',
-        },
-        askDeskripsiSablon: {
-            message: 'Deskripsikan gambar yang Anda inginkan tampak di kaosnya.',
-            nextStep: null, // End of conversation
-        },
-    },
-};
 
-const conversationSizeFitting = {
-    type: 'sizeFitting',
+
+const conversationDaftarPanitiaSizeKaos = {
+    type: 'daftarPanitiaUkuranKaos',
     steps: {
-        askOrderPO: {
-            message: 'Silahkan sebutkan kode order Anda',
-            nextStep: 'askName',
+        askNamaLengkap: {
+            message: 'Nama lengkap Anda?',
+            nextStep: 'askPanggilan',
         },
-        askName: {
-            message: 'Silahkan tuliskan nama Anda',
+        askPanggilan: {
+            message: 'Nama panggilan Anda?',
+            nextStep: 'askGender',
+        },
+        askGender: {
+            message: 'Gender.\nPilih angka 1 atau 2:\n\n1 Laki-laki \n2 Perempuan',
             nextStep: 'askSize',
         },
         askSize: {
-            message: 'Silahkan infokan Size Anda\n\nS\nM\nL\nXL\nXXL\nXXXL',
-            nextStep: 'askModSizeBadan',
+            message:
+                'Ukuran Kaos Anda?\n\nS\nM\nL\nXL\n2XL\n3XL\n4XL',
+            nextStep: 'askAlamat',
         },
-        askModSizeBadan: {
-            message: 'Silahkan infokan jarak tambahan BADAN',
-            nextStep: 'askModSizeLengan',
+        askAlamat: {
+            message: 'Alamat tinggal Anda?',
+            nextStep: 'askUsia',
         },
-        askModSizeLengan: {
-            message: 'Silahkan infokan jarak tambahan LENGAN',
+        askUsia: {
+            message: 'Usia Anda?\n_(Silahkan tulis angka saja - untuk kami gunakan dalam pertimbangan tugas di kepanitiaan)_',
+            nextStep: 'askCatatan',
+        },
+        askCatatan: {
+            message: 'Sampaikan informasi tambahan atau catatan khusus untuk kami.\n_Misal, bila Anda punya fobia pada darah atau daging mentah, atau lainnya yg membatasi Anda dalam tugas kepanitiaan._',
             nextStep: null, // End of conversation
         },
     },
@@ -111,6 +97,5 @@ module.exports = {
     getNextStepMessage,
     conversationPricingKaos,
     conversationTestimoni,
-    conversationDesainKaos,
-    conversationSizeFitting,
+    conversationDaftarPanitiaSizeKaos,
 };

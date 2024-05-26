@@ -1,3 +1,11 @@
+\`kegiatan\`
+Menampilkan informasi kegiatan terkini di YAMR.
+
+\`layanan\`
+Menampilkan informasi layanan di YAMR.
+
+
+
 
 # PEMESANAN KAOS SINGKAT
 
