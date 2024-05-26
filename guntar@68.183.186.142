@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "app-spaces-guntar-2024",
+  "private_key_id": "a9477f694db830250a1c62927f1259da4be72df3",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCgHNB8n9aM0zQp\n3CVsmJdmPlbeJTqFqR3XvdJRHaIIQz/dTBsLH/OhB4znSsxlyKkXf0M4jDP/YDDv\nBi0DNlHJXQG8dPMr85/H/tWfSnyJhTyeP+QBdz2/Uwf52I4I0MfxS5m0mRVfXLkZ\nBx3QzGcbTlgss/UaVSRgTtOKM7AEftER+UwoSeoMe5Cuq5NLZJOEtjmPzGIYVrgv\nbw0NM9qHc/3thhaaw/Sm4e3jMA/voAiwJ5RlqmbkF7ZwFiIIvh7Xe/y7i4WiNxB+\nA04ibh/2FVRrGVbQcrjMa6LrzVOBEvi7vf5zxp4n3oMNCCYX3V6rwT5jhW3Ue0xd\ncT6z2gmDAgMBAAECggEAHpei1k0MB3hLXTwtAmTdeLGsk2F1nxhDFXe1eb45uW5w\nA26JNET0ne39ZCwMhd4jQNQWGfXf8YmFkAYUD6sPUXQt4r5NwDYab3InivoGdZg5\njtsSS51m9Ol+eqR/7vtFWLtjMPiW9tOWokuTzNNhV/xOKKxxxohCHQyyqpNZrGHp\nMBP4/yGXJtqtfHkr+oPgmO7igZtQUOVIyDQ94jscI48JhI5AV1L6hAOGmRmSgCB+\n0u6iqfdu2uYloDB2gemm0ktAH9VfFlf/AhT8Yse7tjKpVOQxhuaLWhuANTMDjrvE\nOL73yt+9D3PF9wKyEmMsd8rw803iUwMi7ZpGSx1+oQKBgQDY0FMgjmzEUuQ7XiIT\nGVwlcMki4kkiiKgtHovYWxWTtGgIcRHytTM3AT7r77Ds2RrBLP0BrawuZqvyotJK\nKQyHNWTukAfmk6FIUI+b35qZr7kVhwG8N7Ws36DUUznDwftke7QeRfgOSYQIUN6o\nSwJUofoKrZvNwHKJsuOZY/kbCwKBgQC9DQCiMdUrHPPbHhvUbmL5aF7ZvpuJkHeD\nt3HH15ef8lfIw1E+kH3FpAqQg9Pyb/aZ/sgp84YoFkflM1HahhrSt61u2Rgbm5X1\ncGLCVbbPoR/IKUjTFN+CkZguYeJWWEXDV7q0mHPVMLnNJjZO4SbJibqX4ZrXdpXd\nwoetn/EWaQKBgB35DsTda6PoYazjYoqJYve6E9RCvCGOCtHR+zs5vE3jDs678uM+\nsYnVHkG3rRnRGaXC9mcY/0ia4QJ2B+RAsH6wnvdr6euyVQWOPYwq6VB9vnR/aXn/\nqZnwgGdZ6g5p7rsBbvEQcy5mc15C78UMOZJBojN/tJ5JEIyAsn4uF+3pAoGBALvr\nhdq0QFpHwFrqFe3XAIk85zP41XEr6rFCk1Z8BttWMU5+YG8Zf/wLMPkwIWmXRAEV\nkvCogo2sgDDkD5Rxw438SOir4dvnj2vXGERmoX7Igegcqagw0nBeu3A3mp4LxuUD\nerLz7AhaFAdJ2agVBNJHFvTMrHdLCHPUX7wGBccpAoGADCbhvvHgonS+xrCMahJJ\nwdplg/Ku57oe24R6+HhqWuYPy3vAzwUyiGnJWZWTcwz7HeUwWfKHWcTsZ4hqZDrh\n021+b51uUMdRIl36jvLCjAIlt7fSt2T7aw0cAFhDhc/OZVLqULVF8Z/JbShw/Dl0\ndjauiioVwBqObTSBkeOO7OM=\n-----END PRIVATE KEY-----\n",
+  "client_email": "guntar-service-account@app-spaces-guntar-2024.iam.gserviceaccount.com",
+  "client_id": "102489809302367916769",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/guntar-service-account%40app-spaces-guntar-2024.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}

@@ -1,6 +1,7 @@
 const { Client, LocalAuth, MessageMedia } = require('../index'); // Adjust the path as necessary
 const qrcode = require('qrcode-terminal');
 const fs = require('fs');
+const logger = require('./logger');
 
 
 const {
@@ -82,7 +83,8 @@ client.on('ready', () => {
 // client.on('message', handleMessage);
 
 client.on('message', async (msg) => {
-    console.log('MESSAGE RECEIVED', msg);
+    // console.log('MESSAGE RECEIVED', msg);
+    logger.info('MESSAGE RECEIVED', msg);
     const chat = await msg.getChat();
     const sender = await msg.getContact();
     console.log(`Sender: ${sender.pushname}, Number: ${sender.number}`);

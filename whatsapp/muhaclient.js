@@ -110,7 +110,14 @@ client.on('message', async (msg) => {
         contactPublishedName: sender.pushname,
         contactSavedName: sender.name,
     };
-    const contactId = await saveContact(contactData);
+    
+    let contactId;
+    try {
+        contactId = await saveContact(contactData);
+    } catch (error) {
+        console.error('Error saving contact:', error);
+        return;
+    }
 
     // Remove @c.us suffix from msg.from and msg.to
     const msgFrom = msg.from.replace('@c.us', '');
@@ -125,7 +132,12 @@ client.on('message', async (msg) => {
         msgBody: msg.body,
         contactId: contactId
     };
-    await saveMessage(messageData);
+    
+    try {
+        await saveMessage(messageData);
+    } catch (error) {
+        console.error('Error saving message:', error);
+    }
 
     if (msg.body === '.status') {
         chat.sendSeen();

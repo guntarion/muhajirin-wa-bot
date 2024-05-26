@@ -20,7 +20,8 @@ async function saveContact(data) {
         contactPublishedName,
         contactSavedName,
     } = data;
-    const sqlCheck = `SELECT id FROM contact WHERE contactNumber = ?`;
+
+    const sqlCheck = 'SELECT id FROM contact WHERE contactNumber = ?';
     const sqlInsert = `
         INSERT INTO contact (dateTime, updatedTime, contactNumber, contactPlatform, contactPublishedName, contactSavedName)
         VALUES (?, ?, ?, ?, ?, ?)
@@ -33,7 +34,8 @@ async function saveContact(data) {
     try {
         const [rows] = await pool.query(sqlCheck, [contactNumber]);
         if (rows.length === 0) {
-            await pool.query(sqlInsert, [
+            // Insert a new contact
+            const [insertResult] = await pool.query(sqlInsert, [
                 dateTime,
                 updatedTime,
                 contactNumber,
@@ -41,17 +43,18 @@ async function saveContact(data) {
                 contactPublishedName,
                 contactSavedName,
             ]);
+            return insertResult.insertId;
         } else {
-            await pool.query(sqlUpdate, [
+            // Update the existing contact
+            const [updateResult] = await pool.query(sqlUpdate, [
                 updatedTime,
                 contactPlatform,
                 contactPublishedName,
                 contactSavedName,
                 contactNumber,
             ]);
+            return rows[0].id;
         }
-        const [contactRows] = await pool.query(sqlCheck, [contactNumber]);
-        return contactRows[0].id;
     } catch (error) {
         console.error('Error saving contact:', error);
         throw error;
@@ -92,6 +95,5 @@ async function saveMessage(data) {
         [dateTime, msgTimestamp, msgFrom, msgTo, msgBody, contactId]
     );
 }
-
 
 module.exports = { saveContact, saveRegistration, saveMessage };
