@@ -75,7 +75,7 @@ const conversationDaftarPanitiaSizeKaos = {
             nextStep: 'askUsia',
         },
         askUsia: {
-            message: 'Usia Anda?\n_(Silahkan tulis angka saja - untuk kami gunakan dalam pertimbangan tugas di kepanitiaan)_',
+            message: 'Usia Anda?\n_(Silahkan tulis angka [tanpa tulisan tahun] - untuk kami gunakan dalam pertimbangan tugas di kepanitiaan)_',
             nextStep: 'askCatatan',
         },
         askCatatan: {

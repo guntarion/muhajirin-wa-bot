@@ -21,6 +21,8 @@ async function saveContact(data) {
         contactSavedName,
     } = data;
 
+    const sanitizedContactSavedName = contactSavedName || ''; // Replace null with an empty string
+
     const sqlCheck = 'SELECT id FROM contact WHERE contactNumber = ?';
     const sqlInsert = `
         INSERT INTO contact (dateTime, updatedTime, contactNumber, contactPlatform, contactPublishedName, contactSavedName)
@@ -41,7 +43,7 @@ async function saveContact(data) {
                 contactNumber,
                 contactPlatform,
                 contactPublishedName,
-                contactSavedName,
+                sanitizedContactSavedName,
             ]);
             return insertResult.insertId;
         } else {
@@ -50,7 +52,7 @@ async function saveContact(data) {
                 updatedTime,
                 contactPlatform,
                 contactPublishedName,
-                contactSavedName,
+                sanitizedContactSavedName,
                 contactNumber,
             ]);
             return rows[0].id;
