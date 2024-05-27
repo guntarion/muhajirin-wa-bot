@@ -484,7 +484,7 @@ client.on('message', async (msg) => {
             'askAlasanMemilih'
         );
         await sendMessageWithDelay(client, chat, msg, initialMessage);
-    } else if (msg.body.toLowerCase() === 'panitia qurban') {
+    } else if (['panitia qurban', 'panitiaqurban'].some(substring => msg.body.toLowerCase().includes(substring))) {
         chat.sendSeen();
         initializeUserState(userId, conversationDaftarPanitiaSizeKaos);
         activateConversation(userId);
