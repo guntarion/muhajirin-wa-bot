@@ -54,7 +54,7 @@ const conversationDaftarPanitiaSizeKaos = {
     type: 'daftarPanitiaUkuranKaos',
     steps: {
         askNamaLengkap: {
-            message: 'Nama lengkap Anda?',
+            message: '*Registrasi Kepanitiaan Idul Qurban*\n\nNama lengkap Anda?',
             nextStep: 'askPanggilan',
         },
         askPanggilan: {
