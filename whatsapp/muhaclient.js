@@ -119,6 +119,11 @@ client.on('message', async (msg) => {
 
     if (msg.from.endsWith('@g.us')) {
         console.log('Message from group chat');
+        if (msg.body === '.thisgroupid') {
+            // Send a reply with the group ID
+            await msg.reply(`Group ID: ${msg.from}`);
+            console.log(`Replied with group ID: ${msg.from}`);
+        }
         console.log(`Group ID: ${msg.from}`);
         console.log(`Author ID: ${msg.author}`);
     } else {
