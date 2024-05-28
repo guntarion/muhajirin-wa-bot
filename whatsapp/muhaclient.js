@@ -2,6 +2,7 @@
 const { Client, LocalAuth, MessageMedia } = require('../index'); // Adjust the path as necessary
 const qrcode = require('qrcode-terminal');
 const fs = require('fs');
+const cron = require('node-cron');
 
 const nasehatList = require('../models/nasehatData');
 const haditsData = require('../models/haditsMuslimData');
@@ -39,6 +40,7 @@ const {
     appendMuhajirinToSheet,
     inputRegistrasiPanitiaQurban,
     getInfoKegiatanLayananMuhajirin,
+    getInfoQurban,
     convertTo24Hour,
     adjustTime,
     googleAuth,
@@ -86,6 +88,21 @@ client.on('auth_failure', (msg) => {
 
 client.on('ready', () => {
     console.log('🧤 WhatsApp Client is ready!');
+
+    // Schedule a message to be sent every morning at 5 AM (GMT +7)
+    cron.schedule('0 5 * * *', async () => {
+        const groupId = '62811334932-1630463874@g.us'; // Replace with your group ID
+
+        try {
+            const groupMessage = await getInfoQurban(googleAuth, 'Rekap');
+            await client.sendMessage(groupId, groupMessage);
+            console.log('Message sent to group');
+        } catch (error) {
+            console.error('Failed to send message:', error);
+        }
+    }, {
+        timezone: 'Asia/Jakarta' // Set timezone to GMT +7
+    });
 });
 
 // client.on('message', handleMessage);
@@ -99,6 +116,15 @@ client.on('message', async (msg) => {
     const userId = sender.number;
 
     const userState = getUserState(userId);    
+
+    if (msg.from.endsWith('@g.us')) {
+        console.log('Message from group chat');
+        console.log(`Group ID: ${msg.from}`);
+        console.log(`Author ID: ${msg.author}`);
+    } else {
+        console.log('Message from personal chat');
+        console.log(`Contact ID: ${msg.from}`);
+    }
 
     // Save contact information
     const dateTime = new Date().toISOString().slice(0, 19).replace('T', ' ');
@@ -139,6 +165,16 @@ client.on('message', async (msg) => {
         console.error('Error saving message:', error);
     }
 
+
+    if (msg.from === '62811334932-1630463874@g.us') {
+        // Check if the message body is 'tes'
+        if (msg.body.toLowerCase() === 'tes') {
+            // Send a reply message
+            await msg.reply('Halo');
+            console.log('Replied with "Halo" to the group');
+        }
+    }
+
     if (msg.body === '.status') {
         chat.sendSeen();
         const currentDate = new Date();
@@ -170,7 +206,21 @@ client.on('message', async (msg) => {
             }
         });
         client.sendMessage(msg.from, `The bot has ${chats.length} chats open.`);
-    } else if (msg.body === 'info') {
+    } 
+    
+    else if (msg.body.toLowerCase() === 'kirimkanpesan') {
+        const groupId = '62811334932-1630463874@g.us';
+        const groupMessage = 'Hello, group!';
+        try {
+            await client.sendMessage(groupId, groupMessage);
+            console.log('Message sent to group');
+        } catch (error) {
+            console.error('Failed to send message:', error);
+        }
+    }
+    
+    
+    else if (msg.body.trim().toLowerCase() === 'info') {
         const replyMessage = `
     📳 WhatsApp Center
     🌟 Al Muhajirin Rewwin
@@ -291,7 +341,6 @@ client.on('message', async (msg) => {
         );
         await replyWithDelay(chat, msg, infoLayanan);
     } else if (msg.body.toLowerCase().startsWith('inputan')) {
-        
         const formattedDateTime = getFormattedDateTime();
         const sender = await msg.getContact();
         const data = {
@@ -304,7 +353,11 @@ client.on('message', async (msg) => {
         };
         msg.react('🙏🏼');
         await appendMuhajirinToSheet(googleAuth, 'receivedMessages', data);
-        await replyWithDelay(chat,msg,'Terima kasih atas informasi/saran/masukan yang telah diberikan.');
+        await replyWithDelay(
+            chat,
+            msg,
+            'Terima kasih atas informasi/saran/masukan yang telah diberikan.'
+        );
     } else if (msg.body.toLowerCase().startsWith('!askpdf')) {
         console.log('Received a question to ask the PDF.');
         const input = msg.body.slice(8); // Get the input from the message, removing "!askpdf " from the start
@@ -490,7 +543,7 @@ client.on('message', async (msg) => {
             'panitia kurban',
             'panitiaqurban',
             'panitiakurban',
-        ].some((substring) => msg.body.toLowerCase().includes(substring))
+        ].some((substring) => msg.body.toLowerCase().trim().includes(substring))
     ) {
         chat.sendSeen();
         initializeUserState(userId, conversationDaftarPanitiaSizeKaos);

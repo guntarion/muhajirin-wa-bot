@@ -4,6 +4,7 @@ const fs = require('fs');
 const logger = require('./logger');
 
 
+
 const {
     getUserState,
     updateUserState,
@@ -78,6 +79,8 @@ client.on('auth_failure', (msg) => {
 
 client.on('ready', () => {
     console.log('🧤 WhatsApp Client is ready!');
+
+    
 });
 
 // client.on('message', handleMessage);

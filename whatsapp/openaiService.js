@@ -275,6 +275,25 @@ async function getInfoKegiatanLayananMuhajirin(auth, jenisInfo) {
     }
 }
 
+async function getInfoQurban(auth, sheetName) {
+    const spreadsheetId = '1BaCFTyvh-mXsK_TE5Bt1wk5KZ6U5is1Sd_actNBfSPQ';
+    const sheets = google.sheets({ version: 'v4', auth });
+    const range = `${sheetName}!B17`;
+
+    try {
+        const response = await sheets.spreadsheets.values.get({
+            spreadsheetId: spreadsheetId,
+            range: range,
+        });
+        const value = response.data.values[0][0];
+        console.log('Value:', value);
+        return value;
+    } catch (err) {
+        console.error('The API returned an error: ' + err);
+    }
+}
+
+
 
 function convertTo24Hour(time) {
     const [hours, minutes] = time.split(':');
@@ -293,6 +312,8 @@ function adjustTime(time, minutesToAdd) {
 }
 
 
+
+
 module.exports = {
     generateResponseAsCS,
     chatWithBot,
@@ -302,6 +323,7 @@ module.exports = {
     appendMuhajirinToSheet,
     inputRegistrasiPanitiaQurban,
     getInfoKegiatanLayananMuhajirin,
+    getInfoQurban,
     convertTo24Hour,
     adjustTime,
     googleAuth,
