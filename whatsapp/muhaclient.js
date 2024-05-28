@@ -91,7 +91,8 @@ client.on('ready', () => {
 
     // Schedule a message to be sent every morning at 5 AM (GMT +7)
     cron.schedule('0 5 * * *', async () => {
-        const groupId = '62811334932-1630463874@g.us'; // Replace with your group ID
+        // const groupId = '62811334932-1630463874@g.us'; // Replace with your group ID
+        const groupId = '120363229540640101@g.us'; // Replace with your group ID
 
         try {
             const groupMessage = await getInfoQurban(googleAuth, 'Rekap');
