@@ -2,6 +2,7 @@
 const { Client, LocalAuth, MessageMedia } = require('../index'); // Adjust the path as necessary
 const qrcode = require('qrcode-terminal');
 const fs = require('fs');
+const { createObjectCsvWriter } = require('csv-writer');
 const cron = require('node-cron');
 
 const nasehatList = require('../models/nasehatData');
@@ -10,6 +11,7 @@ const kiatSehatList = require('../models/kiatSehatData');
 
 const {
     saveContact,
+    saveContactPersonal,
     saveRegistration,
     saveMessage,
 } = require('../src/data/mysqldb');
@@ -106,6 +108,41 @@ client.on('ready', () => {
     });
 });
 
+
+
+// Define the CSV writers
+const contactsCsvWriter = createObjectCsvWriter({
+    path: 'contacts.csv',
+    header: [
+        { id: 'userId', title: 'User ID' },
+        { id: 'number', title: 'Number' },
+        { id: 'name', title: 'Name' },
+        { id: 'profilePicUrl', title: 'Profile Picture URL' },
+        { id: 'isBusiness', title: 'Is Business' },
+        { id: 'isMyContact', title: 'Is My Contact' }
+    ]
+});
+
+const groupsCsvWriter = createObjectCsvWriter({
+    path: 'groups.csv',
+    header: [
+        { id: 'id', title: 'Group ID' },
+        { id: 'name', title: 'Group Name' },
+        { id: 'description', title: 'Group Description' }
+    ]
+});
+
+const groupMembersCsvWriter = createObjectCsvWriter({
+    path: 'group_members.csv',
+    header: [
+        { id: 'groupId', title: 'Group ID' },
+        { id: 'groupName', title: 'Group Name' },
+        { id: 'memberId', title: 'Member ID' },
+        { id: 'isAdmin', title: 'Is Admin' },
+        { id: 'isSuperAdmin', title: 'Is Super Admin' }
+    ]
+});
+
 // client.on('message', handleMessage);
 
 client.on('message', async (msg) => {
@@ -131,6 +168,9 @@ client.on('message', async (msg) => {
         console.log('Message from personal chat');
         console.log(`Contact ID: ${msg.from}`);
     }
+
+
+    
 
     // Save contact information
     const dateTime = new Date().toISOString().slice(0, 19).replace('T', ' ');
@@ -178,6 +218,87 @@ client.on('message', async (msg) => {
             // Send a reply message
             await msg.reply('Halo');
             console.log('Replied with "Halo" to the group');
+        }
+    }
+
+    if (msg.body === 'getcontacts') {
+        try {
+            const contacts = await client.getContacts();
+            const individualContacts = contacts.filter(contact => 
+                !contact.isGroup && 
+                !contact.isMe && 
+                !contact.id._serialized.endsWith('@lid')
+            );
+
+            const contactsData = [];
+
+            for (const contact of individualContacts) {
+                const contactDetails = await client.getContactById(contact.id._serialized);
+                const profilePicUrl = await contactDetails.getProfilePicUrl();
+                const contactInfo = {
+                    userId: contact.id._serialized,
+                    number: contact.number,
+                    name: contactDetails.pushname || contactDetails.name || 'Unknown',
+                    profilePicUrl: profilePicUrl || 'No profile picture', // Handle default value here
+                    isBusiness: contact.isBusiness,
+                    isMyContact: contact.isMyContact
+                };
+
+                await saveContactPersonal(contactInfo); // Save to MySQL
+                // contactsData.push(contactInfo); // Collect data for CSV
+                // console.log(JSON.stringify(contactInfo, null, 2));
+            }
+
+            
+
+            // Write contacts data to CSV
+            // await contactsCsvWriter.writeRecords(contactsData);
+            // console.log('Contacts data saved to contacts.csv');
+
+        } catch (error) {
+            console.error('Failed to get contact details:', error);
+        }
+
+    } else if (msg.body === 'getgroupsandmembers') {
+        try {
+            const chats = await client.getChats();
+            const groupChats = chats.filter(chat => chat.isGroup);
+
+            const groupsData = [];
+            const groupMembersData = [];
+
+            for (const group of groupChats) {
+                // Fetch group details
+                const groupInfo = {
+                    id: group.id._serialized,
+                    name: group.name,
+                    description: group.description || 'No description'
+                };
+                groupsData.push(groupInfo);
+
+                // Fetch group members
+                const groupChat = await client.getChatById(group.id._serialized);
+                const members = groupChat.participants.map(participant => ({
+                    groupId: group.id._serialized,
+                    groupName: group.name,
+                    memberId: participant.id._serialized,
+                    isAdmin: participant.isAdmin,
+                    isSuperAdmin: participant.isSuperAdmin
+                }));
+
+                groupMembersData.push(...members);
+            }
+
+            // Write groups data to CSV
+            await groupsCsvWriter.writeRecords(groupsData);
+            console.log('Groups data saved to groups.csv');
+
+            // Write group members data to CSV
+            await groupMembersCsvWriter.writeRecords(groupMembersData);
+            console.log('Group members data saved to group_members.csv');
+
+        } catch (error) {
+            console.error('Failed to get group details or members:', error);
         }
     }
 

@@ -11,6 +11,33 @@ const pool = mysql
     })
     .promise();
 
+async function saveContactPersonal(data) {
+    const sqlInsert = `
+        INSERT INTO contact_personal (userId, number, name, profilePicUrl, isBusiness, isMyContact)
+        VALUES (?, ?, ?, ?, ?, ?)
+        ON DUPLICATE KEY UPDATE 
+            number = VALUES(number), 
+            name = VALUES(name),
+            profilePicUrl = VALUES(profilePicUrl),
+            isBusiness = VALUES(isBusiness),
+            isMyContact = VALUES(isMyContact)
+    `;
+
+    try {
+        await pool.query(sqlInsert, [
+            data.userId,
+            data.number,
+            data.name,
+            data.profilePicUrl || 'No profile picture',
+            data.isBusiness,
+            data.isMyContact,
+        ]);
+    } catch (error) {
+        console.error('Error saving contact personal:', error);
+        throw error;
+    }
+}
+
 async function saveContact(data) {
     const {
         dateTime,
@@ -48,6 +75,7 @@ async function saveContact(data) {
             return insertResult.insertId;
         } else {
             // Update the existing contact
+            // eslint-disable-next-line no-unused-vars
             const [updateResult] = await pool.query(sqlUpdate, [
                 updatedTime,
                 contactPlatform,
@@ -98,4 +126,9 @@ async function saveMessage(data) {
     );
 }
 
-module.exports = { saveContact, saveRegistration, saveMessage };
+module.exports = {
+    saveContactPersonal, 
+    saveContact,
+    saveRegistration,
+    saveMessage,
+};

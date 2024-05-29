@@ -1,0 +1,187 @@
+<div>
+    <h1>Data Kontak - Individual</h1>
+</div>
+
+
+<div class="form-group">
+    <label>Menanggapi atas pesan:</label>
+    <textarea name="previous-message" id="previous-message" class="form-control required" cols="30" rows="4"></textarea>
+</div>
+
+<div class="form-group">
+    <label>Rencana Pesan:</label>
+    <textarea name="user-draft" id="user-draft" class="form-control required" cols="30" rows="4"></textarea>
+</div>
+<br>
+
+<div class="col-12 form-group">
+    <div class="input-group">
+        <input type="text" name="user-instruction" id="user-instruction" class="form-control" value="" placeholder="Arahan improvement">
+        <div class="input-group-append" style="margin-left: 10px;">
+            <button id="reset-instruction" type="button" name="openai-submit" class="btn btn-secondary">Reset</button>
+        </div>
+    </div>
+</div>
+<div class="form-check">
+    <input type="checkbox" class="form-check-input" id="use-emoji">
+    <label class="form-check-label" for="use-emoji">Gunakan emoji</label>
+</div>
+
+<div class="col-12">
+    <button id="improve-pesan" type="button" name="improve-pesan" class="btn btn-primary">Improve Pesan</button>
+</div>
+<br>
+<div class="css3-spinner" style="--cnvs-loader-color:var(--cnvs-themecolor); display: none;">
+   <div class="css3-spinner-rect1"></div>
+   <div class="css3-spinner-rect2"></div>
+   <div class="css3-spinner-rect3"></div>
+   <div class="css3-spinner-rect4"></div>
+   <div class="css3-spinner-rect5"></div>
+</div>
+<div class="form-group">
+    <textarea name="konten-dikirim" id="konten-dikirim" class="form-control" cols="30" rows="4"></textarea>
+</div>
+
+<div class="col-12">
+	<label>Selected Person:</label>
+	<ul id="selectedPersonsList"></ul> <!-- Placeholder for the list of selected persons -->
+	<button id="sendMessagesBtn" type="button" name="kirimkan-pesan" class="btn btn-success">Kirim Pesan</button>
+</div>
+
+<br>
+
+
+<div class="content">
+	<div class="table-responsive">
+		<table id="contactIndividual" class="table table-striped table-bordered" cellspacing="0" width="100%">
+            <thead>
+                <tr>
+                    <th>Select</th> <!-- Checkbox header -->
+                    <th>userId</th>
+                    <th>number</th>
+                    <th>name</th>
+                    <th>profilePicUrl</th>
+                    <th>isBusiness</th>
+                    <th>isMyContact</th>
+                </tr>
+            </thead>
+            <tfoot>
+            <tr>
+                <th>Select</th>
+                <th>userId</th>
+                <th>number</th>
+                <th>name</th>
+                <th>profilePicUrl</th>
+                <th>isBusiness</th>
+                <th>isMyContact</th>
+            </tr>
+            </tfoot>
+			<tbody>
+				
+			</tbody>
+		</table>
+	</div>
+</div>
+
+
+<script>
+
+	
+// Berlaku untuk page Kirim Pesan
+document.addEventListener('DOMContentLoaded', function () {
+    const updateSelectedList = () => {
+        const selectedList = document.getElementById('selectedPersonsList');
+        selectedList.innerHTML = ''; // Clear the list
+        const checkboxes = document.querySelectorAll('.select-checkbox:checked');
+        checkboxes.forEach((checkbox, index) => {
+            const name = checkbox.getAttribute('data-name');
+            const listItem = document.createElement('li');
+            listItem.textContent = `${index + 1}. ${name}`; // Create list item with the name
+            selectedList.appendChild(listItem); // Add the list item to the list
+        });
+    };
+
+    // Event listener for checkboxes
+    const checkboxes = document.querySelectorAll('.select-checkbox');
+    if (checkboxes) {
+        checkboxes.forEach((checkbox) => {
+            checkbox.addEventListener('change', updateSelectedList);
+        });
+    }
+
+    // Sending messages when button is clicked
+    const sendMessagesBtn = document.getElementById('sendMessagesBtn');
+    if (sendMessagesBtn) {
+        sendMessagesBtn.addEventListener('click', function () {
+            const selectedUsers = [];
+            document.querySelectorAll('.select-checkbox:checked').forEach((checkbox) => {
+                selectedUsers.push({
+                    name: checkbox.getAttribute('data-name'),
+                    number: checkbox.getAttribute('data-number'),
+                });
+            });
+
+            // Get the content of the message from the textarea
+            const messageContent = document.getElementById('konten-dikirim').value;
+
+            // Log selected users or send this data to your server/API for further processing
+            console.log('%c Selected users', 'color: green', selectedUsers);
+
+            // Example: Post to a server endpoint
+            const numbers = selectedUsers.map(user => user.number);
+            fetch('http://localhost:3002/api/send-messages', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    numbers: numbers,
+                    text: messageContent,
+                }),
+            })
+                .then((response) => response.json())
+                .then((data) => console.log(data))
+                .catch((error) => console.error('Error:', error));
+        });
+    }
+});
+
+
+
+document.getElementById('improve-pesan').addEventListener('click', function () {
+    // Get the values from the inputs
+    const previousMessage = document.getElementById('previous-message').value;
+    const userDraft = document.getElementById('user-draft').value;
+    const userInstruction = document.getElementById('user-instruction').value;
+    const useEmoji = document.getElementById('use-emoji').checked;
+
+    // Show the spinner
+    document.querySelector('.css3-spinner').style.display = 'block';
+
+    // Fetch data from the OpenAI API
+    fetch('/api/openai-improvement-pesan', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            userDraft: userDraft,
+            previousMessage: previousMessage,
+            userInstruction: userInstruction,
+            useEmoji: useEmoji,
+        }),
+    })
+        .then((response) => response.json())
+        .then((data) => {
+            // Hide the spinner
+            document.querySelector('.css3-spinner').style.display = 'none';
+            // Put the result in the 'konten-dikirim' textarea
+            document.getElementById('konten-dikirim').value = data.message;
+        })
+        .catch((error) => {
+            // Hide the spinner in case of error
+            document.querySelector('.css3-spinner').style.display ='none';
+            console.error('Error:', error);
+        });
+});
+</script>
