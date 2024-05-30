@@ -293,6 +293,24 @@ async function getInfoQurban(auth, sheetName) {
     }
 }
 
+async function getInfoKhitan(auth, sheetName) {
+    const spreadsheetId = '1E1Kj_gn5BlbeytGhCqQKKsRvdGJnfVpriQfHn8lPM7E';
+    const sheets = google.sheets({ version: 'v4', auth });
+    const range = `${sheetName}!B30`;
+
+    try {
+        const response = await sheets.spreadsheets.values.get({
+            spreadsheetId: spreadsheetId,
+            range: range,
+        });
+        const value = response.data.values[0][0];
+        console.log('Value:', value);
+        return value;
+    } catch (err) {
+        console.error('The API returned an error: ' + err);
+    }
+}
+
 
 
 function convertTo24Hour(time) {
@@ -324,6 +342,7 @@ module.exports = {
     inputRegistrasiPanitiaQurban,
     getInfoKegiatanLayananMuhajirin,
     getInfoQurban,
+    getInfoKhitan,
     convertTo24Hour,
     adjustTime,
     googleAuth,

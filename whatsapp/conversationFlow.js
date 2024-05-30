@@ -79,7 +79,7 @@ const conversationDaftarPanitiaSizeKaos = {
             nextStep: 'askCatatan',
         },
         askCatatan: {
-            message: 'Sampaikan informasi tambahan atau catatan khusus untuk kami.\n_Misal, bila Anda punya fobia pada darah atau daging mentah, atau lainnya yg membatasi Anda dalam tugas kepanitiaan._',
+            message: 'Sampaikan informasi tambahan atau catatan khusus untuk kami.\n_Misal, tahun lalu bertugas di bagian apa; atau mungkin bila Anda punya fobia pada darah atau daging mentah, atau lainnya yg membatasi Anda dalam tugas kepanitiaan._',
             nextStep: null, // End of conversation
         },
     },

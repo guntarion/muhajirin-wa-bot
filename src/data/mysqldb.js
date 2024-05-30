@@ -48,6 +48,7 @@ async function saveContact(data) {
         contactSavedName,
     } = data;
 
+    const sanitizedContactPublishedName = contactPublishedName || ''; // Replace null with an empty string
     const sanitizedContactSavedName = contactSavedName || ''; // Replace null with an empty string
 
     const sqlCheck = 'SELECT id FROM contact WHERE contactNumber = ?';
@@ -69,7 +70,7 @@ async function saveContact(data) {
                 updatedTime,
                 contactNumber,
                 contactPlatform,
-                contactPublishedName,
+                sanitizedContactPublishedName,
                 sanitizedContactSavedName,
             ]);
             return insertResult.insertId;
@@ -79,7 +80,7 @@ async function saveContact(data) {
             const [updateResult] = await pool.query(sqlUpdate, [
                 updatedTime,
                 contactPlatform,
-                contactPublishedName,
+                sanitizedContactPublishedName,
                 sanitizedContactSavedName,
                 contactNumber,
             ]);
@@ -127,7 +128,7 @@ async function saveMessage(data) {
 }
 
 module.exports = {
-    saveContactPersonal, 
+    saveContactPersonal,
     saveContact,
     saveRegistration,
     saveMessage,

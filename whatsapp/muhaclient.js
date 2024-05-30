@@ -43,6 +43,7 @@ const {
     inputRegistrasiPanitiaQurban,
     getInfoKegiatanLayananMuhajirin,
     getInfoQurban,
+    getInfoKhitan,
     convertTo24Hour,
     adjustTime,
     googleAuth,
@@ -98,6 +99,21 @@ client.on('ready', () => {
 
         try {
             const groupMessage = await getInfoQurban(googleAuth, 'Rekap');
+            await client.sendMessage(groupId, groupMessage);
+            console.log('Message sent to group');
+        } catch (error) {
+            console.error('Failed to send message:', error);
+        }
+    }, {
+        timezone: 'Asia/Jakarta' // Set timezone to GMT +7
+    });
+
+    // Schedule a message to be sent every morning at 5 AM (GMT +7)
+    cron.schedule('5 5 * * *', async () => {
+        const groupId = '120363305283662799@g.us'; // Replace with your group ID
+
+        try {
+            const groupMessage = await getInfoKhitan(googleAuth, 'Rekap');
             await client.sendMessage(groupId, groupMessage);
             console.log('Message sent to group');
         } catch (error) {
@@ -245,15 +261,13 @@ client.on('message', async (msg) => {
                 };
 
                 await saveContactPersonal(contactInfo); // Save to MySQL
-                // contactsData.push(contactInfo); // Collect data for CSV
-                // console.log(JSON.stringify(contactInfo, null, 2));
+                contactsData.push(contactInfo); // Collect data for CSV
+                console.log(JSON.stringify(contactInfo, null, 2));
             }
 
-            
-
             // Write contacts data to CSV
-            // await contactsCsvWriter.writeRecords(contactsData);
-            // console.log('Contacts data saved to contacts.csv');
+            await contactsCsvWriter.writeRecords(contactsData);
+            console.log('Contacts data saved to contacts.csv');
 
         } catch (error) {
             console.error('Failed to get contact details:', error);
@@ -334,6 +348,7 @@ client.on('message', async (msg) => {
         });
         client.sendMessage(msg.from, `The bot has ${chats.length} chats open.`);
     } 
+
     
     else if (msg.body.toLowerCase() === 'kirimkanpesan') {
         const groupId = '62811334932-1630463874@g.us';
@@ -666,6 +681,8 @@ client.on('message', async (msg) => {
         await sendMessageWithDelay(client, chat, msg, initialMessage);
     } else if (
         [
+            'panitia',
+            'qurban',
             'panitia qurban',
             'panitia kurban',
             'panitiaqurban',
@@ -696,43 +713,7 @@ client.on('message', async (msg) => {
         }
     }
 
-    const prefixes = [
-        'info',
-        'nasehat',
-        'sehat',
-        'sholat',
-        'hadits',
-        'ayat',
-        'cari',
-        'ai',
-        'inputan',
-        '.status',
-    ];
 
-    if (prefixes.some((prefix) => msg.body.toLowerCase().startsWith(prefix))) {
-        let info = client.info;
-        const now = new Date();
-        const formattedDateTime = `${now.getFullYear()}-${(now.getMonth() + 1)
-            .toString()
-            .padStart(2, '0')}-${now
-            .getDate()
-            .toString()
-            .padStart(2, '0')} ${now
-            .getHours()
-            .toString()
-            .padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}`;
-        const sender = await msg.getContact();
-        const data = {
-            dateTime: formattedDateTime,
-            contactPlatform: info.platform,
-            contactPublishedName: sender.pushname,
-            contactSavedName: sender.name,
-            contactNumber: sender.number,
-            message: msg.body,
-        };
-
-        await appendMuhajirinToSheet(googleAuth, 'aktivitas', data);
-    }
 });
 
 async function handleConversationStep(msg, userId, chat) {
