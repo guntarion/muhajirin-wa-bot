@@ -316,400 +316,403 @@ client.on('message', async (msg) => {
         }
     }
 
-    if (msg.body === '.status') {
-        chat.sendSeen();
-        const currentDate = new Date();
-        const masehiDateTime = currentDate.toLocaleString('en-US', {
-            timeZone: 'Asia/Jakarta',
-        });
-        const hijriDateTime = currentDate.toLocaleString('en-US', {
-            timeZone: 'Asia/Jakarta',
-            calendar: 'islamic-umalqura',
-        });
-
-        const replyMessage = `Server Al Muhajirin is up and running 🚀\nMasehi: ${masehiDateTime}\nHijriah: ${hijriDateTime}`;
-        await replyWithDelay(chat, msg, replyMessage);
-    } else if (msg.body.startsWith('!ping')) {
-        await replyWithDelay(chat, msg, 'pong');
-    } else if (msg.body === '!ping reply') {
-        chat.sendSeen();
-        msg.reply('pong');
-    } else if (msg.body === '!chats') {
-        const chats = await client.getChats();
-        console.log(chats); // to see the content in the console
-
-        // Save it in a JSON file
-        fs.writeFile('allchats.json', JSON.stringify(chats, null, 2), (err) => {
-            if (err) {
-                console.error('Error writing file:', err);
-            } else {
-                console.log('File written successfully');
-            }
-        });
-        client.sendMessage(msg.from, `The bot has ${chats.length} chats open.`);
-    } 
-
+    if (!chat.isGroup) {
     
-    else if (msg.body.toLowerCase() === 'kirimkanpesan') {
-        const groupId = '62811334932-1630463874@g.us';
-        const groupMessage = 'Hello, group!';
-        try {
-            await client.sendMessage(groupId, groupMessage);
-            console.log('Message sent to group');
-        } catch (error) {
-            console.error('Failed to send message:', error);
-        }
-    }
-    
-    
-    else if (msg.body.trim().toLowerCase() === 'info') {
-        const replyMessage = `
-    📳 WhatsApp Center
-    🌟 Al Muhajirin Rewwin
-    🔖 0823-1213-2187
-
-\`info\`
-    Menampilkan informasi ini.
-
-\`panitia qurban\`
-    Mendaftar sbg panitia qurban & daftar ukuran kaos. Syarat: bersedia ditempatkan di sie manapun.
-
-\`nasehat\`
-    Menampilkan inspirasi nasehat dari ayat Al Qur'an.
-
-\`sehat\`
-    Menampilkan kiat sehat islami.
-
-\`sholat\`
-    Menampilkan jadwal waktu sholat khusus untuk wilayah Sidoarjo di hari ini.
-
-\`hadits (angka)\`
-    Menampilkan hadits shahih Muslim sesuai nomor yang diminta (1 - 4.930). Contoh: \`hadits 123\` untuk hadits nomer 123. Bila angka tidak diisi macam \`hadits\`, maka  akan ditampilkan hadits nomer sembarang.
-
-\`ayat (no-surat):(no-ayat)\`
-    Menampilkan terjemah dari ayat Al Qur'an. Contoh: \`ayat 2:30\` untuk ayat dari surah ke-2 ayat ke-30. 
-
-\`cari (istilah-yang-dicari):(nomer-surat)\`
-    Menampilkan daftar ayat yang berisikan istilah yang dicari: Contoh: \`cari ibrahim:2\` untuk mencari ayat di surah ke-2 yang mengandung kata "ibrahim". Bisa juga \`cari ibrahim\` untuk menampilkan semua ayat dari surat manapun yang mengandung kata bersangkutan
-
-\`ai (pertanyaan bebas)\`
-    Mengajukan pertanyaan bebas pada Artificial Intelligence. Contoh: \`ai apa syarat sah wudhu?\`
-
-\`inputan (informasi atau saran/masukan)\`
-    Sampaikan informasi (mis: kerusakan AC) atau berikan saran untuk seluruh program/unit di YAMR.
-
-        `;
-        await replyWithDelay(chat, msg, replyMessage);
-    } else if (msg.body.toLowerCase() === 'nasehat') {
-        const randomNasehat =
-            nasehatList[Math.floor(Math.random() * nasehatList.length)];
-        const replyMessage = `🎖 _${randomNasehat.advice}_ \n\n📍Inspirasi dari Surat ☪️ ${randomNasehat.reference}\n\n~ Al Muhajirin WA Center`;
-
-        await replyWithDelay(chat, msg, replyMessage);
-    } else if (msg.body === 'sehat') {
-        const randomKiatSehat =
-            kiatSehatList[Math.floor(Math.random() * kiatSehatList.length)];
-        const replyMessage = `💝 Kiat Sehat: *${randomKiatSehat.kiat}*\n\n${randomKiatSehat.deskripsi}\n\n~ Al Muhajirin WA Center`;
-
-        await replyWithDelay(chat, msg, replyMessage);
-    } else if (msg.body.toLowerCase().startsWith('hadits')) {
-        // Extract the number part from the message
-        const parts = msg.body.split(' '); // This splits the message into parts based on spaces
-        let hadith;
-        if (parts.length === 2 && !isNaN(parts[1])) {
-            let hadithNumber = parseInt(parts[1], 10);
-            // Ensure the hadith number is within the valid range
-            if (hadithNumber < 1) {
-                hadithNumber = 1;
-            } else if (hadithNumber > 4930) {
-                hadithNumber = 4930;
-            }
-            // Find the hadith by number
-            hadith = haditsData.find((h) => h.number === hadithNumber);
-        } else if (parts.length === 1) {
-            // Select a random hadith
-            hadith = haditsData[Math.floor(Math.random() * haditsData.length)];
-        }
-
-        if (hadith) {
-            const replyMessage = `🖌️ Hadits Muslim no: ${hadith.number}:\n ${hadith.id} \n\n~ Al Muhajirin WA Center`;
-            await replyWithDelay(chat, msg, replyMessage);
-        } else {
-            await replyWithDelay(chat, msg, 'Hadits tidak ditemukan.');
-        }
-    } else if (msg.body.toLowerCase() === 'sholat') {
-        fetch('https://muslimsalat.com/sidoarjo.json')
-            .then((response) => response.json())
-            .then(async (data) => {
-                const prayerTimes = data.items[0];
-                const date = data.items[0].date_for;
-                const city = data.city;
-
-                // Convert prayer times to 24 hour format and adjust the time
-                const fajr = adjustTime(convertTo24Hour(prayerTimes.fajr), 3);
-                const shurooq = adjustTime(
-                    convertTo24Hour(prayerTimes.shurooq),
-                    3
-                );
-                const dhuhr = adjustTime(convertTo24Hour(prayerTimes.dhuhr), 4);
-                const asr = adjustTime(convertTo24Hour(prayerTimes.asr), 2);
-                const maghrib = adjustTime(
-                    convertTo24Hour(prayerTimes.maghrib),
-                    1
-                );
-                const isha = adjustTime(convertTo24Hour(prayerTimes.isha), 3);
-
-                const currentDate = new Date();
-                const hijriDate = currentDate.toLocaleString('en-US', {
-                    timeZone: 'Asia/Jakarta',
-                    calendar: 'islamic-umalqura',
-                });
-
-                const replyMessage = `*⏰ Waktu Sholat ${city}, ${date}*\n*Hijri: ${hijriDate}*\n\n- Shubuh: ${fajr}\n- Shuruq: ${shurooq}\n- Dhuhur: ${dhuhr}\n- Ashar: ${asr}\n- Maghrib: ${maghrib}\n- Isya': ${isha}\n\n~ Al Muhajirin WA Center`;
-
-                await replyWithDelay(chat, msg, replyMessage);
-            })
-            .catch((error) => console.error('Error:', error));
-    } else if (msg.body.toLowerCase() === 'kegiatan') {
-        let infoKegiatan = await getInfoKegiatanLayananMuhajirin(
-            googleAuth,
-            'kegiatan'
-        );
-        await replyWithDelay(chat, msg, infoKegiatan);
-    } else if (msg.body.toLowerCase() === 'layanan') {
-        let infoLayanan = await getInfoKegiatanLayananMuhajirin(
-            googleAuth,
-            'layanan'
-        );
-        await replyWithDelay(chat, msg, infoLayanan);
-    } else if (msg.body.toLowerCase().startsWith('inputan')) {
-        const formattedDateTime = getFormattedDateTime();
-        const sender = await msg.getContact();
-        const data = {
-            dateTime: formattedDateTime,
-            contactPlatform: info.platform,
-            contactPublishedName: sender.pushname,
-            contactSavedName: sender.name,
-            contactNumber: sender.number,
-            message: msg.body.replace('inputan ', ''),
-        };
-        msg.react('🙏🏼');
-        await appendMuhajirinToSheet(googleAuth, 'receivedMessages', data);
-        await replyWithDelay(
-            chat,
-            msg,
-            'Terima kasih atas informasi/saran/masukan yang telah diberikan.'
-        );
-    } else if (msg.body.toLowerCase().startsWith('!askpdf')) {
-        console.log('Received a question to ask the PDF.');
-        const input = msg.body.slice(8); // Get the input from the message, removing "!askpdf " from the start
-        console.log('Input:', input);
-
-        const url = 'http://localhost:3001/ask';
-
-        // Send the question to the local endpoint
-        fetch(url, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                question: input,
-            }),
-        })
-            .then((response) => response.json())
-            .then((data) => {
-                // Reply with the answer
-                msg.reply(data.result.text);
-            })
-            .catch((error) => {
-                console.error('Error:', error);
+        if (msg.body === '.status') {
+            chat.sendSeen();
+            const currentDate = new Date();
+            const masehiDateTime = currentDate.toLocaleString('en-US', {
+                timeZone: 'Asia/Jakarta',
             });
-    } else if (msg.body.toLowerCase().startsWith('ayat ')) {
-        let inputanAsli = msg.body.slice(5); // Get the ayah number or surah:ayah from the message
-        let surahAndAyah = inputanAsli.split(':'); // Split the input by ':'
-        let surahNumber = parseInt(surahAndAyah[0], 10); // Get the surah number and convert it to an integer
-        let ayahNumber = parseInt(surahAndAyah[1], 10); // Get the ayah number and convert it to an integer
+            const hijriDateTime = currentDate.toLocaleString('en-US', {
+                timeZone: 'Asia/Jakarta',
+                calendar: 'islamic-umalqura',
+            });
 
-        if (surahNumber > 114) {
-            surahNumber = 114;
-            return;
+            const replyMessage = `Server Al Muhajirin is up and running 🚀\nMasehi: ${masehiDateTime}\nHijriah: ${hijriDateTime}`;
+            await replyWithDelay(chat, msg, replyMessage);
+        } else if (msg.body.startsWith('!ping')) {
+            await replyWithDelay(chat, msg, 'pong');
+        } else if (msg.body === '!ping reply') {
+            chat.sendSeen();
+            msg.reply('pong');
+        } else if (msg.body === '!chats') {
+            const chats = await client.getChats();
+            console.log(chats); // to see the content in the console
+
+            // Save it in a JSON file
+            fs.writeFile('allchats.json', JSON.stringify(chats, null, 2), (err) => {
+                if (err) {
+                    console.error('Error writing file:', err);
+                } else {
+                    console.log('File written successfully');
+                }
+            });
+            client.sendMessage(msg.from, `The bot has ${chats.length} chats open.`);
+        } 
+
+        
+        else if (msg.body.toLowerCase() === 'kirimkanpesan') {
+            const groupId = '62811334932-1630463874@g.us';
+            const groupMessage = 'Hello, group!';
+            try {
+                await client.sendMessage(groupId, groupMessage);
+                console.log('Message sent to group');
+            } catch (error) {
+                console.error('Failed to send message:', error);
+            }
         }
+        
+        
+        else if (msg.body.trim().toLowerCase() === 'info') {
+            const replyMessage = `
+        📳 WhatsApp Center
+        🌟 Al Muhajirin Rewwin
+        🔖 0823-1213-2187
 
-        let inputanAPI = `${surahNumber}:${ayahNumber}`;
-        console.log(inputanAPI);
+    \`info\`
+        Menampilkan informasi ini.
 
-        const surahName = surahNames[surahNumber - 1]; // Get the surah name using the surah number as an index
+    \`panitia qurban\`
+        Mendaftar sbg panitia qurban & daftar ukuran kaos. Syarat: bersedia ditempatkan di sie manapun.
 
-        const url = `http://api.alquran.cloud/v1/ayah/${inputanAPI}/id.indonesian`;
+    \`nasehat\`
+        Menampilkan inspirasi nasehat dari ayat Al Qur'an.
 
-        fetch(url)
-            .then((response) => response.json())
-            .then((data) => {
-                const content = data.data.text; // Get the content from the API response
-                // Use the content here
-                msg.reply(
-                    `Surah ${surahNumber}: ${surahName} ayat ke-${ayahNumber}\n${content}`
-                );
-            })
-            .catch((error) => console.error('Error:', error));
-    } else if (msg.body.toLowerCase().startsWith('cari ')) {
-        const input = msg.body.slice(6); // Get the user's input, removing "!qcari " from the start
-        let keyword, surah;
+    \`sehat\`
+        Menampilkan kiat sehat islami.
 
-        if (input.includes(':')) {
-            [keyword, surah] = input.split(':'); // Split the input at the colon to get the keyword and surah number
-        } else {
-            keyword = input; // If there's no colon, the whole input is the keyword
-            surah = 'all'; // Search all surahs
-        }
+    \`sholat\`
+        Menampilkan jadwal waktu sholat khusus untuk wilayah Sidoarjo di hari ini.
 
-        const url = `http://api.alquran.cloud/v1/search/${encodeURIComponent(
-            keyword
-        )}/${encodeURIComponent(surah)}/id.indonesian`;
+    \`hadits (angka)\`
+        Menampilkan hadits shahih Muslim sesuai nomor yang diminta (1 - 4.930). Contoh: \`hadits 123\` untuk hadits nomer 123. Bila angka tidak diisi macam \`hadits\`, maka  akan ditampilkan hadits nomer sembarang.
 
-        fetch(url)
-            .then((response) => response.json())
-            .then((data) => {
-                if (
-                    data.data &&
-                    data.data.matches &&
-                    data.data.matches.length > 0
-                ) {
-                    // Start building the reply message
-                    let replyMessage = `Terdapat ${data.data.matches.length} Hasil Pencarian untuk kata kunci '${keyword}':\n\n`;
+    \`ayat (no-surat):(no-ayat)\`
+        Menampilkan terjemah dari ayat Al Qur'an. Contoh: \`ayat 2:30\` untuk ayat dari surah ke-2 ayat ke-30. 
 
-                    // Append each match to the reply message with a sequence number
-                    data.data.matches.forEach((match, index) => {
-                        replyMessage += `${index + 1}. Surah ${
-                            match.surah.number
-                        } ayat ${match.numberInSurah}\n`;
+    \`cari (istilah-yang-dicari):(nomer-surat)\`
+        Menampilkan daftar ayat yang berisikan istilah yang dicari: Contoh: \`cari ibrahim:2\` untuk mencari ayat di surah ke-2 yang mengandung kata "ibrahim". Bisa juga \`cari ibrahim\` untuk menampilkan semua ayat dari surat manapun yang mengandung kata bersangkutan
+
+    \`ai (pertanyaan bebas)\`
+        Mengajukan pertanyaan bebas pada Artificial Intelligence. Contoh: \`ai apa syarat sah wudhu?\`
+
+    \`inputan (informasi atau saran/masukan)\`
+        Sampaikan informasi (mis: kerusakan AC) atau berikan saran untuk seluruh program/unit di YAMR.
+
+            `;
+            await replyWithDelay(chat, msg, replyMessage);
+        } else if (msg.body.toLowerCase() === 'nasehat') {
+            const randomNasehat =
+                nasehatList[Math.floor(Math.random() * nasehatList.length)];
+            const replyMessage = `🎖 _${randomNasehat.advice}_ \n\n📍Inspirasi dari Surat ☪️ ${randomNasehat.reference}\n\n~ Al Muhajirin WA Center`;
+
+            await replyWithDelay(chat, msg, replyMessage);
+        } else if (msg.body === 'sehat') {
+            const randomKiatSehat =
+                kiatSehatList[Math.floor(Math.random() * kiatSehatList.length)];
+            const replyMessage = `💝 Kiat Sehat: *${randomKiatSehat.kiat}*\n\n${randomKiatSehat.deskripsi}\n\n~ Al Muhajirin WA Center`;
+
+            await replyWithDelay(chat, msg, replyMessage);
+        } else if (msg.body.toLowerCase().startsWith('hadits')) {
+            // Extract the number part from the message
+            const parts = msg.body.split(' '); // This splits the message into parts based on spaces
+            let hadith;
+            if (parts.length === 2 && !isNaN(parts[1])) {
+                let hadithNumber = parseInt(parts[1], 10);
+                // Ensure the hadith number is within the valid range
+                if (hadithNumber < 1) {
+                    hadithNumber = 1;
+                } else if (hadithNumber > 4930) {
+                    hadithNumber = 4930;
+                }
+                // Find the hadith by number
+                hadith = haditsData.find((h) => h.number === hadithNumber);
+            } else if (parts.length === 1) {
+                // Select a random hadith
+                hadith = haditsData[Math.floor(Math.random() * haditsData.length)];
+            }
+
+            if (hadith) {
+                const replyMessage = `🖌️ Hadits Muslim no: ${hadith.number}:\n ${hadith.id} \n\n~ Al Muhajirin WA Center`;
+                await replyWithDelay(chat, msg, replyMessage);
+            } else {
+                await replyWithDelay(chat, msg, 'Hadits tidak ditemukan.');
+            }
+        } else if (msg.body.toLowerCase() === 'sholat') {
+            fetch('https://muslimsalat.com/sidoarjo.json')
+                .then((response) => response.json())
+                .then(async (data) => {
+                    const prayerTimes = data.items[0];
+                    const date = data.items[0].date_for;
+                    const city = data.city;
+
+                    // Convert prayer times to 24 hour format and adjust the time
+                    const fajr = adjustTime(convertTo24Hour(prayerTimes.fajr), 3);
+                    const shurooq = adjustTime(
+                        convertTo24Hour(prayerTimes.shurooq),
+                        3
+                    );
+                    const dhuhr = adjustTime(convertTo24Hour(prayerTimes.dhuhr), 4);
+                    const asr = adjustTime(convertTo24Hour(prayerTimes.asr), 2);
+                    const maghrib = adjustTime(
+                        convertTo24Hour(prayerTimes.maghrib),
+                        1
+                    );
+                    const isha = adjustTime(convertTo24Hour(prayerTimes.isha), 3);
+
+                    const currentDate = new Date();
+                    const hijriDate = currentDate.toLocaleString('en-US', {
+                        timeZone: 'Asia/Jakarta',
+                        calendar: 'islamic-umalqura',
                     });
 
-                    // Send the formatted reply
-                    msg.reply(replyMessage);
-                } else {
-                    // No matches found
-                    msg.reply(
-                        `Tidak ada hasil pencarian ditemukan untuk kata kunci '${keyword}'.`
-                    );
-                }
-            })
-            .catch((error) => {
-                console.error('Error:', error);
-                msg.reply(
-                    'Maaf, terjadi kesalahan saat memproses permintaan Anda.'
-                );
-            });
-    } else if (msg.body.toLowerCase().startsWith('ai ')) {
-        const prompt = msg.body.slice(7);
-        chat.sendSeen();
-        generateResponseAsCS(prompt)
-            .then((response) => {
-                // Send the response text back to the user
-                msg.reply(response);
-            })
-            .catch((error) => {
-                console.error('OpenAI Error:', error);
-                msg.reply(
-                    'Mohon maaf, terjadi error saat memproses request Anda.',
-                    error
-                );
-            });
-    } else if (msg.body.startsWith('sizereg ')) {
-        chat.sendSeen();
-        const isiRegistrasiSize = msg.body.slice(8);
-        const parts = isiRegistrasiSize.split(' ');
-        const kodeOrder = parts[0];
-        const size = parts[1].toUpperCase();
-        const name = parts[2].toUpperCase();
-        let info = client.info;
-        const formattedDateTime = getFormattedDateTime();
-        const sender = await msg.getContact();
-        const data = {
-            dateTime: formattedDateTime,
-            contactPlatform: info.platform,
-            contactPublishedName: sender.pushname,
-            contactSavedName: sender.name,
-            contactNumber: sender.number,
-            kodeOrder: kodeOrder,
-            size: size,
-            name: name,
-        };
-        chat.sendSeen();
-        msg.react('📝');
-        await appendToGoogleSheet(googleAuth, 'entriSize', data);
-        await replyWithDelay(
-            chat,
-            msg,
-            'Terima kasih. Entri size Anda kami catat.'
-        );
-    } else if (msg.body.toLowerCase().startsWith('askcs2 ')) {
-        console.log('Received a question to ask the knowledgebase.');
-        const input = msg.body.slice(7);
-        console.log('Input:', input);
-        chat.sendSeen();
-        const url = 'http://localhost:3010/ask';
+                    const replyMessage = `*⏰ Waktu Sholat ${city}, ${date}*\n*Hijri: ${hijriDate}*\n\n- Shubuh: ${fajr}\n- Shuruq: ${shurooq}\n- Dhuhur: ${dhuhr}\n- Ashar: ${asr}\n- Maghrib: ${maghrib}\n- Isya': ${isha}\n\n~ Al Muhajirin WA Center`;
 
-        // Send the question to the local endpoint
-        fetch(url, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                question: input,
-                collection: 'vido',
-            }),
-        })
-            .then((response) => response.json())
-            .then((data) => {
-                // Reply with the answer
-                msg.reply(data.result.text);
-            })
-            .catch((error) => {
-                console.error('Error:', error);
-            });
-    } else if (msg.body.toLowerCase() === 'feedback') {
-        chat.sendSeen();
-        initializeUserState(userId, conversationTestimoni);
-        activateConversation(userId);
-        const initialMessage = getNextStepMessage(
-            conversationTestimoni,
-            'askAlasanMemilih'
-        );
-        await sendMessageWithDelay(client, chat, msg, initialMessage);
-    } else if (
-        [
-            'panitia',
-            'qurban',
-            'panitia qurban',
-            'panitia kurban',
-            'panitiaqurban',
-            'panitiakurban',
-        ].some((substring) => msg.body.toLowerCase().trim().includes(substring))
-    ) {
-        chat.sendSeen();
-        initializeUserState(userId, conversationDaftarPanitiaSizeKaos);
-        activateConversation(userId);
-        const initialMessage = getNextStepMessage(
-            conversationDaftarPanitiaSizeKaos,
-            'askNamaLengkap'
-        );
-        await sendMessageWithDelay(client, chat, msg, initialMessage);
-    } else if (userState.active) {
-        if (msg.body.toLowerCase() === 'exit') {
-            client.sendMessage(msg.from, 'Conversation ended.');
-            deactivateConversation(userId);
-            initializeUserState(userId);
-        } else {
-            // Pass the userState.conversationType directly to handle steps based on the active conversation
-            await handleConversationStep(
-                msg,
-                userId,
-                chat,
-                userState.conversationType
+                    await replyWithDelay(chat, msg, replyMessage);
+                })
+                .catch((error) => console.error('Error:', error));
+        } else if (msg.body.toLowerCase() === 'kegiatan') {
+            let infoKegiatan = await getInfoKegiatanLayananMuhajirin(
+                googleAuth,
+                'kegiatan'
             );
+            await replyWithDelay(chat, msg, infoKegiatan);
+        } else if (msg.body.toLowerCase() === 'layanan') {
+            let infoLayanan = await getInfoKegiatanLayananMuhajirin(
+                googleAuth,
+                'layanan'
+            );
+            await replyWithDelay(chat, msg, infoLayanan);
+        } else if (msg.body.toLowerCase().startsWith('inputan')) {
+            const formattedDateTime = getFormattedDateTime();
+            const sender = await msg.getContact();
+            const data = {
+                dateTime: formattedDateTime,
+                contactPlatform: info.platform,
+                contactPublishedName: sender.pushname,
+                contactSavedName: sender.name,
+                contactNumber: sender.number,
+                message: msg.body.replace('inputan ', ''),
+            };
+            msg.react('🙏🏼');
+            await appendMuhajirinToSheet(googleAuth, 'receivedMessages', data);
+            await replyWithDelay(
+                chat,
+                msg,
+                'Terima kasih atas informasi/saran/masukan yang telah diberikan.'
+            );
+        } else if (msg.body.toLowerCase().startsWith('!askpdf')) {
+            console.log('Received a question to ask the PDF.');
+            const input = msg.body.slice(8); // Get the input from the message, removing "!askpdf " from the start
+            console.log('Input:', input);
+
+            const url = 'http://localhost:3001/ask';
+
+            // Send the question to the local endpoint
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    question: input,
+                }),
+            })
+                .then((response) => response.json())
+                .then((data) => {
+                    // Reply with the answer
+                    msg.reply(data.result.text);
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                });
+        } else if (msg.body.toLowerCase().startsWith('ayat ')) {
+            let inputanAsli = msg.body.slice(5); // Get the ayah number or surah:ayah from the message
+            let surahAndAyah = inputanAsli.split(':'); // Split the input by ':'
+            let surahNumber = parseInt(surahAndAyah[0], 10); // Get the surah number and convert it to an integer
+            let ayahNumber = parseInt(surahAndAyah[1], 10); // Get the ayah number and convert it to an integer
+
+            if (surahNumber > 114) {
+                surahNumber = 114;
+                return;
+            }
+
+            let inputanAPI = `${surahNumber}:${ayahNumber}`;
+            console.log(inputanAPI);
+
+            const surahName = surahNames[surahNumber - 1]; // Get the surah name using the surah number as an index
+
+            const url = `http://api.alquran.cloud/v1/ayah/${inputanAPI}/id.indonesian`;
+
+            fetch(url)
+                .then((response) => response.json())
+                .then((data) => {
+                    const content = data.data.text; // Get the content from the API response
+                    // Use the content here
+                    msg.reply(
+                        `Surah ${surahNumber}: ${surahName} ayat ke-${ayahNumber}\n${content}`
+                    );
+                })
+                .catch((error) => console.error('Error:', error));
+        } else if (msg.body.toLowerCase().startsWith('cari ')) {
+            const input = msg.body.slice(6); // Get the user's input, removing "!qcari " from the start
+            let keyword, surah;
+
+            if (input.includes(':')) {
+                [keyword, surah] = input.split(':'); // Split the input at the colon to get the keyword and surah number
+            } else {
+                keyword = input; // If there's no colon, the whole input is the keyword
+                surah = 'all'; // Search all surahs
+            }
+
+            const url = `http://api.alquran.cloud/v1/search/${encodeURIComponent(
+                keyword
+            )}/${encodeURIComponent(surah)}/id.indonesian`;
+
+            fetch(url)
+                .then((response) => response.json())
+                .then((data) => {
+                    if (
+                        data.data &&
+                        data.data.matches &&
+                        data.data.matches.length > 0
+                    ) {
+                        // Start building the reply message
+                        let replyMessage = `Terdapat ${data.data.matches.length} Hasil Pencarian untuk kata kunci '${keyword}':\n\n`;
+
+                        // Append each match to the reply message with a sequence number
+                        data.data.matches.forEach((match, index) => {
+                            replyMessage += `${index + 1}. Surah ${
+                                match.surah.number
+                            } ayat ${match.numberInSurah}\n`;
+                        });
+
+                        // Send the formatted reply
+                        msg.reply(replyMessage);
+                    } else {
+                        // No matches found
+                        msg.reply(
+                            `Tidak ada hasil pencarian ditemukan untuk kata kunci '${keyword}'.`
+                        );
+                    }
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                    msg.reply(
+                        'Maaf, terjadi kesalahan saat memproses permintaan Anda.'
+                    );
+                });
+        } else if (msg.body.toLowerCase().startsWith('ai ')) {
+            const prompt = msg.body.slice(7);
+            chat.sendSeen();
+            generateResponseAsCS(prompt)
+                .then((response) => {
+                    // Send the response text back to the user
+                    msg.reply(response);
+                })
+                .catch((error) => {
+                    console.error('OpenAI Error:', error);
+                    msg.reply(
+                        'Mohon maaf, terjadi error saat memproses request Anda.',
+                        error
+                    );
+                });
+        } else if (msg.body.startsWith('sizereg ')) {
+            chat.sendSeen();
+            const isiRegistrasiSize = msg.body.slice(8);
+            const parts = isiRegistrasiSize.split(' ');
+            const kodeOrder = parts[0];
+            const size = parts[1].toUpperCase();
+            const name = parts[2].toUpperCase();
+            let info = client.info;
+            const formattedDateTime = getFormattedDateTime();
+            const sender = await msg.getContact();
+            const data = {
+                dateTime: formattedDateTime,
+                contactPlatform: info.platform,
+                contactPublishedName: sender.pushname,
+                contactSavedName: sender.name,
+                contactNumber: sender.number,
+                kodeOrder: kodeOrder,
+                size: size,
+                name: name,
+            };
+            chat.sendSeen();
+            msg.react('📝');
+            await appendToGoogleSheet(googleAuth, 'entriSize', data);
+            await replyWithDelay(
+                chat,
+                msg,
+                'Terima kasih. Entri size Anda kami catat.'
+            );
+        } else if (msg.body.toLowerCase().startsWith('askcs2 ')) {
+            console.log('Received a question to ask the knowledgebase.');
+            const input = msg.body.slice(7);
+            console.log('Input:', input);
+            chat.sendSeen();
+            const url = 'http://localhost:3010/ask';
+
+            // Send the question to the local endpoint
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    question: input,
+                    collection: 'vido',
+                }),
+            })
+                .then((response) => response.json())
+                .then((data) => {
+                    // Reply with the answer
+                    msg.reply(data.result.text);
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                });
+        } else if (msg.body.toLowerCase() === 'feedback') {
+            chat.sendSeen();
+            initializeUserState(userId, conversationTestimoni);
+            activateConversation(userId);
+            const initialMessage = getNextStepMessage(
+                conversationTestimoni,
+                'askAlasanMemilih'
+            );
+            await sendMessageWithDelay(client, chat, msg, initialMessage);
+        } else if (
+            [
+                'panitia',
+                'qurban',
+                'panitia qurban',
+                'panitia kurban',
+                'panitiaqurban',
+                'panitiakurban',
+            ].some((substring) => msg.body.toLowerCase().trim().includes(substring))
+        ) {
+            chat.sendSeen();
+            initializeUserState(userId, conversationDaftarPanitiaSizeKaos);
+            activateConversation(userId);
+            const initialMessage = getNextStepMessage(
+                conversationDaftarPanitiaSizeKaos,
+                'askNamaLengkap'
+            );
+            await sendMessageWithDelay(client, chat, msg, initialMessage);
+        } else if (userState.active) {
+            if (msg.body.toLowerCase() === 'exit') {
+                client.sendMessage(msg.from, 'Conversation ended.');
+                deactivateConversation(userId);
+                initializeUserState(userId);
+            } else {
+                // Pass the userState.conversationType directly to handle steps based on the active conversation
+                await handleConversationStep(
+                    msg,
+                    userId,
+                    chat,
+                    userState.conversationType
+                );
+            }
         }
     }
 
