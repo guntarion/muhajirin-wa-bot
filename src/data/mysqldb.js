@@ -11,26 +11,84 @@ const pool = mysql
     })
     .promise();
 
+// async function saveContactPersonal(data) {
+//     const sqlInsert = `
+//         INSERT INTO contact_personal (userId, number, name, profilePicUrl, isBusiness, isMyContact)
+//         VALUES (?, ?, ?, ?, ?, ?)
+//         ON DUPLICATE KEY UPDATE 
+//             number = VALUES(number), 
+//             name = VALUES(name),
+//             profilePicUrl = VALUES(profilePicUrl),
+//             isBusiness = VALUES(isBusiness),
+//             isMyContact = VALUES(isMyContact)
+//     `;
+
+//     try {
+//         await pool.query(sqlInsert, [
+//             data.userId,
+//             data.number,
+//             data.name,
+//             data.profilePicUrl || 'No profile picture',
+//             data.isBusiness,
+//             data.isMyContact,
+//         ]);
+//     } catch (error) {
+//         console.error('Error saving contact personal:', error);
+//         throw error;
+//     }
+// }
+
+async function contactExists(contactId) {
+    const sqlCheck = 'SELECT 1 FROM contact_personal WHERE contactId = ? LIMIT 1';
+    const [rows] = await pool.query(sqlCheck, [contactId]);
+    return rows.length > 0;
+}
+
 async function saveContactPersonal(data) {
     const sqlInsert = `
-        INSERT INTO contact_personal (userId, number, name, profilePicUrl, isBusiness, isMyContact)
-        VALUES (?, ?, ?, ?, ?, ?)
+        INSERT INTO contact_personal (
+            contactId, 
+            contactNumber, 
+            contactPlatform, 
+            contactStoredName, 
+            contactPicUrl, 
+            contactPublishedName, 
+            contactSavedName, 
+            isBusiness, 
+            isMyContact, 
+            type_1, 
+            type_2, 
+            type_3
+        )
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         ON DUPLICATE KEY UPDATE 
-            number = VALUES(number), 
-            name = VALUES(name),
-            profilePicUrl = VALUES(profilePicUrl),
+            contactNumber = VALUES(contactNumber), 
+            contactPlatform = VALUES(contactPlatform),
+            contactStoredName = VALUES(contactStoredName),
+            contactPicUrl = VALUES(contactPicUrl),
+            contactPublishedName = VALUES(contactPublishedName),
+            contactSavedName = VALUES(contactSavedName),
             isBusiness = VALUES(isBusiness),
-            isMyContact = VALUES(isMyContact)
+            isMyContact = VALUES(isMyContact),
+            type_1 = VALUES(type_1),
+            type_2 = VALUES(type_2),
+            type_3 = VALUES(type_3)
     `;
 
     try {
         await pool.query(sqlInsert, [
-            data.userId,
-            data.number,
-            data.name,
-            data.profilePicUrl || 'No profile picture',
+            data.contactId,
+            data.contactNumber,
+            data.contactPlatform,
+            data.contactStoredName || 'Unknown',
+            data.contactPicUrl,
+            data.contactPublishedName,
+            data.contactSavedName,
             data.isBusiness,
             data.isMyContact,
+            data.type_1,
+            data.type_2,
+            data.type_3,
         ]);
     } catch (error) {
         console.error('Error saving contact personal:', error);
@@ -127,9 +185,151 @@ async function saveMessage(data) {
     );
 }
 
+async function getAllContactsPersonal() {
+    const sql = 'SELECT * FROM contact_personal';
+    try {
+        const [rows] = await pool.query(sql);
+        return rows;
+    } catch (error) {
+        console.error('Error fetching contact personal:', error);
+        throw error;
+    }
+}
+
+
+// async function fetchGroupBroadcast() {
+//     const sql =
+//         'SELECT groupId, groupName, groupDescription FROM group_broadcast';
+//     try {
+//         const [rows] = await pool.query(sql);
+//         return rows;
+//     } catch (error) {
+//         console.error('Error fetching groups:', error);
+//         throw error;
+//     }
+// }
+
+// async function fetchGroupBroadcast(groupId = null) {
+//     let sql =
+//         'SELECT groupId, groupName, groupDescription FROM group_broadcast';
+//     const params = [];
+//     if (groupId) {
+//         sql += ' WHERE groupId = ?';
+//         params.push(groupId);
+//     }
+//     try {
+//         const [rows] = await pool.query(sql, params);
+//         return groupId ? rows[0] : rows;
+//     } catch (error) {
+//         console.error('Error fetching groups:', error);
+//         throw error;
+//     }
+// }
+
+// Save Group
+async function saveGroupBroadcast(groupName, groupDescription) {
+    const sqlInsert =
+        'INSERT INTO group_broadcast (groupName, groupDescription) VALUES (?, ?)';
+    try {
+        const [result] = await pool.query(sqlInsert, [groupName, groupDescription]);
+        return result.insertId;
+    } catch (error) {
+        console.error('Error saving group:', error);
+        throw error;
+    }
+}
+
+// Save Group Members
+async function saveGroupBroadcastMember(groupId, contactId) {
+    const sqlInsert =
+        'INSERT INTO group_broadcast_members (groupId, contactId) VALUES (?, ?)';
+    try {
+        await pool.query(sqlInsert, [groupId, contactId]);
+    } catch (error) {
+        console.error('Error saving group member:', error);
+        throw error;
+    }
+}
+
+async function fetchGroupBroadcast() {
+    const sql =
+        'SELECT groupId, groupName, groupDescription FROM group_broadcast';
+    try {
+        const [rows] = await pool.query(sql);
+        return rows;
+    } catch (error) {
+        console.error('Error fetching groups:', error);
+        throw error;
+    }
+}
+
+async function fetchGroupBroadcastMembers(groupId) {
+    const sql = `
+        SELECT gm.groupId, c.contactId, c.contactNumber, c.contactStoredName 
+        FROM group_broadcast_members gm
+        JOIN contact_personal c ON gm.contactId = c.contactId
+        WHERE gm.groupId = ?
+    `;
+    try {
+        const [rows] = await pool.query(sql, [groupId]);
+        return rows;
+    } catch (error) {
+        console.error('Error fetching group members:', error);
+        throw error;
+    }
+}
+
+async function deleteGroupBroadcastMember(groupId, contactId) {
+    const sqlDelete =
+        'DELETE FROM group_broadcast_members WHERE groupId = ? AND contactId = ?';
+    try {
+        console.log(`Executing SQL: ${sqlDelete} with params [${groupId}, ${contactId}]`);
+        await pool.query(sqlDelete, [groupId, contactId]);
+    } catch (error) {
+        console.error('Error deleting group member:', error);
+        throw error;
+    }
+}
+
+async function deleteGroup(groupId) {
+    const sqlDeleteMembers =
+        'DELETE FROM group_broadcast_members WHERE groupId = ?';
+    const sqlDeleteGroup = 'DELETE FROM group_broadcast WHERE groupId = ?';
+    try {
+        console.log(`Executing SQL: ${sqlDeleteMembers} with param [${groupId}]`);
+        await pool.query(sqlDeleteMembers, [groupId]);
+        console.log(`Executing SQL: ${sqlDeleteGroup} with param [${groupId}]`);
+        await pool.query(sqlDeleteGroup, [groupId]);
+    } catch (error) {
+        console.error('Error deleting group:', error);
+        throw error;
+    }
+}
+
+async function getGroupById(groupId) {
+    const sql = 'SELECT groupName FROM group_broadcast WHERE groupId = ?';
+    try {
+        const [rows] = await pool.query(sql, [groupId]);
+        return rows[0];
+    } catch (error) {
+        console.error('Error fetching group by id:', error);
+        throw error;
+    }
+}
+
+
 module.exports = {
+    contactExists,
     saveContactPersonal,
     saveContact,
     saveRegistration,
     saveMessage,
+    getAllContactsPersonal,
+    saveGroupBroadcast,
+    saveGroupBroadcastMember,
+    deleteGroupBroadcastMember,
+    fetchGroupBroadcast,
+    fetchGroupBroadcastMembers,
+    deleteGroup,
+    getGroupById,
 };

@@ -54,7 +54,7 @@ app.use('/api', apiRoutes);  // Includes messageRoutes, healthRoute
 app.use(viewRoutes);  // Routes for serving HTML pages
 
 // Initialize WhatsApp client
-client.initialize();
+// client.initialize();
 
 // Closing correctly using CTRL+C 
 process.on('SIGINT', async () => {

@@ -1,0 +1,408 @@
+<div>
+    <h1>Data Kontak - Individual</h1>
+</div>
+
+<div class="col-12">
+    <label>Selected Person:</label>
+    <ul id="selectedPersonsList"></ul> <!-- Placeholder for the list of selected persons -->
+    <button id="createGroupBtn" type="button" class="btn btn-primary mt-2">Create Group</button>
+    <button id="unselectAllBtn" type="button" class="btn btn-warning mt-2">Unselect All</button>
+    <select id="groupSelect" class="form-control mt-3">
+        <option value="">Select a Group</option>
+        {{#each groups}}
+        <option value="{{groupId}}">{{groupName}}</option>
+        {{/each}}
+    </select>
+    <button id="showGroupMembersBtn" type="button" class="btn btn-info mt-2">Show Group Members</button>
+    <button id="deleteGroupBtn" type="button" class="btn btn-danger mt-2">Delete Group</button>
+    <div id="groupContainer"></div>
+</div>
+
+<!-- Modal for creating a group -->
+<div id="createGroupModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Create Group</h2>
+        <form id="createGroupForm">
+            <label for="groupName">Group Name:</label>
+            <input type="text" id="groupName" name="groupName" required>
+            <label for="groupDescription">Group Description:</label>
+            <textarea id="groupDescription" name="groupDescription"></textarea>
+            <button type="submit" class="btn btn-primary">Create</button>
+        </form>
+    </div>
+</div>
+
+<div id="groupDetails" style="display:none;">
+    <h3>Group: <span id="selectedGroupName"></span></h3>
+    <table id="groupMembersTable" class="table table-striped table-bordered">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Stored Name</th>
+                <th>Number</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+    <div id="groupPaginationControls" class="mt-3"></div>
+    <button id="addSelectedToGroupBtn" type="button" class="btn btn-secondary mt-2" style="display:none;">Add Selected
+        to Group</button>
+</div>
+
+<br>
+
+<div class="content">
+    <div class="table-responsive">
+        <table id="chatDataTable" class="table table-striped table-bordered" cellspacing="0" width="100%">
+            <thead>
+                <tr>
+                    <th>Select</th> <!-- Checkbox header -->
+                    <th>contactId</th>
+                    <th>contactNumber</th>
+                    <th>contactPlatform</th>
+                    <th>contactStoredName</th>
+                    <th>contactPicUrl</th>
+                    <th>contactPublishedName</th>
+                    <th>contactSavedName</th>
+                    <th>isBusiness</th>
+                    <th>isMyContact</th>
+                    <th>type_1</th>
+                    <th>type_2</th>
+                    <th>type_3</th>
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                    <th>Select</th>
+                    <th>contactId</th>
+                    <th>contactNumber</th>
+                    <th>contactPlatform</th>
+                    <th>contactStoredName</th>
+                    <th>contactPicUrl</th>
+                    <th>contactPublishedName</th>
+                    <th>contactSavedName</th>
+                    <th>isBusiness</th>
+                    <th>isMyContact</th>
+                    <th>type_1</th>
+                    <th>type_2</th>
+                    <th>type_3</th>
+                </tr>
+            </tfoot>
+            <tbody>
+                {{#each contacts}}
+                <tr>
+                    <td><input type="checkbox" class="select-checkbox" data-id="{{contactId}}"
+                            data-name="{{contactStoredName}}" data-number="{{contactNumber}}"></td>
+                    <td>{{contactId}}</td>
+                    <td>{{contactNumber}}</td>
+                    <td>{{contactPlatform}}</td>
+                    <td>{{contactStoredName}}</td>
+                    <td><img src="{{contactPicUrl}}" alt="Profile Picture" style="width:50px;height:50px;"></td>
+                    <td>{{contactPublishedName}}</td>
+                    <td>{{contactSavedName}}</td>
+                    <td>{{isBusiness}}</td>
+                    <td>{{isMyContact}}</td>
+                    <td>{{type_1}}</td>
+                    <td>{{type_2}}</td>
+                    <td>{{type_3}}</td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script src="js/jquery.min.js"></script>
+<script src="js/bs-datatable.js"></script>
+
+
+<script>
+    jQuery(document).ready(function () {
+        jQuery('#contactIndividual').dataTable();
+    });
+</script>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const selectedList = document.getElementById('selectedPersonsList');
+        const groupContainer = document.getElementById('groupContainer');
+        const createGroupModal = document.getElementById('createGroupModal');
+        const closeModalBtn = document.querySelector('.close');
+        const groupSelect = document.getElementById('groupSelect');
+        const groupDetails = document.getElementById('groupDetails');
+        const groupMembersTable = document.getElementById('groupMembersTable').querySelector('tbody');
+        const groupPaginationControls = document.getElementById('groupPaginationControls');
+        const showGroupMembersBtn = document.getElementById('showGroupMembersBtn');
+        const deleteGroupBtn = document.getElementById('deleteGroupBtn');
+        const addSelectedToGroupBtn = document.getElementById('addSelectedToGroupBtn');
+        const unselectAllBtn = document.getElementById('unselectAllBtn');
+        let currentGroupId = null;
+
+        const updateSelectedList = () => {
+            selectedList.innerHTML = ''; // Clear the list
+            const checkboxes = document.querySelectorAll('.select-checkbox:checked');
+            checkboxes.forEach((checkbox, index) => {
+                const name = checkbox.getAttribute('data-name');
+                const listItem = document.createElement('li');
+                listItem.textContent = `${index + 1}. ${name}`; // Create list item with the name
+                selectedList.appendChild(listItem); // Add the list item to the list
+            });
+        };
+
+        const createGroup = async (groupName, groupDescription) => {
+            try {
+                const response = await fetch('/create-group', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ groupName, groupDescription })
+                });
+                const data = await response.json();
+                if (data.success) {
+                    const option = document.createElement('option');
+                    option.value = data.groupId;
+                    option.textContent = groupName;
+                    groupSelect.appendChild(option);
+                    createGroupModal.style.display = 'none'; // Close the modal
+                } else {
+                    alert('Failed to create group');
+                }
+            } catch (error) {
+                console.error('Error creating group:', error);
+            }
+        };
+
+        const fetchAndDisplayGroupMembers = async (groupId) => {
+            try {
+                const response = await fetch(`/get-group-members/${groupId}`);
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                const data = await response.json();
+                groupMembersTable.innerHTML = ''; // Clear existing rows
+                data.members.forEach((member, index) => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${index + 1}</td>
+                        <td>${member.contactStoredName}</td>
+                        <td>${member.contactNumber}</td>
+                        <td><button class="remove-member-btn btn btn-danger" data-group-id="${groupId}" data-contact-id="${member.contactId}">Remove</button></td>
+                    `;
+                    groupMembersTable.appendChild(row);
+                });
+                document.getElementById('selectedGroupName').textContent = data.groupName;
+                document.getElementById('addSelectedToGroupBtn').setAttribute('data-group-id', groupId);
+                groupDetails.style.display = 'block'; // Show group details
+                paginateTable(); // Initialize pagination
+                attachRemoveButtonListeners(); // Attach remove button listeners
+            } catch (error) {
+                console.error('Error fetching group members:', error);
+            }
+        };
+
+        const paginateTable = () => {
+            const rows = groupMembersTable.querySelectorAll('tr');
+            const rowsPerPage = 5;
+            let currentPage = 1;
+            const totalPages = Math.ceil(rows.length / rowsPerPage);
+
+            const updateTable = () => {
+                rows.forEach((row, index) => {
+                    row.style.display = 'none';
+                    if (index >= (currentPage - 1) * rowsPerPage && index < currentPage * rowsPerPage) {
+                        row.style.display = '';
+                    }
+                });
+            };
+
+            const updatePaginationControls = () => {
+                groupPaginationControls.innerHTML = '';
+                for (let i = 1; i <= totalPages; i++) {
+                    const pageBtn = document.createElement('button');
+                    pageBtn.textContent = i;
+                    pageBtn.classList.add('page-btn', 'btn', 'btn-secondary', 'mx-1');
+                    if (i === currentPage) {
+                        pageBtn.classList.add('active');
+                    }
+                    pageBtn.addEventListener('click', () => {
+                        currentPage = i;
+                        updateTable();
+                        updatePaginationControls();
+                    });
+                    groupPaginationControls.appendChild(pageBtn);
+                }
+            };
+
+            updateTable();
+            updatePaginationControls();
+        };
+
+        const addToGroup = async (groupId) => {
+            const checkboxes = document.querySelectorAll('.select-checkbox:checked');
+            const groupTableBody = document.querySelector(`#groupMembersTable tbody`);
+            let memberCount = groupTableBody.children.length; // Start with the current member count
+
+            checkboxes.forEach(async (checkbox) => {
+                const name = checkbox.getAttribute('data-name');
+                const contactId = checkbox.getAttribute('data-id');
+                const number = checkbox.getAttribute('data-number');
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${++memberCount}</td>
+                    <td>${name}</td>
+                    <td>${number}</td>
+                    <td><button class="remove-member-btn btn btn-danger" data-group-id="${groupId}" data-contact-id="${contactId}">Remove</button></td>
+                `;
+                groupTableBody.appendChild(row);
+
+                try {
+                    await fetch('/add-group-member', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ groupId, contactId })
+                    });
+                } catch (error) {
+                    console.error('Error adding member to group:', error);
+                }
+            });
+
+            document.querySelector(`#group-${groupId} .member-count`).textContent = `(${memberCount})`;
+        };
+
+        const deleteFromGroup = async (groupId, contactId) => {
+            try {
+                const response = await fetch('/api/delete-group-member', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ groupId, contactId })
+                });
+                if (response.ok) {
+                    fetchAndDisplayGroupMembers(groupId); // Refresh the group members list
+                } else {
+                    throw new Error('Failed to delete member');
+                }
+            } catch (error) {
+                console.error('Error deleting member from group:', error);
+            }
+        };
+
+        const deleteGroup = async (groupId) => {
+            try {
+                const response = await fetch(`/api/delete-group/${groupId}`, {
+                    method: 'DELETE'
+                });
+                if (response.ok) {
+                    console.log(`Deleted group ${groupId}`);
+                    // Remove the group from the dropdown
+                    const groupOption = groupSelect.querySelector(`option[value="${groupId}"]`);
+                    if (groupOption) {
+                        groupOption.remove();
+                    }
+                    // Clear the group details
+                    groupDetails.style.display = 'none';
+                    addSelectedToGroupBtn.style.display = 'none';
+                } else {
+                    console.error('Failed to delete group');
+                }
+            } catch (error) {
+                console.error('Error deleting group:', error);
+            }
+        };
+
+        const attachRemoveButtonListeners = () => {
+            const removeButtons = document.querySelectorAll('.remove-member-btn');
+            removeButtons.forEach((button) => {
+                button.addEventListener('click', (event) => {
+                    const groupId = event.target.getAttribute('data-group-id');
+                    const contactId = event.target.getAttribute('data-contact-id');
+                    deleteFromGroup(groupId, contactId);
+                });
+            });
+        };
+
+        // Event listener for checkboxes
+        const checkboxes = document.querySelectorAll('.select-checkbox');
+        if (checkboxes) {
+            checkboxes.forEach((checkbox) => {
+                checkbox.addEventListener('change', updateSelectedList);
+            });
+        }
+
+        // Event listener for create group button
+        document.getElementById('createGroupBtn').addEventListener('click', () => {
+            createGroupModal.style.display = 'block';
+        });
+
+        // Event listener for modal close button
+        closeModalBtn.addEventListener('click', () => {
+            createGroupModal.style.display = 'none';
+        });
+
+        // Event listener for creating a group
+        document.getElementById('createGroupForm').addEventListener('submit', (event) => {
+            event.preventDefault();
+            const groupName = document.getElementById('groupName').value;
+            const groupDescription = document.getElementById('groupDescription').value;
+            createGroup(groupName, groupDescription);
+        });
+
+        // Event listener for group selection
+        groupSelect.addEventListener('change', () => {
+            const groupId = groupSelect.value;
+            if (groupId) {
+                currentGroupId = groupId;
+                addSelectedToGroupBtn.style.display = 'block';
+            } else {
+                groupDetails.style.display = 'none';
+                addSelectedToGroupBtn.style.display = 'none';
+            }
+        });
+
+        // Event listener for show group members button
+        showGroupMembersBtn.addEventListener('click', () => {
+            if (currentGroupId) {
+                fetchAndDisplayGroupMembers(currentGroupId);
+            }
+        });
+
+        // Event listener for delete group button
+        deleteGroupBtn.addEventListener('click', () => {
+            if (currentGroupId && confirm('Are you sure you want to delete this group?')) {
+                deleteGroup(currentGroupId);
+            }
+        });
+
+        // Event listener for add to group button
+        addSelectedToGroupBtn.addEventListener('click', () => {
+            if (currentGroupId) {
+                addToGroup(currentGroupId);
+            }
+        });
+
+        // Event listener for unselect all button
+        unselectAllBtn.addEventListener('click', () => {
+            const checkboxes = document.querySelectorAll('.select-checkbox');
+            checkboxes.forEach((checkbox) => {
+                checkbox.checked = false;
+            });
+            updateSelectedList();
+        });
+
+        // Attach remove button listeners
+        groupContainer.addEventListener('click', function (event) {
+            if (event.target.classList.contains('remove-member-btn')) {
+                const groupId = event.target.getAttribute('data-group-id');
+                const contactId = event.target.getAttribute('data-contact-id');
+                deleteFromGroup(groupId, contactId);
+            }
+        });
+    });
+</script>

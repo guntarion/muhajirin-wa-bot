@@ -10,6 +10,7 @@ const haditsData = require('../models/haditsMuslimData');
 const kiatSehatList = require('../models/kiatSehatData');
 
 const {
+    contactExists,
     saveContact,
     saveContactPersonal,
     saveRegistration,
@@ -89,8 +90,24 @@ client.on('auth_failure', (msg) => {
     console.error('AUTHENTICATION FAILURE', msg);
 });
 
-client.on('ready', () => {
+client.on('ready', async () => {
     console.log('🧤 WhatsApp Client is ready!');
+
+    // // Replace with the actual contact ID
+    // const contactId = '628123021895@c.us';
+
+    // try {
+    //     // Get the profile picture URL
+    //     const profilePicUrl = await client.getProfilePicUrl(contactId);
+    //     console.log(`Profile Picture URL: ${profilePicUrl}`);
+
+    //     // Get the contact details
+    //     const contact = await client.getContactById(contactId);
+    //     const contactName = contact.pushname || contact.name || contact.shortName || 'Unknown';
+    //     console.log(`Contact Name: ${contactName}`);
+    // } catch (error) {
+    //     console.error('Error fetching contact details:', error);
+    // }
 
     // Schedule a message to be sent every morning at 5 AM (GMT +7)
     cron.schedule('0 5 * * *', async () => {
@@ -122,6 +139,8 @@ client.on('ready', () => {
     }, {
         timezone: 'Asia/Jakarta' // Set timezone to GMT +7
     });
+
+
 });
 
 
@@ -166,11 +185,14 @@ client.on('message', async (msg) => {
     let info = client.info;
     const chat = await msg.getChat();
     const sender = await msg.getContact();
-    console.log(`Sender: ${sender.pushname}, Number: ${sender.number}, timestamp: ${msg.timestamp}, from: ${msg.from}, to: ${msg.to}`);
+    console.log(
+        `Sender: ${sender.pushname}, Number: ${sender.number}, timestamp: ${msg.timestamp}, from: ${msg.from}, to: ${msg.to}`
+    );
     const userId = sender.number;
 
-    const userState = getUserState(userId);    
+    const userState = getUserState(userId);
 
+    /*
     if (msg.from.endsWith('@g.us')) {
         console.log('Message from group chat');
         if (msg.body === '.thisgroupid') {
@@ -184,11 +206,13 @@ client.on('message', async (msg) => {
         console.log('Message from personal chat');
         console.log(`Contact ID: ${msg.from}`);
     }
-
+    */
 
     
 
     // Save contact information
+
+    /*
     const dateTime = new Date().toISOString().slice(0, 19).replace('T', ' ');
     const contactData = {
         dateTime: dateTime,
@@ -227,7 +251,6 @@ client.on('message', async (msg) => {
         console.error('Error saving message:', error);
     }
 
-
     if (msg.from === '62811334932-1630463874@g.us') {
         // Check if the message body is 'tes'
         if (msg.body.toLowerCase() === 'tes') {
@@ -237,88 +260,128 @@ client.on('message', async (msg) => {
         }
     }
 
-    if (msg.body === 'getcontacts') {
-        try {
-            const contacts = await client.getContacts();
-            const individualContacts = contacts.filter(contact => 
-                !contact.isGroup && 
-                !contact.isMe && 
-                !contact.id._serialized.endsWith('@lid')
-            );
+    */
 
-            const contactsData = [];
 
-            for (const contact of individualContacts) {
-                const contactDetails = await client.getContactById(contact.id._serialized);
-                const profilePicUrl = await contactDetails.getProfilePicUrl();
-                const contactInfo = {
-                    userId: contact.id._serialized,
-                    number: contact.number,
-                    name: contactDetails.pushname || contactDetails.name || 'Unknown',
-                    profilePicUrl: profilePicUrl || 'No profile picture', // Handle default value here
-                    isBusiness: contact.isBusiness,
-                    isMyContact: contact.isMyContact
-                };
 
-                await saveContactPersonal(contactInfo); // Save to MySQL
-                contactsData.push(contactInfo); // Collect data for CSV
-                console.log(JSON.stringify(contactInfo, null, 2));
-            }
+    if (!chat.isGroup && process.env.NODE_ENV === 'development') {
+        if (msg.body === 'status') {
+            chat.sendSeen();
+            const currentDate = new Date();
+            const masehiDateTime = currentDate.toLocaleString('en-US', {
+                timeZone: 'Asia/Jakarta',
+            });
+            const hijriDateTime = currentDate.toLocaleString('en-US', {
+                timeZone: 'Asia/Jakarta',
+                calendar: 'islamic-umalqura',
+            });
 
-            // Write contacts data to CSV
-            await contactsCsvWriter.writeRecords(contactsData);
-            console.log('Contacts data saved to contacts.csv');
-
-        } catch (error) {
-            console.error('Failed to get contact details:', error);
+            const replyMessage = `Server ⛑️ DEV Al Muhajirin is up and running 🚀\nMasehi: ${masehiDateTime}\nHijriah: ${hijriDateTime}`;
+            await replyWithDelay(chat, msg, replyMessage);
         }
 
-    } else if (msg.body === 'getgroupsandmembers') {
-        try {
-            const chats = await client.getChats();
-            const groupChats = chats.filter(chat => chat.isGroup);
+        if (msg.body === 'getcontacts') {
+            try {
+                const contacts = await client.getContacts();
+                const individualContacts = contacts.filter(
+                    (contact) =>
+                        !contact.isGroup &&
+                        !contact.isMe &&
+                        !contact.id._serialized.endsWith('@lid')
+                );
 
-            const groupsData = [];
-            const groupMembersData = [];
+                const contactsData = [];
 
-            for (const group of groupChats) {
-                // Fetch group details
-                const groupInfo = {
-                    id: group.id._serialized,
-                    name: group.name,
-                    description: group.description || 'No description'
-                };
-                groupsData.push(groupInfo);
+                for (const contact of individualContacts) {
+                    const contactDetails = await client.getContactById(
+                        contact.id._serialized
+                    );
+                    const profilePicUrl =
+                        await contactDetails.getProfilePicUrl();
+                    const contactPublishedName =
+                        contactDetails.pushname ||
+                        contactDetails.name ||
+                        contactDetails.shortName ||
+                        'Unknown';
+                    const contactInfo = {
+                        contactId: contact.id._serialized,
+                        contactNumber: contact.number,
+                        contactPlatform: null,
+                        contactStoredName:
+                            contactDetails.pushname ||
+                            contactDetails.name ||
+                            'Unknown',
+                        contactPicUrl: profilePicUrl, // Handle default value in saveContactPersonal function
+                        contactPublishedName: contactPublishedName,
+                        contactSavedName: null, // Assuming no saved name is available
+                        isBusiness: contact.isBusiness,
+                        isMyContact: contact.isMyContact,
+                        type_1: null, // Assuming no type_1 is available
+                        type_2: null, // Assuming no type_2 is available
+                        type_3: null, // Assuming no type_3 is available
+                    };
 
-                // Fetch group members
-                const groupChat = await client.getChatById(group.id._serialized);
-                const members = groupChat.participants.map(participant => ({
-                    groupId: group.id._serialized,
-                    groupName: group.name,
-                    memberId: participant.id._serialized,
-                    isAdmin: participant.isAdmin,
-                    isSuperAdmin: participant.isSuperAdmin
-                }));
-
-                groupMembersData.push(...members);
+                    if (!(await contactExists(contactInfo.contactId))) {
+                        await saveContactPersonal(contactInfo); // Save to MySQL only if contact does not exist
+                        contactsData.push(contactInfo); // Collect data for CSV
+                        console.log(JSON.stringify(contactInfo, null, 2));
+                    }
+                }
+                // Write contacts data to CSV
+                await contactsCsvWriter.writeRecords(contactsData);
+                console.log('Contacts data saved to contacts.csv');
+            } catch (error) {
+                console.error('Failed to get contact details:', error);
             }
+        } else if (msg.body === 'getgroupsandmembers') {
+            try {
+                const chats = await client.getChats();
+                const groupChats = chats.filter((chat) => chat.isGroup);
 
-            // Write groups data to CSV
-            await groupsCsvWriter.writeRecords(groupsData);
-            console.log('Groups data saved to groups.csv');
+                const groupsData = [];
+                const groupMembersData = [];
 
-            // Write group members data to CSV
-            await groupMembersCsvWriter.writeRecords(groupMembersData);
-            console.log('Group members data saved to group_members.csv');
+                for (const group of groupChats) {
+                    // Fetch group details
+                    const groupInfo = {
+                        id: group.id._serialized,
+                        name: group.name,
+                        description: group.description || 'No description',
+                    };
+                    groupsData.push(groupInfo);
 
-        } catch (error) {
-            console.error('Failed to get group details or members:', error);
+                    // Fetch group members
+                    const groupChat = await client.getChatById(
+                        group.id._serialized
+                    );
+                    const members = groupChat.participants.map(
+                        (participant) => ({
+                            groupId: group.id._serialized,
+                            groupName: group.name,
+                            memberId: participant.id._serialized,
+                            isAdmin: participant.isAdmin,
+                            isSuperAdmin: participant.isSuperAdmin,
+                        })
+                    );
+
+                    groupMembersData.push(...members);
+                }
+
+                // Write groups data to CSV
+                await groupsCsvWriter.writeRecords(groupsData);
+                console.log('Groups data saved to groups.csv');
+
+                // Write group members data to CSV
+                await groupMembersCsvWriter.writeRecords(groupMembersData);
+                console.log('Group members data saved to group_members.csv');
+            } catch (error) {
+                console.error('Failed to get group details or members:', error);
+            }
         }
     }
 
-    if (!chat.isGroup) {
-    
-        if (msg.body === '.status') {
+    if (!chat.isGroup && process.env.NODE_ENV === 'production') {
+        if (msg.body === 'status') {
             chat.sendSeen();
             const currentDate = new Date();
             const masehiDateTime = currentDate.toLocaleString('en-US', {
@@ -341,18 +404,22 @@ client.on('message', async (msg) => {
             console.log(chats); // to see the content in the console
 
             // Save it in a JSON file
-            fs.writeFile('allchats.json', JSON.stringify(chats, null, 2), (err) => {
-                if (err) {
-                    console.error('Error writing file:', err);
-                } else {
-                    console.log('File written successfully');
+            fs.writeFile(
+                'allchats.json',
+                JSON.stringify(chats, null, 2),
+                (err) => {
+                    if (err) {
+                        console.error('Error writing file:', err);
+                    } else {
+                        console.log('File written successfully');
+                    }
                 }
-            });
-            client.sendMessage(msg.from, `The bot has ${chats.length} chats open.`);
-        } 
-
-        
-        else if (msg.body.toLowerCase() === 'kirimkanpesan') {
+            );
+            client.sendMessage(
+                msg.from,
+                `The bot has ${chats.length} chats open.`
+            );
+        } else if (msg.body.toLowerCase() === 'kirimkanpesan') {
             const groupId = '62811334932-1630463874@g.us';
             const groupMessage = 'Hello, group!';
             try {
@@ -361,10 +428,7 @@ client.on('message', async (msg) => {
             } catch (error) {
                 console.error('Failed to send message:', error);
             }
-        }
-        
-        
-        else if (msg.body.trim().toLowerCase() === 'info') {
+        } else if (msg.body.trim().toLowerCase() === 'info') {
             const replyMessage = `
         📳 WhatsApp Center
         🌟 Al Muhajirin Rewwin
@@ -430,7 +494,8 @@ client.on('message', async (msg) => {
                 hadith = haditsData.find((h) => h.number === hadithNumber);
             } else if (parts.length === 1) {
                 // Select a random hadith
-                hadith = haditsData[Math.floor(Math.random() * haditsData.length)];
+                hadith =
+                    haditsData[Math.floor(Math.random() * haditsData.length)];
             }
 
             if (hadith) {
@@ -448,18 +513,27 @@ client.on('message', async (msg) => {
                     const city = data.city;
 
                     // Convert prayer times to 24 hour format and adjust the time
-                    const fajr = adjustTime(convertTo24Hour(prayerTimes.fajr), 3);
+                    const fajr = adjustTime(
+                        convertTo24Hour(prayerTimes.fajr),
+                        3
+                    );
                     const shurooq = adjustTime(
                         convertTo24Hour(prayerTimes.shurooq),
                         3
                     );
-                    const dhuhr = adjustTime(convertTo24Hour(prayerTimes.dhuhr), 4);
+                    const dhuhr = adjustTime(
+                        convertTo24Hour(prayerTimes.dhuhr),
+                        4
+                    );
                     const asr = adjustTime(convertTo24Hour(prayerTimes.asr), 2);
                     const maghrib = adjustTime(
                         convertTo24Hour(prayerTimes.maghrib),
                         1
                     );
-                    const isha = adjustTime(convertTo24Hour(prayerTimes.isha), 3);
+                    const isha = adjustTime(
+                        convertTo24Hour(prayerTimes.isha),
+                        3
+                    );
 
                     const currentDate = new Date();
                     const hijriDate = currentDate.toLocaleString('en-US', {
@@ -689,7 +763,9 @@ client.on('message', async (msg) => {
                 'panitia kurban',
                 'panitiaqurban',
                 'panitiakurban',
-            ].some((substring) => msg.body.toLowerCase().trim().includes(substring))
+            ].some((substring) =>
+                msg.body.toLowerCase().trim().includes(substring)
+            )
         ) {
             chat.sendSeen();
             initializeUserState(userId, conversationDaftarPanitiaSizeKaos);
@@ -715,8 +791,6 @@ client.on('message', async (msg) => {
             }
         }
     }
-
-
 });
 
 async function handleConversationStep(msg, userId, chat) {

@@ -2,6 +2,7 @@
 // const getResponseRecommendationButton = document.getElementById('response-recommendation');
 
 
+/*
 fetch('/api/data') // Replace '/api/data' with the URL of your API
     .then((response) => response.json())
     .then((data) => {
@@ -24,7 +25,7 @@ fetch('/api/data') // Replace '/api/data' with the URL of your API
         });
     })
     .catch((error) => console.error('Failed to fetch data:', error));
-
+*/
 // This function fetches chat data from the apiRoutes and displays messages for a specific chatId
 // eslint-disable-next-line no-unused-vars
 function loadMessages(chatId) {
