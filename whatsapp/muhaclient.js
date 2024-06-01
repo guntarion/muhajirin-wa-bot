@@ -574,7 +574,7 @@ client.on('message', async (msg) => {
             );
             await replyWithDelay(chat, msg, infoLayanan);
         } else if (msg.body.toLowerCase() === 'lihatsapi') {
-            const url = 'https://ugm.ac.id/wp-content/uploads/2022/03/09032216467963091960373715.jpg';
+            const url = 'http://68.183.186.142/home/guntar/muhajirin-wa-bot/gambar-sapi-2024.jpeg';
             const caption = 'Sapi Qurban Al Muhajirin 2024';
 
             try {
