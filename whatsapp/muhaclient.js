@@ -455,9 +455,6 @@ client.on('message', async (msg) => {
     \`info\`
         Menampilkan informasi ini.
 
-    \`panitia qurban\`
-        Mendaftar sbg panitia qurban & daftar ukuran kaos. Syarat: bersedia ditempatkan di sie manapun.
-
     \`nasehat\`
         Menampilkan inspirasi nasehat dari ayat Al Qur'an.
 
@@ -576,6 +573,17 @@ client.on('message', async (msg) => {
                 'layanan'
             );
             await replyWithDelay(chat, msg, infoLayanan);
+        } else if (msg.body.toLowerCase() === 'lihatsapi') {
+            const url = 'https://ugm.ac.id/wp-content/uploads/2022/03/09032216467963091960373715.jpg';
+            const caption = 'Sapi Qurban Al Muhajirin 2024';
+
+            try {
+                const media = await MessageMedia.fromUrl(url);
+                await client.sendMessage(chat, media, { caption });
+                console.log('Media message SAPI sent successfully');
+            } catch (error) {
+                console.error('Error sending media message:', error);
+            }
         } else if (msg.body.toLowerCase().startsWith('inputan')) {
             const formattedDateTime = getFormattedDateTime();
             const sender = await msg.getContact();
@@ -648,7 +656,7 @@ client.on('message', async (msg) => {
                 })
                 .catch((error) => console.error('Error:', error));
         } else if (msg.body.toLowerCase().startsWith('cari ')) {
-            const input = msg.body.slice(6); // Get the user's input, removing "!qcari " from the start
+            const input = msg.body.slice(5); // Get the user's input, removing "!qcari " from the start
             let keyword, surah;
 
             if (input.includes(':')) {
@@ -710,69 +718,7 @@ client.on('message', async (msg) => {
                         error
                     );
                 });
-        } else if (msg.body.startsWith('sizereg ')) {
-            chat.sendSeen();
-            const isiRegistrasiSize = msg.body.slice(8);
-            const parts = isiRegistrasiSize.split(' ');
-            const kodeOrder = parts[0];
-            const size = parts[1].toUpperCase();
-            const name = parts[2].toUpperCase();
-            let info = client.info;
-            const formattedDateTime = getFormattedDateTime();
-            const sender = await msg.getContact();
-            const data = {
-                dateTime: formattedDateTime,
-                contactPlatform: info.platform,
-                contactPublishedName: sender.pushname,
-                contactSavedName: sender.name,
-                contactNumber: sender.number,
-                kodeOrder: kodeOrder,
-                size: size,
-                name: name,
-            };
-            chat.sendSeen();
-            msg.react('📝');
-            await appendToGoogleSheet(googleAuth, 'entriSize', data);
-            await replyWithDelay(
-                chat,
-                msg,
-                'Terima kasih. Entri size Anda kami catat.'
-            );
-        } else if (msg.body.toLowerCase().startsWith('askcs2 ')) {
-            console.log('Received a question to ask the knowledgebase.');
-            const input = msg.body.slice(7);
-            console.log('Input:', input);
-            chat.sendSeen();
-            const url = 'http://localhost:3010/ask';
 
-            // Send the question to the local endpoint
-            fetch(url, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    question: input,
-                    collection: 'vido',
-                }),
-            })
-                .then((response) => response.json())
-                .then((data) => {
-                    // Reply with the answer
-                    msg.reply(data.result.text);
-                })
-                .catch((error) => {
-                    console.error('Error:', error);
-                });
-        } else if (msg.body.toLowerCase() === 'feedback') {
-            chat.sendSeen();
-            initializeUserState(userId, conversationTestimoni);
-            activateConversation(userId);
-            const initialMessage = getNextStepMessage(
-                conversationTestimoni,
-                'askAlasanMemilih'
-            );
-            await sendMessageWithDelay(client, chat, msg, initialMessage);
         } else if (
             [
                 'panitia',
@@ -786,13 +732,14 @@ client.on('message', async (msg) => {
             )
         ) {
             chat.sendSeen();
-            initializeUserState(userId, conversationDaftarPanitiaSizeKaos);
-            activateConversation(userId);
-            const initialMessage = getNextStepMessage(
-                conversationDaftarPanitiaSizeKaos,
-                'askNamaLengkap'
-            );
-            await sendMessageWithDelay(client, chat, msg, initialMessage);
+            // initializeUserState(userId, conversationDaftarPanitiaSizeKaos);
+            // activateConversation(userId);
+            // const initialMessage = getNextStepMessage(
+            //     conversationDaftarPanitiaSizeKaos,
+            //     'askNamaLengkap'
+            // );
+            // await sendMessageWithDelay(client, chat, msg, initialMessage);
+            await replyWithDelay(chat, msg, 'Untuk saat ini pendaftaran panitia kurban telah ditutup.');
         } else if (userState.active) {
             if (msg.body.toLowerCase() === 'exit') {
                 client.sendMessage(msg.from, 'Conversation ended.');

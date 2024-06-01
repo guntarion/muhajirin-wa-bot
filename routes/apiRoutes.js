@@ -8,7 +8,7 @@ const OpenAI = require('openai');
 const openai = new OpenAI(process.env.OPENAI_API_KEY);
 
 const {
-    enableTestMode,
+    // enableTestMode,
     sendMessage,
     sendMessages,
     sendMediaMessage,
@@ -63,8 +63,6 @@ const randomDelay = () => {
     return new Promise(resolve => setTimeout(resolve, Math.floor(Math.random() * 13000) + 7000));
 };
 
-
-
 // Route for sending a broadcast message to a group
 router.post('/send-group-message', async (req, res) => {
     const { groupId, message, broadcastNama } = req.body;
@@ -76,19 +74,19 @@ router.post('/send-group-message', async (req, res) => {
     try {
         const membersDetails = await fetchGroupMembersDetails(groupId);
         const totalMembers = membersDetails.length;
-        const dateTime = moment().tz('Asia/Jakarta').format('YYYY-MM-DD HH:mm:ss');
         const responses = [];
 
         for (let i = 0; i < totalMembers; i++) {
             const member = membersDetails[i];
             const { contactNumber, contactStoredName, contactSebutan, note_1 } = member;
-            const personalizedMessage = `🕌✨ Mari Berqurban lagi di Al Muhajirin! ✨🐂\n\nYth ${contactSebutan} ${contactStoredName}\nSemoga senantiasa sehat wal afiat dg rezeki berlimpah barokah\n\nAlhamdulillah, tahun lalu telah berqurban dg atas nama ${note_1}.\n\nDengan ini, kami mengundang ${contactSebutan} ${contactStoredName} untuk kembali berqurban di Al Muhajirin Rewwin.\n\n`;
+            const personalizedMessage = `🕌✨ Mari Berqurban lagi di Al Muhajirin! ✨🐂\n\nYth ${contactSebutan} ${contactStoredName}\nSemoga senantiasa sehat wal afiat dg rezeki berlimpah barokah 🤲🏼\n\nAlhamdulillah, tahun lalu telah berqurban dg atas nama ${note_1}.\n\nDengan ini, kami mengundang ${contactSebutan} ${contactStoredName} untuk kembali berqurban di Al Muhajirin Rewwin.\n\n`;
             const sentMessage = personalizedMessage + message;
             const chatId = `${contactNumber}@c.us`;
             const response = await sendMessage(chatId, sentMessage);
             responses.push(response);
             await randomDelay();
 
+            const dateTime = moment().tz('Asia/Jakarta').format('YYYY-MM-DD HH:mm:ss');
             await storeBroadcastLog({ dateTime, broadcastNama, contactNumber, contactStoredName });
 
             // Console log for each successful message sent with numbering
@@ -105,6 +103,7 @@ router.post('/send-group-message', async (req, res) => {
         res.status(500).json({ error: 'Failed to send group message' });
     }
 });
+
 
 
 // Route to check the progress of the message sending process
