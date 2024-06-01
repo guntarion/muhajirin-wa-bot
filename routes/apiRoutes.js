@@ -20,9 +20,11 @@ const {
 
 
 const {
-    fetchGroupBroadcast,
-    fetchGroupBroadcastMembers,
-    fetchGroupMembersPhoneNumbers,
+    // fetchGroupBroadcast,
+    // fetchGroupBroadcastMembers,
+    // fetchGroupMembersPhoneNumbers,
+    fetchGroupMembersDetails,
+    storeBroadcastLog,
 } = require('../src/data/mysqldb');
 
 // Enable test mode
@@ -60,23 +62,28 @@ const randomDelay = () => {
 
 // Route for sending a broadcast message to a group
 router.post('/send-group-message', async (req, res) => {
-    const { groupId, message } = req.body;
-    console.log('On Process on sending group message to group ID =====', groupId, message);
+    const { groupId, message, broadcastNama } = req.body;
+    console.log('On Process on sending group message to group ID =====', groupId, message, broadcastNama);
 
-    if (!groupId || !message) {
-        return res.status(400).json({ error: 'Group ID and message are required' });
+    if (!groupId || !message || !broadcastNama) {
+        return res.status(400).json({ error: 'Group ID, message, and broadcast name are required' });
     }
 
     try {
-        const phoneNumbers = await fetchGroupMembersPhoneNumbers(groupId);
+        const membersDetails = await fetchGroupMembersDetails(groupId);
         const responses = [];
+        const dateTime = new Date().toISOString().slice(0, 19).replace('T', ' '); // Current dateTime
 
-        for (const number of phoneNumbers) {
-            const chatId = `${number}@c.us`;
-            const response = await sendMessage(chatId, message);
-            console.log(`Sending to: ${chatId} \nMessage: ${message}`);
+        for (const member of membersDetails) {
+            const { contactNumber, contactStoredName, contactSebutan, note_1 } = member;
+            const personalizedMessage = ` 🕌✨ Mari Berqurban lagi di Al Muhajirin! ✨🐂\n\nYth ${contactSebutan} ${contactStoredName}\nSemoga senantiasa sehat wal afiat dg rezeki berlimpah barokah 🤲🏼\n\nAlhamdulillah, tahun lalu telah berqurban dg atas nama ${note_1}.\n\nDengan ini, kami mengundang ${contactSebutan} ${contactStoredName} untuk kembali berqurban di Al Muhajirin Rewwin.\n\n`;
+            const chatId = `${contactNumber}@c.us`;
+            const response = await sendMessage(chatId, personalizedMessage);
             responses.push(response);
             await randomDelay(); // Add random delay between 5 to 10 seconds
+
+            // Store the log of the message
+            await storeBroadcastLog({ dateTime, broadcastNama, contactNumber, contactStoredName });
         }
 
         res.json({ success: true, responses });
@@ -85,6 +92,9 @@ router.post('/send-group-message', async (req, res) => {
         res.status(500).json({ error: 'Failed to send group message' });
     }
 });
+
+
+
 // Route for sending a media message with a caption
 router.post('/send-media-message', async (req, res) => {
     const { number, filePath, caption } = req.body;

@@ -14,7 +14,7 @@ const {
     saveContact,
     saveContactPersonal,
     saveRegistration,
-    saveMessage,
+    // saveMessage,
 } = require('../src/data/mysqldb');
 
 const {

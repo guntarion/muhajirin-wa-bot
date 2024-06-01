@@ -297,12 +297,30 @@ async function fetchGroupMembersPhoneNumbers(groupId) {
     }
 }
 
+// Function to fetch group members details
+async function fetchGroupMembersDetails(groupId) {
+    // console.log('fetchGroupMembersDetails function is running');
+    const sql = `
+        SELECT c.contactNumber, c.contactStoredName, c.contactSebutan, c.note_1 
+        FROM group_broadcast_members gm
+        JOIN contact_personal c ON gm.contactId = c.contactId
+        WHERE gm.groupId = ?
+    `;
+    try {
+        const [rows] = await pool.query(sql, [groupId]);
+        return rows;
+    } catch (error) {
+        console.error('Error fetching group members details:', error);
+        throw error;
+    }
+}
+
 
 async function deleteGroupBroadcastMember(groupId, contactId) {
     const sqlDelete =
         'DELETE FROM group_broadcast_members WHERE groupId = ? AND contactId = ?';
     try {
-        console.log(`Executing SQL: ${sqlDelete} with params [${groupId}, ${contactId}]`);
+        // console.log(`Executing SQL: ${sqlDelete} with params [${groupId}, ${contactId}]`);
         await pool.query(sqlDelete, [groupId, contactId]);
     } catch (error) {
         console.error('Error deleting group member:', error);
@@ -336,6 +354,21 @@ async function getGroupById(groupId) {
     }
 }
 
+// Function to store the broadcast log
+async function storeBroadcastLog({ dateTime, broadcastNama, contactNumber, contactStoredName }) {
+    const sqlInsert = `
+        INSERT INTO broadcast_message_logs (dateTime, broadcastNama, contactNumber, contactStoredName)
+        VALUES (?, ?, ?, ?)
+    `;
+    try {
+        await pool.query(sqlInsert, [dateTime, broadcastNama, contactNumber, contactStoredName]);
+    } catch (error) {
+        console.error('Error storing broadcast log:', error);
+        throw error;
+    }
+}
+
+
 
 module.exports = {
     contactExists,
@@ -350,6 +383,8 @@ module.exports = {
     fetchGroupBroadcast,
     fetchGroupBroadcastMembers,
     fetchGroupMembersPhoneNumbers,
+    fetchGroupMembersDetails,
     deleteGroup,
     getGroupById,
+    storeBroadcastLog,
 };

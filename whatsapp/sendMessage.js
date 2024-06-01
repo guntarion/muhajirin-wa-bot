@@ -20,7 +20,8 @@ const enableTestMode = () => {
 const sendMessage = async (chatId, text) => {
     // THis is a mock function to simulate sending a message
     if (isTestMode) {
-        console.log(`Mock sendMessage to ${chatId}: ${text}`);
+        console.log(`Mock sendMessage to ${chatId}
+        \nMessage: ${text}\n\n`);
         return { success: true, mock: true };
     }
 
