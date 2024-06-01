@@ -90,6 +90,10 @@ client.on('auth_failure', (msg) => {
     console.error('AUTHENTICATION FAILURE', msg);
 });
 
+client.on('media_uploaded', (message) => {
+    console.log('Media uploaded:', message);
+});
+
 client.on('ready', async () => {
     console.log('🧤 WhatsApp Client is ready!');
 
@@ -278,6 +282,20 @@ client.on('message', async (msg) => {
 
             const replyMessage = `Server ⛑️ DEV Al Muhajirin is up and running 🚀\nMasehi: ${masehiDateTime}\nHijriah: ${hijriDateTime}`;
             await replyWithDelay(chat, msg, replyMessage);
+        }
+
+        if (msg.body === 'tesimage') {
+            const chatId = '62817309143@c.us';
+            const url = 'https://ugm.ac.id/wp-content/uploads/2022/03/09032216467963091960373715.jpg';
+            const caption = 'tes gambar sapi';
+
+            try {
+                const media = await MessageMedia.fromUrl(url);
+                await client.sendMessage(chatId, media, { caption });
+                console.log('Media message sent successfully');
+            } catch (error) {
+                console.error('Error sending media message:', error);
+            }
         }
 
         if (msg.body === 'getcontacts') {

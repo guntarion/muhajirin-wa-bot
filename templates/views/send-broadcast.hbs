@@ -1,0 +1,80 @@
+<div>
+    <h1>Kirim Pesan Broadcast</h1>
+</div>
+
+<div class="container">
+    <form id="broadcastForm">
+        <div class="form-group">
+            <label for="phoneNumber">Nomor Telepon:</label>
+            <input type="text" id="phoneNumber" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="groupSelect">Pilih Group:</label>
+            <select id="groupSelect" class="form-control">
+                <option value="">Select a Group</option>
+                {{#each groups}}
+                <option value="{{groupId}}">{{groupName}}</option>
+                {{/each}}
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="messageText">Pesan:</label>
+            <textarea id="messageText" class="form-control" rows="4" required></textarea>
+        </div>
+        <button id="sendTextBtn" type="button" class="btn btn-primary">Kirim Pesan</button>
+        <button id="sendGroupBtn" type="button" class="btn btn-info">Kirim Pesan ke Group</button>
+    </form>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        document.getElementById('sendTextBtn').addEventListener('click', async function () {
+            const phoneNumber = document.getElementById('phoneNumber').value;
+            const messageText = document.getElementById('messageText').value;
+
+            console.log('Phone Number:', phoneNumber);
+            console.log('Message:', messageText);
+
+            try {
+                const response = await fetch('/send-message', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ number: phoneNumber, message: messageText })
+                });
+                const result = await response.json();
+                console.log('Response:', result);
+            } catch (error) {
+                console.error('Error sending message:', error);
+            }
+        });
+
+        document.getElementById('sendGroupBtn').addEventListener('click', async function () {
+            const groupId = document.getElementById('groupSelect').value;
+            const messageText = document.getElementById('messageText').value;
+
+            if (!groupId) {
+                alert('Please select a group');
+                return;
+            }
+
+            console.log('Group ID:', groupId);
+            console.log('Message:', messageText);
+
+            try {
+                const response = await fetch('/api/send-group-message', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ groupId, message: messageText })
+                });
+                const result = await response.json();
+                console.log('Response:', result);
+            } catch (error) {
+                console.error('Error sending group message:', error);
+            }
+        });
+    });
+</script>

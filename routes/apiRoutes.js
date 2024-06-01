@@ -6,17 +6,124 @@ require('dotenv').config();
 const OpenAI = require('openai');
 const openai = new OpenAI(process.env.OPENAI_API_KEY);
 
-const { sendMessage, sendMessages } = require('../whatsapp/sendMessage');
+const {
+    enableTestMode,
+    sendMessage,
+    sendMessages,
+    sendMediaMessage,
+    sendMediaMessageFromUrl,
+} = require('../whatsapp/sendMessage');
 const {
     extractText,
     fetchSEOInformation,
 } = require('../public/js/pageutility');
+
+
+const {
+    fetchGroupBroadcast,
+    fetchGroupBroadcastMembers,
+    fetchGroupMembersPhoneNumbers,
+} = require('../src/data/mysqldb');
+
+// Enable test mode
+enableTestMode();
 
 // Health check route
 router.get('/health', (req, res) => {
     console.log('Server is running healthy =====');
     res.json({ success: true, message: 'Server is running healthy' });
 });
+
+// Route for sending a text message
+router.post('/send-message', async (req, res) => {
+    const { number, message } = req.body;
+    console.log('Sending to: ${number} \nMessage: ${message}');
+
+    if (!number || !message) {
+        return res.status(400).json({ error: 'Number and message are required' });
+    }
+
+    try {
+        const chatId = `${number}@c.us`;
+        const response = await sendMessage(chatId, message);
+        res.json({ success: true, response });
+    } catch (error) {
+        console.error('Error sending message:', error);
+        res.status(500).json({ error: 'Failed to send message' });
+    }
+});
+
+// Utility function to add a random delay between 5 to 10 seconds
+const randomDelay = () => {
+    return new Promise(resolve => setTimeout(resolve, Math.floor(Math.random() * 6000) + 5000));
+};
+
+// Route for sending a broadcast message to a group
+router.post('/send-group-message', async (req, res) => {
+    const { groupId, message } = req.body;
+    console.log('On Process on sending group message to group ID =====', groupId, message);
+
+    if (!groupId || !message) {
+        return res.status(400).json({ error: 'Group ID and message are required' });
+    }
+
+    try {
+        const phoneNumbers = await fetchGroupMembersPhoneNumbers(groupId);
+        const responses = [];
+
+        for (const number of phoneNumbers) {
+            const chatId = `${number}@c.us`;
+            const response = await sendMessage(chatId, message);
+            console.log(`Sending to: ${chatId} \nMessage: ${message}`);
+            responses.push(response);
+            await randomDelay(); // Add random delay between 5 to 10 seconds
+        }
+
+        res.json({ success: true, responses });
+    } catch (error) {
+        console.error('Error sending group message:', error);
+        res.status(500).json({ error: 'Failed to send group message' });
+    }
+});
+// Route for sending a media message with a caption
+router.post('/send-media-message', async (req, res) => {
+    const { number, filePath, caption } = req.body;
+    console.log('On Process on sending media message to number =====', number, filePath, caption);
+
+    if (!number || !filePath) {
+        return res.status(400).json({ error: 'Number and file path are required' });
+    }
+
+    try {
+        const chatId = `${number}@c.us`;
+        const response = await sendMediaMessage(chatId, filePath, caption);
+        res.json({ success: true, response });
+    } catch (error) {
+        console.error('Error sending media message:', error);
+        res.status(500).json({ error: 'Failed to send media message' });
+    }
+});
+
+// Route for sending a media message with a URL and a caption
+router.post('/send-media-message-url', async (req, res) => {
+    const { number, url, caption } = req.body;
+    console.log('On Process on sending media message to number =====', number, url, caption);
+
+    if (!number || !url) {
+        return res.status(400).json({ error: 'Number and URL are required' });
+    }
+
+    try {
+        const chatId = `${number}@c.us`;
+        const response = await sendMediaMessageFromUrl(chatId, url, caption);
+        res.json({ success: true, response });
+    } catch (error) {
+        console.error('Error sending media message from URL:', error);
+        res.status(500).json({ error: 'Failed to send media message from URL' });
+    }
+});
+
+
 
 
 router.post('/fetch-text', async (req, res) => {

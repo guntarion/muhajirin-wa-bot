@@ -46,14 +46,9 @@ router.get('/datachat', (req, res) => {
     res.render('datachat', { title: 'Data Chat' });
 });
 
-router.get('/send-broadcast', (req, res) => {
-    res.render('broadcast', { title: 'Kirim Pesan' });
-});
-
 router.get('/send-individual', (req, res) => {
     res.render('send-individual', { title: 'Kirim Pesan' });
 });
-
 
 router.get('/prospek', (req, res) => {
     res.render('prospek-usaha', { title: 'Prospek Usaha' });
@@ -96,6 +91,17 @@ router.get('/forms', (req, res) => {
 //         res.status(500).send('Internal Server Error');
 //     }
 // });
+
+router.get('/send-broadcast', async (req, res) => {
+    try {
+        const groups = await fetchGroupBroadcast();
+        // console.log('Groups to be rendered:', groups);
+        res.render('send-broadcast', { title: 'Broadcast Pesan', groups });
+    } catch (error) {
+        console.error('Error fetching groups:', error);
+        res.status(500).send('Internal Server Error');
+    }
+});
 
 router.get('/kontak-personal', async (req, res) => {
     try {

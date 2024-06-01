@@ -256,6 +256,7 @@ async function fetchGroupBroadcast() {
         'SELECT groupId, groupName, groupDescription FROM group_broadcast';
     try {
         const [rows] = await pool.query(sql);
+        // console.log('Fetched groups:', rows); 
         return rows;
     } catch (error) {
         console.error('Error fetching groups:', error);
@@ -278,6 +279,24 @@ async function fetchGroupBroadcastMembers(groupId) {
         throw error;
     }
 }
+
+// Fetch Group Members' Phone Numbers
+async function fetchGroupMembersPhoneNumbers(groupId) {
+    const sql = `
+        SELECT c.contactNumber 
+        FROM group_broadcast_members gm
+        JOIN contact_personal c ON gm.contactId = c.contactId
+        WHERE gm.groupId = ?
+    `;
+    try {
+        const [rows] = await pool.query(sql, [groupId]);
+        return rows.map(row => row.contactNumber);
+    } catch (error) {
+        console.error('Error fetching group members phone numbers:', error);
+        throw error;
+    }
+}
+
 
 async function deleteGroupBroadcastMember(groupId, contactId) {
     const sqlDelete =
@@ -330,6 +349,7 @@ module.exports = {
     deleteGroupBroadcastMember,
     fetchGroupBroadcast,
     fetchGroupBroadcastMembers,
+    fetchGroupMembersPhoneNumbers,
     deleteGroup,
     getGroupById,
 };

@@ -5,7 +5,6 @@ async function replyWithDelay(chat, msg, replyText) {
     }, Math.random() * 1000 + 1000);
 }
 
-// this doesn't work because the client is not initialized
 async function sendMessageWithDelay(client, chat, msg, messageText) {
     // Simulate typing in the chat
     chat.sendStateTyping();
