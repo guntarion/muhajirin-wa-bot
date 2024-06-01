@@ -427,6 +427,19 @@ client.on('message', async (msg) => {
             }
         }
 
+        if (msg.body.toLowerCase() === 'lihatsapi') {
+            const url = 'https://i.imgur.com/Do5r5yV.jpg';
+            const caption = 'Sapi Qurban Al Muhajirin 2024';
+
+            try {
+                const media = await MessageMedia.fromUrl(url);
+                await client.sendMessage(msg.from, media, { caption });
+                console.log('Media message sent successfully');
+            } catch (error) {
+                console.error('Error sending media message:', error);
+            }
+        }
+
         if (msg.body === 'status') {
             chat.sendSeen();
             const currentDate = new Date();
@@ -601,18 +614,7 @@ client.on('message', async (msg) => {
                 'layanan'
             );
             await replyWithDelay(chat, msg, infoLayanan);
-        } else if (msg.body.toLowerCase() === 'lihatsapi') {
-            const url = 'https://i.imgur.com/Do5r5yV.jpg';
-            const caption = 'Sapi Qurban Al Muhajirin 2024';
-
-            try {
-                const media = await MessageMedia.fromUrl(url);
-                client.sendMessage(msg.from, media, { caption });
-                console.log('Media message sent successfully');
-            } catch (error) {
-                console.error('Error sending media message:', error);
-            }
-        } else if (msg.body.toLowerCase().startsWith('inputan')) {
+        }  else if (msg.body.toLowerCase().startsWith('inputan')) {
             const formattedDateTime = getFormattedDateTime();
             const sender = await msg.getContact();
             const data = {
