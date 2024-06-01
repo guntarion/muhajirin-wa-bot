@@ -607,8 +607,8 @@ client.on('message', async (msg) => {
 
             try {
                 const media = await MessageMedia.fromUrl(url);
-                await client.sendMessage(msg.from, media, { caption });
-                console.log('Media message SAPI sent successfully');
+                client.sendMessage(msg.from, media, { caption });
+                console.log('Media message sent successfully');
             } catch (error) {
                 console.error('Error sending media message:', error);
             }
