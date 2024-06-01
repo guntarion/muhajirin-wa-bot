@@ -425,8 +425,8 @@ client.on('message', async (msg) => {
         // }
 
         if (msg.body.toLowerCase() === 'lihatsapi') {
-            // const url = 'https://i.imgur.com/Do5r5yV.jpg';
-            const url = 'https://ugm.ac.id/wp-content/uploads/2022/03/09032216467963091960373715.jpg';
+            const url = 'https://i.imgur.com/Do5r5yV.jpg';
+            // const url = 'https://ugm.ac.id/wp-content/uploads/2022/03/09032216467963091960373715.jpg';
             const caption = 'Sapi Qurban Al Muhajirin 2024';
 
             try {
