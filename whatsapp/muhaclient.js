@@ -602,7 +602,7 @@ client.on('message', async (msg) => {
             );
             await replyWithDelay(chat, msg, infoLayanan);
         } else if (msg.body.toLowerCase() === 'lihatsapi') {
-            const url = 'http://68.183.186.142:3050/public/img/gambar-sapi-2024.jpeg';
+            const url = 'https://i.imgur.com/Do5r5yV.jpg';
             const caption = 'Sapi Qurban Al Muhajirin 2024';
 
             try {
