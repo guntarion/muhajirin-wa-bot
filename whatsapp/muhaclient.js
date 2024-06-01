@@ -399,6 +399,34 @@ client.on('message', async (msg) => {
     }
 
     if (!chat.isGroup && process.env.NODE_ENV === 'production') {
+
+        if (msg.body === 'tesimage1') {
+            const chatId = '62817309143@c.us';
+            const url = 'https://ugm.ac.id/wp-content/uploads/2022/03/09032216467963091960373715.jpg';
+            const caption = 'tes gambar sapi';
+
+            try {
+                const media = await MessageMedia.fromUrl(url);
+                await client.sendMessage(chatId, media, { caption });
+                console.log('Media message sent successfully');
+            } catch (error) {
+                console.error('Error sending media message:', error);
+            }
+        }
+
+        if (msg.body === 'tesimage2') {
+            const url = 'https://ugm.ac.id/wp-content/uploads/2022/03/09032216467963091960373715.jpg';
+            const caption = 'tes gambar sapi 2';
+
+            try {
+                const media = await MessageMedia.fromUrl(url);
+                await client.sendMessage(msg.from, media, { caption });
+                console.log('Media message sent successfully');
+            } catch (error) {
+                console.error('Error sending media message:', error);
+            }
+        }
+
         if (msg.body === 'status') {
             chat.sendSeen();
             const currentDate = new Date();
