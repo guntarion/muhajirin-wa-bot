@@ -23,6 +23,11 @@
         </div>
         <button type="submit" class="btn btn-primary">Kirim Pesan</button>
     </form>
+    <div id="progressContainer" style="display:none;">
+        <h3>Progress</h3>
+        <p id="progressText">Progress = 0 out of 0 (0%)</p>
+        <p id="currentMessage">Sending message to </p>
+    </div>
 </div>
 
 <script>
@@ -41,6 +46,9 @@
                 return;
             }
 
+            const progressContainer = document.getElementById('progressContainer');
+            progressContainer.style.display = 'block';
+
             try {
                 const response = await fetch('/api/send-group-message', {
                     method: 'POST',
@@ -51,9 +59,28 @@
                 });
                 const result = await response.json();
                 console.log('Response:', result);
+
+                // Start polling for progress
+                const pollInterval = setInterval(async () => {
+                    const progressResponse = await fetch(`/api/check-progress/${broadcastNama}`);
+                    const progressResult = await progressResponse.json();
+                    if (progressResult.success) {
+                        const { current, total, contactStoredName, contactNumber } = progressResult.progress;
+                        updateProgress(current, total, contactStoredName, contactNumber);
+                        if (current === total) {
+                            clearInterval(pollInterval);
+                        }
+                    }
+                }, 5000); // Poll every 5 seconds
             } catch (error) {
                 console.error('Error sending group message:', error);
             }
         });
     });
+
+    function updateProgress(current, total, contactStoredName, contactNumber) {
+        const percentage = Math.round((current / total) * 100);
+        document.getElementById('progressText').textContent = `Progress = ${current} out of ${total} (${percentage}%)`;
+        document.getElementById('currentMessage').textContent = `Sending message to ${contactStoredName} (${contactNumber})`;
+    }
 </script>

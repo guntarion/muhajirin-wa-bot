@@ -368,6 +368,44 @@ async function storeBroadcastLog({ dateTime, broadcastNama, contactNumber, conta
     }
 }
 
+const storeProgress = async (broadcastNama, progress) => {
+    const sql = `
+        INSERT INTO broadcast_progress (broadcastNama, current, total, contactStoredName, contactNumber)
+        VALUES (?, ?, ?, ?, ?)
+        ON DUPLICATE KEY UPDATE
+            current = VALUES(current),
+            total = VALUES(total),
+            contactStoredName = VALUES(contactStoredName),
+            contactNumber = VALUES(contactNumber)
+    `;
+    try {
+        await pool.query(sql, [
+            broadcastNama,
+            progress.current,
+            progress.total,
+            progress.contactStoredName,
+            progress.contactNumber,
+        ]);
+    } catch (error) {
+        console.error('Error storing progress:', error);
+        throw error;
+    }
+};
+
+const getProgress = async (broadcastNama) => {
+    const sql = `
+        SELECT current, total, contactStoredName, contactNumber
+        FROM broadcast_progress
+        WHERE broadcastNama = ?
+    `;
+    try {
+        const [rows] = await pool.query(sql, [broadcastNama]);
+        return rows[0];
+    } catch (error) {
+        console.error('Error fetching progress:', error);
+        throw error;
+    }
+};
 
 
 module.exports = {
@@ -387,4 +425,6 @@ module.exports = {
     deleteGroup,
     getGroupById,
     storeBroadcastLog,
+    storeProgress,
+    getProgress,
 };
