@@ -20,15 +20,13 @@ const {
 const {
     getUserState,
     updateUserState,
-    activateConversation,
+    // activateConversation,
     initializeUserState,
     saveUserResponse,
     deactivateConversation,
 } = require('./stateManager');
 const {
     getNextStepMessage,
-    conversationTestimoni,
-    conversationDaftarPanitiaSizeKaos
 } = require('./conversationFlow');
 const {
     replyWithDelay,
@@ -39,7 +37,6 @@ const {
 const {
     generateResponseAsCS,
     generateTestimonial,
-    appendToGoogleSheet,
     appendMuhajirinToSheet,
     inputRegistrasiPanitiaQurban,
     getInfoKegiatanLayananMuhajirin,
@@ -414,21 +411,22 @@ client.on('message', async (msg) => {
             }
         }
 
-        if (msg.body === 'tesimage2') {
-            const url = 'https://ugm.ac.id/wp-content/uploads/2022/03/09032216467963091960373715.jpg';
-            const caption = 'tes gambar sapi 2';
+        // if (msg.body === 'tesimage2') {
+        //     const url = 'https://ugm.ac.id/wp-content/uploads/2022/03/09032216467963091960373715.jpg';
+        //     const caption = 'tes gambar sapi 2';
 
-            try {
-                const media = await MessageMedia.fromUrl(url);
-                await client.sendMessage(msg.from, media, { caption });
-                console.log('Media message sent successfully');
-            } catch (error) {
-                console.error('Error sending media message:', error);
-            }
-        }
+        //     try {
+        //         const media = await MessageMedia.fromUrl(url);
+        //         await client.sendMessage(msg.from, media, { caption });
+        //         console.log('Media message sent successfully');
+        //     } catch (error) {
+        //         console.error('Error sending media message:', error);
+        //     }
+        // }
 
         if (msg.body.toLowerCase() === 'lihatsapi') {
-            const url = 'https://i.imgur.com/Do5r5yV.jpg';
+            // const url = 'https://i.imgur.com/Do5r5yV.jpg';
+            const url = 'https://ugm.ac.id/wp-content/uploads/2022/03/09032216467963091960373715.jpg';
             const caption = 'Sapi Qurban Al Muhajirin 2024';
 
             try {
