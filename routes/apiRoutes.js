@@ -1,5 +1,4 @@
 const express = require('express');
-const moment = require('moment-timezone');
 const router = express.Router();
 const fs = require('fs');
 const path = require('path');
@@ -8,7 +7,7 @@ const OpenAI = require('openai');
 const openai = new OpenAI(process.env.OPENAI_API_KEY);
 
 const {
-    // enableTestMode,
+    enableTestMode,
     sendMessage,
     sendMessages,
     sendMediaMessage,
@@ -31,7 +30,7 @@ const {
 } = require('../src/data/mysqldb');
 
 // Enable test mode
-// enableTestMode();
+enableTestMode();
 
 // Health check route
 router.get('/health', (req, res) => {
@@ -63,10 +62,12 @@ const randomDelay = () => {
     return new Promise(resolve => setTimeout(resolve, Math.floor(Math.random() * 13000) + 7000));
 };
 
+const moment = require('moment-timezone');
+
 // Route for sending a broadcast message to a group
 router.post('/send-group-message', async (req, res) => {
     const { groupId, message, broadcastNama } = req.body;
-    // console.log('On Process on sending group message to group ID =====', groupId, message, broadcastNama);
+
     if (!groupId || !message || !broadcastNama) {
         return res.status(400).json({ error: 'Group ID, message, and broadcast name are required' });
     }
@@ -78,22 +79,20 @@ router.post('/send-group-message', async (req, res) => {
 
         for (let i = 0; i < totalMembers; i++) {
             const member = membersDetails[i];
-            const { contactNumber, contactStoredName, contactSebutan, note_1 } = member;
-            const personalizedMessage = `🕌✨ Mari Berqurban lagi di Al Muhajirin! ✨🐂\n\nYth ${contactSebutan} ${contactStoredName}\nSemoga senantiasa sehat wal afiat dg rezeki berlimpah barokah 🤲🏼\n\nAlhamdulillah, tahun lalu telah berqurban dg atas nama ${note_1}.\n\nDengan ini, kami mengundang ${contactSebutan} ${contactStoredName} untuk kembali berqurban di Al Muhajirin Rewwin.\n\n`;
-            const sentMessage = personalizedMessage + message;
-            const chatId = `${contactNumber}@c.us`;
-            const response = await sendMessage(chatId, sentMessage);
+            const personalizedMessage = personalizeMessage(message, member);
+            const chatId = `${member.contactNumber}@c.us`;
+            const response = await sendMessage(chatId, personalizedMessage);
             responses.push(response);
             await randomDelay();
 
             const dateTime = moment().tz('Asia/Jakarta').format('YYYY-MM-DD HH:mm:ss');
-            await storeBroadcastLog({ dateTime, broadcastNama, contactNumber, contactStoredName });
+            await storeBroadcastLog({ dateTime, broadcastNama, contactNumber: member.contactNumber, contactStoredName: member.contactStoredName });
 
             // Console log for each successful message sent with numbering
-            console.log(`${i + 1}. Message sent to: ${contactStoredName} (${contactNumber})`);
+            console.log(`${i + 1}. Message sent to: ${member.contactStoredName} (${member.contactNumber})`);
 
             // Store progress in a way that can be retrieved later
-            const progress = { current: i + 1, total: totalMembers, contactStoredName, contactNumber };
+            const progress = { current: i + 1, total: totalMembers, contactStoredName: member.contactStoredName, contactNumber: member.contactNumber };
             await storeProgress(broadcastNama, progress);
         }
 
@@ -103,6 +102,11 @@ router.post('/send-group-message', async (req, res) => {
         res.status(500).json({ error: 'Failed to send group message' });
     }
 });
+
+// Function to personalize the message
+function personalizeMessage(template, data) {
+    return template.replace(/{(\w+)}/g, (_, key) => data[key] || '');
+}
 
 
 

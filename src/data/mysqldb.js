@@ -299,9 +299,10 @@ async function fetchGroupMembersPhoneNumbers(groupId) {
 
 // Function to fetch group members details
 async function fetchGroupMembersDetails(groupId) {
-    // console.log('fetchGroupMembersDetails function is running');
     const sql = `
-        SELECT c.contactNumber, c.contactStoredName, c.contactSebutan, c.note_1 
+        SELECT c.contactNumber, c.contactStoredName, c.contactSebutan, c.isBusiness, c.isMyContact,
+               c.type_1, c.type_2, c.type_3, c.contactAddress, c.contactRW, c.contactRT,
+               c.note_1, c.note_2, c.contactGender
         FROM group_broadcast_members gm
         JOIN contact_personal c ON gm.contactId = c.contactId
         WHERE gm.groupId = ?
@@ -314,6 +315,7 @@ async function fetchGroupMembersDetails(groupId) {
         throw error;
     }
 }
+
 
 
 async function deleteGroupBroadcastMember(groupId, contactId) {
