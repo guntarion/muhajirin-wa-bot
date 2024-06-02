@@ -147,6 +147,7 @@ client.on('ready', async () => {
 
 
 // Define the CSV writers
+
 const contactsCsvWriter = createObjectCsvWriter({
     path: 'contacts.csv',
     header: [
@@ -752,7 +753,8 @@ client.on('message', async (msg) => {
                     );
                 });
 
-        } else if (
+        /*
+        else if (
             [
                 'panitia',
                 'qurban',
@@ -773,6 +775,7 @@ client.on('message', async (msg) => {
             // );
             // await sendMessageWithDelay(client, chat, msg, initialMessage);
             await replyWithDelay(chat, msg, 'Untuk saat ini pendaftaran panitia kurban telah ditutup.');
+            */
         } else if (userState.active) {
             if (msg.body.toLowerCase() === 'exit') {
                 client.sendMessage(msg.from, 'Conversation ended.');
