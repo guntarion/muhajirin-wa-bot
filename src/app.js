@@ -3,8 +3,8 @@ const bodyParser = require('body-parser');
 const http = require('http');
 const path = require('path');
 const { engine } = require('express-handlebars');
+const WebSocket = require('ws');
 require('dotenv').config();
-
 
 const client = require('../whatsapp/muhaclient');
 const viewRoutes = require('../routes/viewRoutes');
@@ -48,17 +48,28 @@ app.set('views', viewsPath);
 const publicDirectoryPath = path.join(__dirname, '../public');
 app.use(express.static(publicDirectoryPath));
 
-
 // Mount routes
-app.use('/api', apiRoutes);  // Includes messageRoutes, healthRoute
-app.use(viewRoutes);  // Routes for serving HTML pages
-
-
+app.use('/api', apiRoutes); // Includes messageRoutes, healthRoute
+app.use(viewRoutes); // Routes for serving HTML pages
 
 // Initialize WhatsApp client
 client.initialize();
 
-// Closing correctly using CTRL+C 
+// WebSocket server setup
+const server = http.createServer(app);
+const wss = new WebSocket.Server({ server });
+
+wss.on('connection', (ws) => {
+    console.log('New WebSocket connection');
+    ws.on('message', (message) => {
+        console.log('received: %s', message);
+    });
+    ws.send(JSON.stringify({ message: 'Welcome to the WebSocket server' }));
+});
+
+app.set('wss', wss);
+
+// Closing correctly using CTRL+C
 process.on('SIGINT', async () => {
     console.log('(SIGINT) Shutting down chat gracefully... 💝');
     await client.destroy();
@@ -66,9 +77,8 @@ process.on('SIGINT', async () => {
     process.exit(0);
 });
 
-http.createServer(app).listen(port, () => {
+server.listen(port, () => {
     console.info('Muhajirin Server listening on port ' + port);
 });
-
 
 module.exports = app;

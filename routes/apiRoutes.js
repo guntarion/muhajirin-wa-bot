@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const WebSocket = require('ws');
 const fs = require('fs');
 const path = require('path');
 require('dotenv').config();
@@ -67,7 +68,7 @@ const moment = require('moment-timezone');
 // Route for sending a broadcast message to a group
 router.post('/send-group-message', async (req, res) => {
     const { groupId, message, broadcastNama } = req.body;
-
+    // console.log('On Process on sending group message to group ID =====', groupId, message, broadcastNama);
     if (!groupId || !message || !broadcastNama) {
         return res.status(400).json({ error: 'Group ID, message, and broadcast name are required' });
     }
@@ -76,24 +77,35 @@ router.post('/send-group-message', async (req, res) => {
         const membersDetails = await fetchGroupMembersDetails(groupId);
         const totalMembers = membersDetails.length;
         const responses = [];
+        const wss = req.app.get('wss');
 
         for (let i = 0; i < totalMembers; i++) {
             const member = membersDetails[i];
+            const { contactNumber, contactStoredName, contactSebutan, note_1 } = member;
             const personalizedMessage = personalizeMessage(message, member);
-            const chatId = `${member.contactNumber}@c.us`;
+            const chatId = `${contactNumber}@c.us`;
             const response = await sendMessage(chatId, personalizedMessage);
             responses.push(response);
             await randomDelay();
 
             const dateTime = moment().tz('Asia/Jakarta').format('YYYY-MM-DD HH:mm:ss');
-            await storeBroadcastLog({ dateTime, broadcastNama, contactNumber: member.contactNumber, contactStoredName: member.contactStoredName });
+            await storeBroadcastLog({ dateTime, broadcastNama, contactNumber, contactStoredName });
 
             // Console log for each successful message sent with numbering
-            console.log(`${i + 1}. Message sent to: ${member.contactStoredName} (${member.contactNumber})`);
+            console.log(`${i + 1}. Message sent to: ${contactStoredName} (${contactNumber})`);
 
-            // Store progress in a way that can be retrieved later
-            const progress = { current: i + 1, total: totalMembers, contactStoredName: member.contactStoredName, contactNumber: member.contactNumber };
-            await storeProgress(broadcastNama, progress);
+            // Broadcast progress to all connected WebSocket clients
+            const progress = {
+                current: i + 1,
+                total: totalMembers,
+                contactStoredName,
+                contactNumber
+            };
+            wss.clients.forEach((client) => {
+                if (client.readyState === WebSocket.OPEN) {
+                    client.send(JSON.stringify(progress));
+                }
+            });
         }
 
         res.json({ success: true, responses });

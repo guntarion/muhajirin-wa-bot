@@ -22,9 +22,11 @@
             <textarea id="messageText" class="form-control" rows="4" required></textarea>
         </div>
         <button type="submit" class="btn btn-primary">Kirim Pesan</button>
+        <br>
+        <label id="submitInfo" style="display: none;"></label>
     </form>
     <div id="progressContainer" style="display:none;">
-        <h3>Progress</h3>
+        <h3>Progress Broadcast</h3>
         <p id="progressText">Progress = 0 out of 0 (0%)</p>
         <p id="currentMessage">Sending message to </p>
     </div>
@@ -32,6 +34,13 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
+        const ws = new WebSocket(`ws://${location.host}`);
+
+        ws.onmessage = function (event) {
+            const progress = JSON.parse(event.data);
+            updateProgress(progress.current, progress.total, progress.contactStoredName, progress.contactNumber);
+        };
+
         document.getElementById('broadcastForm').addEventListener('submit', async function (event) {
             event.preventDefault();
             const broadcastNama = document.getElementById('broadcastNama').value;
@@ -46,6 +55,16 @@
             const progressContainer = document.getElementById('progressContainer');
             progressContainer.style.display = 'block';
 
+            // Show the submit info message
+            const submitInfo = document.getElementById('submitInfo');
+            submitInfo.textContent = 'Pesan Broadcast Dieksekusi';
+            submitInfo.style.display = 'block';
+
+            // Hide the submit info message after 5 seconds
+            setTimeout(function () {
+                submitInfo.style.display = 'none';
+            }, 5000);
+
             try {
                 const response = await fetch('/api/send-group-message', {
                     method: 'POST',
@@ -56,19 +75,6 @@
                 });
                 const result = await response.json();
                 console.log('Response:', result);
-
-                // Start polling for progress
-                const pollInterval = setInterval(async () => {
-                    const progressResponse = await fetch(`/api/check-progress/${broadcastNama}`);
-                    const progressResult = await progressResponse.json();
-                    if (progressResult.success) {
-                        const { current, total, contactStoredName, contactNumber } = progressResult.progress;
-                        updateProgress(current, total, contactStoredName, contactNumber);
-                        if (current === total) {
-                            clearInterval(pollInterval);
-                        }
-                    }
-                }, 5000); // Poll every 5 seconds
             } catch (error) {
                 console.error('Error sending group message:', error);
             }
@@ -77,7 +83,7 @@
 
     function updateProgress(current, total, contactStoredName, contactNumber) {
         const percentage = Math.round((current / total) * 100);
-        document.getElementById('progressText').textContent = `Progress = ${current} out of ${total} (${percentage}%)`;
-        document.getElementById('currentMessage').textContent = `Sending message to ${contactStoredName} (${contactNumber})`;
+        document.getElementById('progressText').textContent = `Sedang mengirim data ke-${current} dari total ${total} data. Progress = (${percentage}%)`;
+        document.getElementById('currentMessage').textContent = `Telah terkirim pesan ke ${contactStoredName} (${contactNumber})`;
     }
 </script>
