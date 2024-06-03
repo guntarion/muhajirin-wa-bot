@@ -50,6 +50,10 @@ router.get('/send-individual', (req, res) => {
     res.render('send-individual', { title: 'Kirim Pesan' });
 });
 
+router.get('/compose', (req, res) => {
+    res.render('compose-broadcast', { title: 'Compose Pesan Broadcast' });
+});
+
 router.get('/prospek', (req, res) => {
     res.render('prospek-usaha', { title: 'Prospek Usaha' });
 });
