@@ -24,10 +24,14 @@ const {
     // fetchGroupBroadcast,
     // fetchGroupBroadcastMembers,
     // fetchGroupMembersPhoneNumbers,
+    // storeProgress,
     fetchGroupMembersDetails,
     storeBroadcastLog,
-    storeProgress,
     getProgress,
+    insertTemplateMessage,
+    updateTemplate,  
+    deleteTemplate,
+    getTemplateByName,
 } = require('../src/data/mysqldb');
 
 // Enable test mode
@@ -173,9 +177,6 @@ router.post('/send-media-message-url', async (req, res) => {
     }
 });
 
-
-
-
 router.post('/fetch-text', async (req, res) => {
     const url = req.body.url; // Get the URL from the request body
     if (!url) {
@@ -231,141 +232,77 @@ router.get('/chats', (req, res) => {
     });
 });
 
-// OpenAI API route for chats page - summary respon berdasarkan history chat
-router.post('/openai-chat-summary', async (req, res) => {
-    const { chatContent, lastSender } = req.body;
 
-    const completion = await openai.chat.completions.create({
-        messages: [
-            {
-                role: 'system',
-                content:
-                    'Berdasarkan rekaman teks hasil pembicaraan chat antara customer service dengan klien atau calon klien, buatlah ringkasan yang jelas dan padat. Ringkasan ini dimaksudkan untuk digunakan oleh supervisor dari agen customer service untuk memahami status terakhir dari setiap prospek atau klien. Pastikan untuk mencakup poin-poin utama seperti: 1. Identitas Klien/Calon Klien: Sebutkan nama dan detail relevan lainnya tentang klien atau calon klien. 2. Tujuan Pembicaraan: Jelaskan secara singkat tujuan utama dari pembicaraan tersebut, misalnya permintaan informasi produk, keluhan, atau permintaan layanan. 3. Isu Utama yang Dibahas: Ringkaskan isu-isu utama yang dibahas selama chat, termasuk pertanyaan yang diajukan oleh klien atau calon klien dan jawaban yang diberikan oleh customer service. 4. Status Terakhir: Berikan detail tentang status terakhir dari interaksi tersebut, termasuk setiap tindak lanjut yang telah dijanjikan atau masalah yang masih belum terselesaikan. 5. Tindakan yang Direkomendasikan: Sertakan rekomendasi tindakan selanjutnya yang perlu diambil oleh customer service atau departemen lain yang terkait, berdasarkan isi pembicaraan. Berikut adalah rekaman chat yang perlu diringkas: ' + chatContent,
-            },
-        ],
-        model: 'gpt-3.5-turbo',
-    });
-
-    const isiRespon = completion.choices[0].message.content + '\n\nYang terakhir berbicara adalah: ' + lastSender;
-
-    res.json({ message: isiRespon });
-});
-
-// OpenAI API route for chats page - rekomendasi respon berdasarkan history chat
-router.post('/openai-response-recommendation', async (req, res) => {
-    const { chatContent, lastSender } = req.body;
-
-    const completion = await openai.chat.completions.create({
-        messages: [
-            { 
-                role: 'system', 
-                content: lastSender === 'Clients' 
-                    ? 'Anda adalah customer service yang ramah dari Vido Garment, perusahaan yang bergerak di pembuatan seragam. Tugas Anda adalah memberi respon atas pesan terakhir yang disampaikan Client. Perhatikan isi percakapan sebelum-sebelumnya, untuk memahami konteksnya.' + chatContent 
-                    : 'Anda adalah customer service yang ramah dari Vido Garment, perusahaan yang bergerak di pembuatan seragam. Tugas Anda adalah melanjutkan pesan yang sudah disampaikan Customer Service. Perhatikan isi percakapan sebelum-sebelumnya, untuk memahami konteksnya.' + chatContent 
-            },
-        ],
-        model: 'gpt-3.5-turbo',
-    });
-
-    res.json({ message: completion.choices[0].message.content });
-});
-
-router.post('/openai-improvement-pesan', async (req, res) => {
-    const { userDraft, previousMessage, userInstruction, useEmoji } = req.body;
-
-    let content = 'Anda adalah customer service yang ramah dari Vido Garment. Lakukan penyempurnaan dari draft pesan yang diberikan user: pahami intensinya terlebih dahulu, lalu perbaiki tata bahasanya dan kembangkan untuk memenuhi intensi yang dimaksud.' + userDraft;
-
-    if (previousMessage) {
-        content += ' Draft pesan user ini merupakan tanggapan dari pesan atau situasi berikut: ' + previousMessage;
+// Route to create a new template message
+router.post('/create-template', async (req, res) => {
+    const { templateName, templateNote, contentType, categoryEvent, categorySegment, templateContent } = req.body;
+    
+    if (!templateName || !contentType || !categoryEvent || !categorySegment || !templateContent) {
+        return res.status(400).json({ error: 'All required fields must be filled' });
     }
-
-    if (userInstruction) {
-        content += ' User memberikan arahan terkait atas bagaimana bentuk penyempurnaan yg bisa Anda lakukan, yakni berikut ini: ' + userInstruction;
-    }
-
-    if (useEmoji) {
-        content += ' Harap sertakan emoji yang relevan';
-    }
-
-    const completion = await openai.chat.completions.create({
-        messages: [
-            { 
-                role: 'system', 
-                content: content
-            },
-        ],
-        model: 'gpt-3.5-turbo',
-    });
-
-    res.json({ message: completion.choices[0].message.content });
-});
-
-
-router.post('/openai-shirt-generation', async (req, res) => {
-    const { prompt } = req.body;
 
     try {
-        const response = await openai.images.generate({
-            // model: 'dall-e-3',
-            model: 'dall-e-2',
-            prompt: prompt,
-            n: 1,
-            size: '1024x1024',
-        });
-
-        const imageUrl = response.data[0].url;
-
-        res.json({ imageUrl: imageUrl });
+        await insertTemplateMessage({ templateName, templateNote, contentType, categoryEvent, categorySegment, templateContent });
+        res.json({ success: true, message: 'Template created successfully' });
     } catch (error) {
-        console.error(error);
-        res.status(500).json({ error: 'An error occurred while generating the image' });
+        console.error('Error creating template:', error);
+        res.status(500).json({ error: 'Failed to create template' });
+    }
+});
+
+// Route to update a template
+router.put('/update-template/:templateName', async (req, res) => {
+    const { templateName } = req.params;
+    const { templateNote, contentType, categoryEvent, categorySegment, templateContent } = req.body;
+
+    const data = {
+        templateNote,
+        contentType,
+        categoryEvent,
+        categorySegment,
+        templateContent
+    };
+
+    try {
+        await updateTemplate(templateName, data);
+        res.json({ success: true });
+    } catch (error) {
+        console.error('Error updating template:', error);
+        res.status(500).json({ error: 'Failed to update template' });
     }
 });
 
 
-router.post('/openai-rekomendasi-seragam', async (req, res) => {
-    const { seometadata, kontenfrontpage } = req.body;
+// Route to delete a template
+router.delete('/delete-template/:templateName', async (req, res) => {
+    const { templateName } = req.params;
 
-    const completion = await openai.chat.completions.create({
-        messages: [
-            {
-                role: 'system',
-                content:
-                    'Untuk perusahaan berikut' +
-                    seometadata +
-                    ' dan konten frontpage' +
-                    kontenfrontpage +
-                    ' Berdasarkan informasi profil perusahaan yang telah diperoleh dari frontpage website perusahaan melalui proses scraping, silakan identifikasi jenis dan nature dari usaha perusahaan tersebut. Gunakan informasi yang tersedia untuk memahami sektor industri, lingkungan kerja, dan nilai-nilai perusahaan. Setelah memahami konteks bisnisnya, buatlah rekomendasi tentang jenis seragam yang paling sesuai untuk karyawan perusahaan tersebut. Rekomendasikan salah satu atau beberapa dari jenis seragam berikut berdasarkan nature usahanya: 1. Seragam Jaket Bomber: Biasanya digunakan di lingkungan kerja yang memerlukan ketahanan terhadap cuaca dingin dan angin, seperti di lapangan terbuka atau di area dengan suhu yang lebih rendah. Jaket ini juga sering dipilih untuk pekerjaan yang memerlukan mobilitas tinggi karena memberikan kehangatan tanpa mengorbankan gerak. 2. Wearpack - untuk usaha yang melibatkan pekerjaan berisiko tinggi dan memerlukan perlindungan serta kepatuhan terhadap regulasi keselamatan. 3. Seragam Retail dengan model Polo Kasual - untuk perusahaan ritel yang ingin menonjolkan branding toko dan menciptakan tampilan yang profesional namun santai. 4. Seragam Jaket Hoodie: Cocok untuk lingkungan kerja kasual yang memerlukan kenyamanan dan fleksibilitas. Jaket hoodie sering digunakan di industri kreatif, startup, atau perusahaan teknologi, di mana suasana yang lebih santai dan tidak terlalu formal dihargai. 5. Seragam Jaket Biasa: Ideal untuk lingkungan kerja luar ruangan yang membutuhkan perlindungan dari cuaca, tetapi tidak seintens jaket bomber. Bisa juga digunakan dalam setting kasual di kantor yang memiliki suhu yang sejuk akibat penggunaan AC. 6. Seragam Kaos Raglan: Kaos dengan lengan yang sering berbeda warna dari bagian badan kaos. Kaos ini nyaman dan memberikan keleluasaan gerak yang baik, cocok untuk lingkungan kerja yang aktif atau untuk acara perusahaan yang lebih santai. 7. Seragam Kaos T-shirt: untuk industri yang tampak padat karya dan membutuhkan kenyamanan serta fleksibilitas. Cocok untuk pekerjaan dalam ruangan atau cuaca hangat, serta dalam event promosi atau sebagai seragam harian yang praktis dan nyaman. 8. Seragam Kaos Polo: Menawarkan tampilan yang lebih rapi dibandingkan kaos t-shirt biasa dan sering digunakan di lingkungan yang membutuhkan tampilan semi-formal seperti di perbankan, hotel, atau acara perusahaan. Juga populer di industri jasa dan ritel. 9. Seragam Kemeja Lengan Pendek: Sesuai untuk lingkungan kerja yang semi-formal dan cuaca panas. Sering digunakan di kantor atau oleh pekerja lapangan yang membutuhkan kesan rapi namun tetap ingin kenyamanan dalam cuaca yang lebih hangat. 10. Seragam Kemeja Lengan Panjang: Pilihan untuk lingkungan kerja formal. Memberikan tampilan yang profesional dan sering diwajibkan dalam setting bisnis tradisional, pertemuan penting, atau acara resmi perusahaan.'
-            },
-        ],
-        model: 'gpt-3.5-turbo',
-    });
-
-    res.json({ message: completion.choices[0].message.content });
-});
-
-router.post('/openai-buat-penawaran', async (req, res) => {
-    const { seometadata, rekomendasiproduk } = req.body;
-
-    const completion = await openai.chat.completions.create({
-        messages: [
-            {
-                role: 'system',
-                content:
-                    'Buatkan surat penawaran resmi dari Vido Garment Indonesia, sebuah perusahaan yang berpengalaman selama 14 tahun dalam pembuatan seragam, dengan ulasan positif dari lebih dari 1000 reviewer di Google. Surat ini ditujukan kepada' +
-                    seometadata +
-                    ' dengan tujuan mengajukan penawaran untuk pembuatan seragam yang telah disesuaikan berdasarkan profil usaha mereka, yakni sebagai berikut: ' +
-                    rekomendasiproduk +
-                    'Surat harus ditulis dalam bahasa Indonesia dengan gaya bahasa yang sangat ramah dan menarik. Sertakan penjelasan bahwa seragam yang direkomendasikan oleh Vido Garment adalah hasil pengamatan cermat terhadap profil usaha klien untuk memastikan seragam tersebut mendukung kebutuhan spesifik mereka. Alasan utama pembuatan seragam ini harus mencakup, tetapi tidak terbatas pada Peningkatan Citra Perusahaan, Pemersatu Karyawan, Promosi dan Branding, Keamanan dan Keselamatan, Identifikasi Mudah, Kenyamanan dan Fungsionalitas, Persyaratan Regulasi, Pengurangan Biaya untuk Karyawan. Akhir surat harus menawarkan untuk menjawab pertanyaan lebih lanjut atau mengatur pertemuan untuk mendiskusikan detail lebih lanjut. Berikan informasi kontak Vido Garment untuk menghubungi customer service di nomor 08123456789. Pastikan surat tersebut mencerminkan profesionalisme dan dedikasi Vido Garment dalam memberikan pelayanan terbaik kepada klien mereka.',
-            },
-        ],
-        model: 'gpt-3.5-turbo',
-    });
-
-    res.json({ message: completion.choices[0].message.content });
+    try {
+        await deleteTemplate(templateName);
+        res.json({ success: true });
+    } catch (error) {
+        console.error('Error deleting template:', error);
+        res.status(500).json({ error: 'Failed to delete template' });
+    }
 });
 
 
+// Route to get the details of a specific template
+router.get('/get-template/:templateName', async (req, res) => {
+    const { templateName } = req.params;
+
+    try {
+        const template = await getTemplateByName(templateName);
+        if (template) {
+            res.json({ success: true, data: template });
+        } else {
+            res.status(404).json({ success: false, error: 'Template not found' });
+        }
+    } catch (error) {
+        console.error('Error fetching template details:', error);
+        res.status(500).json({ error: 'Failed to fetch template details' });
+    }
+});
 
 
 router.post('/send-message', sendMessage);

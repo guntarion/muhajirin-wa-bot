@@ -14,6 +14,11 @@ const {
     getGroupById,
 } = require('../src/data/mysqldb');
 
+const {
+    fetchAllTemplates,
+} = require('../src/data/mysqldb');
+
+
 // Page routes
 router.get('/', (req, res) => {
     res.render('index', { title: 'Home' });
@@ -50,9 +55,22 @@ router.get('/send-individual', (req, res) => {
     res.render('send-individual', { title: 'Kirim Pesan' });
 });
 
-router.get('/compose', (req, res) => {
-    res.render('compose-broadcast', { title: 'Compose Pesan Broadcast' });
+router.get('/compose-template', async (req, res) => {
+    try {
+        const templates = await fetchAllTemplates();
+        res.render('compose-template', {
+            title: 'Compose Template Broadcast',
+            templates,
+        });
+    } catch (error) {
+        console.error('Error fetching templates:', error);
+        res.status(500).send('Internal Server Error');
+    }
 });
+
+// router.get('/compose', (req, res) => {
+//     res.render('compose-broadcast', { title: 'Compose Pesan Broadcast' });
+// });
 
 router.get('/prospek', (req, res) => {
     res.render('prospek-usaha', { title: 'Prospek Usaha' });
@@ -96,11 +114,22 @@ router.get('/forms', (req, res) => {
 //     }
 // });
 
-router.get('/send-broadcast', async (req, res) => {
+// router.get('/broadcast-template', async (req, res) => {
+//     try {
+//         const groups = await fetchGroupBroadcast();
+//         // console.log('Groups to be rendered:', groups);
+//         res.render('broadcast-custom', { title: 'Broadcast Pesan', groups });
+//     } catch (error) {
+//         console.error('Error fetching groups:', error);
+//         res.status(500).send('Internal Server Error');
+//     }
+// });
+
+router.get('/broadcast-custom', async (req, res) => {
     try {
         const groups = await fetchGroupBroadcast();
         // console.log('Groups to be rendered:', groups);
-        res.render('send-broadcast', { title: 'Broadcast Pesan', groups });
+        res.render('broadcast-custom', { title: 'Broadcast Pesan', groups });
     } catch (error) {
         console.error('Error fetching groups:', error);
         res.status(500).send('Internal Server Error');

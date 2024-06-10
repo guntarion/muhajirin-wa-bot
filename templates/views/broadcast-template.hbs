@@ -1,0 +1,89 @@
+<div>
+    <h1>Kirim Pesan Broadcast</h1>
+</div>
+
+<div class="container">
+    <form id="broadcastForm">
+        <div class="form-group">
+            <label for="broadcastNama">Nama Sesi Broadcast:</label>
+            <input type="text" id="broadcastNama" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="groupSelect">Pilih Group:</label>
+            <select id="groupSelect" class="form-control" required>
+                <option value="">Select a Group</option>
+                {{#each groups}}
+                <option value="{{groupId}}">{{groupName}}</option>
+                {{/each}}
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="messageText">Pesan:</label>
+            <textarea id="messageText" class="form-control" rows="4" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Kirim Pesan</button>
+        <br>
+        <label id="submitInfo" style="display: none;"></label>
+    </form>
+    <div id="progressContainer" style="display:none;">
+        <h3>Progress Broadcast</h3>
+        <p id="progressText">Progress = 0 out of 0 (0%)</p>
+        <p id="currentMessage">Sending message to </p>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const ws = new WebSocket(`ws://${location.host}`);
+
+        ws.onmessage = function (event) {
+            const progress = JSON.parse(event.data);
+            updateProgress(progress.current, progress.total, progress.contactStoredName, progress.contactNumber);
+        };
+
+        document.getElementById('broadcastForm').addEventListener('submit', async function (event) {
+            event.preventDefault();
+            const broadcastNama = document.getElementById('broadcastNama').value;
+            const groupId = document.getElementById('groupSelect').value;
+            const messageText = document.getElementById('messageText').value;
+
+            if (!groupId) {
+                alert('Please select a group');
+                return;
+            }
+
+            const progressContainer = document.getElementById('progressContainer');
+            progressContainer.style.display = 'block';
+
+            // Show the submit info message
+            const submitInfo = document.getElementById('submitInfo');
+            submitInfo.textContent = 'Pesan Broadcast Dieksekusi';
+            submitInfo.style.display = 'block';
+
+            // Hide the submit info message after 5 seconds
+            setTimeout(function () {
+                submitInfo.style.display = 'none';
+            }, 5000);
+
+            try {
+                const response = await fetch('/api/send-group-message', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ groupId, message: messageText, broadcastNama })
+                });
+                const result = await response.json();
+                console.log('Response:', result);
+            } catch (error) {
+                console.error('Error sending group message:', error);
+            }
+        });
+    });
+
+    function updateProgress(current, total, contactStoredName, contactNumber) {
+        const percentage = Math.round((current / total) * 100);
+        document.getElementById('progressText').textContent = `Sedang mengirim data ke-${current} dari total ${total} data. Progress = (${percentage}%)`;
+        document.getElementById('currentMessage').textContent = `Telah terkirim pesan ke ${contactStoredName} (${contactNumber})`;
+    }
+</script>

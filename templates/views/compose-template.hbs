@@ -1,0 +1,241 @@
+<div>
+	<h1>Compose Pesan Broadcast</h1>
+</div>
+
+<div class="container">
+	<div class="row">
+		<div class="col-lg-6">
+			<form id="templateForm">
+				<div class="form-group">
+					<label for="template-pesan-name">Nama Sesi Broadcast:</label>
+					<input type="text" name="template-pesan-name" id="template-pesan-name" class="form-control required"
+						placeholder="Nama template pesan">
+				</div>
+				<input type="hidden" id="original-template-name" />
+
+				<div class="form-group">
+					<label for="template-pesan-keterangan">Keterangan Sesi:</label>
+					<input type="text" name="template-pesan-keterangan" id="template-pesan-keterangan"
+						class="form-control required" placeholder="Keterangan Template Broadcast">
+				</div>
+
+				<div class="form-group">
+					<label>Tipe Konten:</label>
+					<div class="btn-group d-flex" data-bs-toggle="buttons">
+						<input type="radio" class="btn-check" name="broadcast-content-type"
+							id="broadcast-content-type-generic" value="generic">
+						<label class="btn btn-outline-secondary text-transform-none ls-0"
+							for="broadcast-content-type-generic">Generic</label>
+
+						<input type="radio" class="btn-check" name="broadcast-content-type"
+							id="broadcast-content-type-personalized" value="personalized">
+						<label class="btn btn-outline-secondary text-transform-none ls-0"
+							for="broadcast-content-type-personalized">Personalized</label>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label for="template-pesan-event">Kategori Event:</label>
+					<select class="form-select required" name="template-pesan-event" id="template-pesan-event">
+						<option value="">-- Pilih Satu --</option>
+						<option value="qurban">Idul Qurban</option>
+						<option value="khitan">Khitan</option>
+						<option value="umum">Umum</option>
+					</select>
+				</div>
+
+				<div class="form-group">
+					<label for="template-pesan-segmen">Kategori Segmen:</label>
+					<select class="form-select required" name="template-pesan-segmen" id="template-pesan-segmen">
+						<option value="">-- Pilih Satu --</option>
+						<option value="pengurus">Pengurus</option>
+						<option value="pembina">Pembina</option>
+						<option value="pengawas">Pengawas</option>
+						<option value="umum">Umum</option>
+					</select>
+				</div>
+
+				<div class="form-group">
+					<label for="template-pesan-content">Isi Template:</label>
+					<textarea name="template-pesan-content" id="template-pesan-content" class="form-control required"
+						cols="30" rows="10"></textarea>
+				</div>
+
+				<div class="col-12">
+					<button type="submit" name="template-pesan-submit" class="btn btn-secondary">Buat Template</button>
+					<button type="button" name="template-pesan-edit" class="btn btn-primary" id="templateEditBtn">Edit
+						Template</button>
+					<button type="button" name="template-pesan-delete" class="btn btn-danger"
+						id="templateDeleteBtn">Delete Template</button>
+				</div>
+			</form>
+		</div>
+
+		<div class="col-lg-6">
+			<div class="col-md-12">
+				<h4>Daftar Template</h4>
+				<div class="list-group" id="templateList">
+					{{#each templates}}
+					<label class="list-group-item mb-0 text-transform-none fw-normal ls-0 text-size-sm font-body">
+						<input class="form-check-input me-1" type="radio" name="list-group-radio"
+							value="{{templateName}}" aria-label="...">
+						{{templateName}}
+					</label>
+					{{/each}}
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+	document.addEventListener('DOMContentLoaded', function () {
+		let selectedTemplateName = null;
+
+		// Handle form submission to create a new template
+		document.getElementById('templateForm').addEventListener('submit', async function (event) {
+			event.preventDefault();
+
+			const templateName = document.getElementById('template-pesan-name').value;
+			const templateNote = document.getElementById('template-pesan-keterangan').value;
+			const contentType = document.querySelector('input[name="broadcast-content-type"]:checked').value;
+			const categoryEvent = document.getElementById('template-pesan-event').value;
+			const categorySegment = document.getElementById('template-pesan-segmen').value;
+			const templateContent = document.getElementById('template-pesan-content').value;
+
+			const data = {
+				templateName,
+				templateNote,
+				contentType,
+				categoryEvent,
+				categorySegment,
+				templateContent
+			};
+
+			try {
+				const response = await fetch('/api/create-template', {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json'
+					},
+					body: JSON.stringify(data)
+				});
+
+				const result = await response.json();
+				if (result.success) {
+					alert('Template created successfully');
+					location.reload(); // Reload the page to update the template list
+				} else {
+					alert('Failed to create template');
+				}
+			} catch (error) {
+				console.error('Error creating template:', error);
+				alert('Error creating template');
+			}
+		});
+
+		// Handle template selection to display its details
+		document.querySelectorAll('input[name="list-group-radio"]').forEach(radio => {
+			radio.addEventListener('change', async function () {
+				selectedTemplateName = this.value;
+
+				try {
+					const response = await fetch(`/api/get-template/${selectedTemplateName}`);
+					const template = await response.json();
+
+					if (template.success) {
+						document.getElementById('template-pesan-name').value = template.data.templateName;
+						document.getElementById('template-pesan-keterangan').value = template.data.templateNote;
+						document.querySelector(`input[name="broadcast-content-type"][value="${template.data.contentType}"]`).checked = true;
+						document.getElementById('template-pesan-event').value = template.data.categoryEvent;
+						document.getElementById('template-pesan-segmen').value = template.data.categorySegment;
+						document.getElementById('template-pesan-content').value = template.data.templateContent;
+
+						// Set original template name
+						document.getElementById('original-template-name').value = template.data.templateName;
+					} else {
+						alert('Failed to fetch template details');
+					}
+				} catch (error) {
+					console.error('Error fetching template details:', error);
+					alert('Error fetching template details');
+				}
+			});
+		});
+
+		// Handle template deletion
+		document.getElementById('templateDeleteBtn').addEventListener('click', async function () {
+			if (!selectedTemplateName) {
+				alert('Please select a template to delete');
+				return;
+			}
+
+			if (!confirm('Are you sure you want to delete this template?')) {
+				return;
+			}
+
+			try {
+				const response = await fetch(`/api/delete-template/${selectedTemplateName}`, {
+					method: 'DELETE'
+				});
+
+				const result = await response.json();
+				if (result.success) {
+					alert('Template deleted successfully');
+					location.reload(); // Reload the page to update the template list
+				} else {
+					alert('Failed to delete template');
+				}
+			} catch (error) {
+				console.error('Error deleting template:', error);
+				alert('Error deleting template');
+			}
+		});
+
+		// Handle template editing
+		document.getElementById('templateEditBtn').addEventListener('click', async function () {
+			const originalTemplateName = document.getElementById('original-template-name').value;
+			if (!originalTemplateName) {
+				alert('Please select a template to edit');
+				return;
+			}
+
+			const templateName = document.getElementById('template-pesan-name').value;
+			const templateNote = document.getElementById('template-pesan-keterangan').value;
+			const contentType = document.querySelector('input[name="broadcast-content-type"]:checked').value;
+			const categoryEvent = document.getElementById('template-pesan-event').value;
+			const categorySegment = document.getElementById('template-pesan-segmen').value;
+			const templateContent = document.getElementById('template-pesan-content').value;
+
+			const data = {
+				templateName,
+				templateNote,
+				contentType,
+				categoryEvent,
+				categorySegment,
+				templateContent
+			};
+
+			try {
+				const response = await fetch(`/api/update-template/${originalTemplateName}`, {
+					method: 'PUT',
+					headers: {
+						'Content-Type': 'application/json'
+					},
+					body: JSON.stringify(data)
+				});
+
+				const result = await response.json();
+				if (result.success) {
+					alert('Template updated successfully');
+					location.reload(); // Reload the page to update the template list
+				} else {
+					alert('Failed to update template');
+				}
+			} catch (error) {
+				console.error('Error updating template:', error);
+				alert('Error updating template');
+			}
+		});
+	});
+</script>

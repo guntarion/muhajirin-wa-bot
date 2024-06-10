@@ -409,6 +409,79 @@ const getProgress = async (broadcastNama) => {
     }
 };
 
+async function insertTemplateMessage(data) {
+    const sqlInsert = `
+        INSERT INTO template_message (templateName, templateNote, contentType, categoryEvent, categorySegment, templateContent)
+        VALUES (?, ?, ?, ?, ?, ?)
+    `;
+    try {
+        await pool.query(sqlInsert, [
+            data.templateName,
+            data.templateNote,
+            data.contentType,
+            data.categoryEvent,
+            data.categorySegment,
+            data.templateContent,
+        ]);
+    } catch (error) {
+        console.error('Error inserting template message:', error);
+        throw error;
+    }
+}
+
+async function updateTemplate(templateName, data) {
+    const sqlUpdate = `
+        UPDATE template_message
+        SET templateNote = ?, contentType = ?, categoryEvent = ?, categorySegment = ?, templateContent = ?
+        WHERE templateName = ?
+    `;
+    try {
+        await pool.query(sqlUpdate, [
+            data.templateNote,
+            data.contentType,
+            data.categoryEvent,
+            data.categorySegment,
+            data.templateContent,
+            templateName,
+        ]);
+    } catch (error) {
+        console.error('Error updating template:', error);
+        throw error;
+    }
+}
+
+async function deleteTemplate(templateName) {
+    const sqlDelete = 'DELETE FROM template_message WHERE templateName = ?';
+    try {
+        await pool.query(sqlDelete, [templateName]);
+    } catch (error) {
+        console.error('Error deleting template:', error);
+        throw error;
+    }
+}
+
+
+async function getTemplateByName(templateName) {
+    const sql = 'SELECT * FROM template_message WHERE templateName = ?';
+    try {
+        const [rows] = await pool.query(sql, [templateName]);
+        return rows[0];
+    } catch (error) {
+        console.error('Error fetching template by name:', error);
+        throw error;
+    }
+}
+
+async function fetchAllTemplates() {
+    const sql = 'SELECT templateName FROM template_message';
+    try {
+        const [rows] = await pool.query(sql);
+        return rows;
+    } catch (error) {
+        console.error('Error fetching all templates:', error);
+        throw error;
+    }
+}
 
 module.exports = {
     contactExists,
@@ -429,4 +502,9 @@ module.exports = {
     storeBroadcastLog,
     storeProgress,
     getProgress,
+    insertTemplateMessage,
+    updateTemplate,
+    deleteTemplate,
+    getTemplateByName,
+    fetchAllTemplates,
 };
