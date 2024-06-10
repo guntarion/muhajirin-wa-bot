@@ -62,12 +62,83 @@ router.post('/send-message', async (req, res) => {
     }
 });
 
+// Route to send individual messages based on a selected template
+router.post('/send-individual-messages', async (req, res) => {
+    const { broadcastNama, message, recipients } = req.body;
+
+    if (!broadcastNama || !message || !recipients || recipients.length === 0) {
+        return res.status(400).json({ error: 'Broadcast name, message, and recipients are required' });
+    }
+
+    try {
+        const responses = [];
+        const dateTime = moment().tz('Asia/Jakarta').format('YYYY-MM-DD HH:mm:ss');
+
+        for (const recipient of recipients) {
+            const personalizedMessage = personalizeMessage(message, recipient);
+            const chatId = `${recipient.contactNumber}@c.us`;
+            const response = await sendMessage(chatId, personalizedMessage);
+            responses.push(response);
+
+            await storeBroadcastLog({ dateTime, broadcastNama, contactNumber: recipient.contactNumber, contactStoredName: recipient.contactStoredName });
+
+            console.log(`Message sent to: ${recipient.contactStoredName} (${recipient.contactNumber})`);
+
+            await randomDelay(); // Add random delay between 5 to 10 seconds
+        }
+
+        res.json({ success: true, responses });
+    } catch (error) {
+        console.error('Error sending individual messages:', error);
+        res.status(500).json({ error: 'Failed to send individual messages' });
+    }
+});
+
+
+
 // Utility function to add a random delay between 7 to 20 seconds
 const randomDelay = () => {
     return new Promise(resolve => setTimeout(resolve, Math.floor(Math.random() * 13000) + 7000));
 };
 
 const moment = require('moment-timezone');
+
+
+// Route to send individual messages based on a selected template
+router.post('/send-individual-messages', async (req, res) => {
+    const { broadcastNama, message, recipients } = req.body;
+
+    if (!broadcastNama || !message || !recipients || recipients.length === 0) {
+        return res.status(400).json({ error: 'Broadcast name, message, and recipients are required' });
+    }
+
+    try {
+        const responses = [];
+        const dateTime = moment().tz('Asia/Jakarta').format('YYYY-MM-DD HH:mm:ss');
+
+        for (const recipient of recipients) {
+            const { contactNumber, contactStoredName, contactSebutan, isBusiness, isMyContact, type_1, type_2, type_3, contactAddress, contactRW, contactRT, note_1, note_2, contactGender } = recipient;
+            const personalizedMessage = personalizeMessage(message, recipient);
+            const chatId = `${contactNumber}@c.us`;
+            const response = await sendMessage(chatId, personalizedMessage);
+            responses.push(response);
+
+            await storeBroadcastLog({ dateTime, broadcastNama, contactNumber, contactStoredName });
+
+            console.log(`Message sent to: ${contactStoredName} (${contactNumber})`);
+
+            await randomDelay(); // Add random delay between 5 to 10 seconds
+        }
+
+        res.json({ success: true, responses });
+    } catch (error) {
+        console.error('Error sending individual messages:', error);
+        res.status(500).json({ error: 'Failed to send individual messages' });
+    }
+});
+
+
+
 
 // Route for sending a broadcast message to a group
 router.post('/send-group-message', async (req, res) => {

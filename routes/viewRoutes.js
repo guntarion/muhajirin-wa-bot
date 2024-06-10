@@ -51,9 +51,21 @@ router.get('/datachat', (req, res) => {
     res.render('datachat', { title: 'Data Chat' });
 });
 
-router.get('/send-individual', (req, res) => {
-    res.render('send-individual', { title: 'Kirim Pesan' });
+router.get('/send-individual', async (req, res) => {
+    try {
+        const contacts = await getAllContactsPersonal();
+        const templates = await fetchAllTemplates(); 
+        res.render('send-individual', {
+            title: 'Kirim Pesan Individual',
+            contacts,
+            templates,
+        });
+    } catch (error) {
+        console.error('Error fetching contacts or templates:', error);
+        res.status(500).send('Internal Server Error');
+    }
 });
+
 
 router.get('/compose-template', async (req, res) => {
     try {
@@ -71,18 +83,6 @@ router.get('/compose-template', async (req, res) => {
 // router.get('/compose', (req, res) => {
 //     res.render('compose-broadcast', { title: 'Compose Pesan Broadcast' });
 // });
-
-router.get('/prospek', (req, res) => {
-    res.render('prospek-usaha', { title: 'Prospek Usaha' });
-});
-
-router.get('/kompetitor', (req, res) => {
-    res.render('kompetitor-usaha', { title: 'Kompetitor Usaha' });
-});
-
-router.get('/kompetitor-detail', (req, res) => {
-    res.render('kompetitor-detail', { title: 'Detail Kompetitor' }); // No leading slash
-});
 
 
 router.get('/forms', (req, res) => {
@@ -114,16 +114,21 @@ router.get('/forms', (req, res) => {
 //     }
 // });
 
-// router.get('/broadcast-template', async (req, res) => {
-//     try {
-//         const groups = await fetchGroupBroadcast();
-//         // console.log('Groups to be rendered:', groups);
-//         res.render('broadcast-custom', { title: 'Broadcast Pesan', groups });
-//     } catch (error) {
-//         console.error('Error fetching groups:', error);
-//         res.status(500).send('Internal Server Error');
-//     }
-// });
+router.get('/broadcast-template', async (req, res) => {
+    try {
+        const groups = await fetchGroupBroadcast();
+        const templates = await fetchAllTemplates();
+        res.render('broadcast-template', {
+            title: 'Broadcast dari Template',
+            groups,
+            templates,
+        });
+    } catch (error) {
+        console.error('Error fetching groups or templates:', error);
+        res.status(500).send('Internal Server Error');
+    }
+});
+
 
 router.get('/broadcast-custom', async (req, res) => {
     try {

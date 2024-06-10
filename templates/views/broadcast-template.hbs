@@ -1,5 +1,5 @@
 <div>
-    <h1>Kirim Pesan Broadcast</h1>
+    <h1>Broadcast dari Pre-Made Template</h1>
 </div>
 
 <div class="container">
@@ -9,7 +9,7 @@
             <input type="text" id="broadcastNama" class="form-control" required>
         </div>
         <div class="form-group">
-            <label for="groupSelect">Pilih Group:</label>
+            <label for="groupSelect">Pilih Target Pengiriman:</label>
             <select id="groupSelect" class="form-control" required>
                 <option value="">Select a Group</option>
                 {{#each groups}}
@@ -17,8 +17,17 @@
                 {{/each}}
             </select>
         </div>
+        <label for="templateList">Daftar Template</label>
+        <div class="list-group" id="templateList">
+            {{#each templates}}
+            <label class="list-group-item mb-0 text-transform-none fw-normal ls-0 text-size-sm font-body">
+                <input class="form-check-input me-1" type="radio" name="list-group-radio" value="{{templateName}}" aria-label="...">
+                {{templateName}}
+            </label>
+            {{/each}}
+        </div>
+        <label for="messageText">Pesan:</label>
         <div class="form-group">
-            <label for="messageText">Pesan:</label>
             <textarea id="messageText" class="form-control" rows="4" required></textarea>
         </div>
         <button type="submit" class="btn btn-primary">Kirim Pesan</button>
@@ -30,6 +39,8 @@
         <p id="progressText">Progress = 0 out of 0 (0%)</p>
         <p id="currentMessage">Sending message to </p>
     </div>
+
+    
 </div>
 
 <script>
@@ -78,6 +89,24 @@
             } catch (error) {
                 console.error('Error sending group message:', error);
             }
+        });
+
+        document.querySelectorAll('input[name="list-group-radio"]').forEach(radio => {
+            radio.addEventListener('change', async function () {
+                const templateName = this.value;
+                try {
+                    const response = await fetch(`/api/get-template/${templateName}`);
+                    const template = await response.json();
+                    if (template.success) {
+                        document.getElementById('messageText').value = template.data.templateContent;
+                    } else {
+                        alert('Failed to fetch template details');
+                    }
+                } catch (error) {
+                    console.error('Error fetching template details:', error);
+                    alert('Error fetching template details');
+                }
+            });
         });
     });
 
