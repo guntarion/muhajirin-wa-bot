@@ -96,6 +96,66 @@ async function saveContactPersonal(data) {
     }
 }
 
+async function updateContactFromCSV(data) {
+    const sqlInsert = `
+        INSERT INTO contact_personal (
+            contactId,
+            contactNumber,
+            contactPlatform,
+            contactSebutan,
+            contactStoredName,
+            contactPicUrl,
+            contactPublishedName,
+            contactSavedName,
+            isBusiness,
+            isMyContact,
+            type_1,
+            type_2,
+            type_3,
+            contactAddress,
+            contactRW,
+            contactRT,
+            note_1,
+            note_2,
+            contactGender
+        )
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        ON DUPLICATE KEY UPDATE 
+            type_1 = VALUES(type_1),
+            type_2 = VALUES(type_2),
+            note_1 = VALUES(note_1),
+            note_2 = VALUES(note_2)
+    `;
+
+    try {
+        await pool.query(sqlInsert, [
+            data.contactId,
+            data.contactNumber,
+            data.contactPlatform,
+            data.contactSebutan,
+            data.contactStoredName || 'Unknown',
+            data.contactPicUrl,
+            data.contactPublishedName,
+            data.contactSavedName,
+            data.isBusiness,
+            data.isMyContact,
+            data.type_1,
+            data.type_2,
+            data.type_3,
+            data.contactAddress,
+            data.contactRW,
+            data.contactRT,
+            data.note_1,
+            data.note_2,
+            data.contactGender,
+        ]);
+    } catch (error) {
+        console.error('Error updating contact personal:', error);
+        throw error;
+    }
+}
+
+
 async function saveContact(data) {
     const {
         dateTime,
@@ -486,6 +546,7 @@ async function fetchAllTemplates() {
 module.exports = {
     contactExists,
     saveContactPersonal,
+    updateContactFromCSV,
     saveContact,
     saveRegistration,
     saveMessage,

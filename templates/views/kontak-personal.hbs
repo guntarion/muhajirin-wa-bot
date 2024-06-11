@@ -6,6 +6,7 @@
     <label>Selected Person:</label>
     <ul id="selectedPersonsList"></ul> <!-- Placeholder for the list of selected persons -->
     <button id="createGroupBtn" type="button" class="btn btn-primary mt-2">Create Group</button>
+    <button id="selectAllBtn" type="button" class="btn btn-success mt-2">Select All</button> <!-- New Select All button -->
     <button id="unselectAllBtn" type="button" class="btn btn-warning mt-2">Unselect All</button>
     <select id="groupSelect" class="form-control mt-3">
         <option value="">Select a Group</option>
@@ -117,15 +118,11 @@
 <script src="js/jquery.min.js"></script>
 <script src="js/bs-datatable.js"></script>
 
-
 <script>
     jQuery(document).ready(function () {
-        jQuery('#contactIndividual').dataTable();
+        jQuery('#chatDataTable').dataTable();
     });
-</script>
 
-
-<script>
     document.addEventListener('DOMContentLoaded', function () {
         const selectedList = document.getElementById('selectedPersonsList');
         const groupContainer = document.getElementById('groupContainer');
@@ -139,6 +136,7 @@
         const deleteGroupBtn = document.getElementById('deleteGroupBtn');
         const addSelectedToGroupBtn = document.getElementById('addSelectedToGroupBtn');
         const unselectAllBtn = document.getElementById('unselectAllBtn');
+        const selectAllBtn = document.getElementById('selectAllBtn'); // New Select All button
         let currentGroupId = null;
 
         const updateSelectedList = () => {
@@ -392,6 +390,15 @@
             const checkboxes = document.querySelectorAll('.select-checkbox');
             checkboxes.forEach((checkbox) => {
                 checkbox.checked = false;
+            });
+            updateSelectedList();
+        });
+
+        // Event listener for select all button
+        selectAllBtn.addEventListener('click', () => {
+            const checkboxes = document.querySelectorAll('.select-checkbox');
+            checkboxes.forEach((checkbox) => {
+                checkbox.checked = true;
             });
             updateSelectedList();
         });
