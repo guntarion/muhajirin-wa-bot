@@ -141,13 +141,31 @@ router.get('/broadcast-custom', async (req, res) => {
     }
 });
 
-router.get('/kontak-personal', async (req, res) => {
+
+router.get('/kontak-kelola-data', async (req, res) => {
+    try {
+        const contacts = await getAllContactsPersonal();
+
+        res.render('kontak-kelola-data', {
+            title: 'Kontak Buat Grup',
+            contacts,
+        });
+    } catch (error) {
+        console.error('Error fetching contacts or groups:', error);
+        res.status(500).send('Internal Server Error');
+    }
+});
+
+
+
+
+router.get('/kontak-buat-grup', async (req, res) => {
     try {
         const contacts = await getAllContactsPersonal();
         const groups = await fetchGroupBroadcast();
 
-        res.render('kontak-personal', {
-            title: 'Kontak Personal',
+        res.render('kontak-buat-grup', {
+            title: 'Kontak Buat Grup',
             contacts,
             groups,
         });

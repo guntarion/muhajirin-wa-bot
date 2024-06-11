@@ -14,7 +14,7 @@ const fs = require('fs');
 let isTestMode = false;
 
 const enableTestMode = () => {
-    // isTestMode = true;
+    isTestMode = true;
 };
 
 const sendMessage = async (chatId, text) => {

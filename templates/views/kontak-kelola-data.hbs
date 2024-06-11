@@ -1,0 +1,571 @@
+
+<div>
+    <h1>Data Kontak - Individual</h1>
+</div>
+
+<!-- Form for adding new contact -->
+<div class="col-12">
+    <h2>Tambah Kontak Baru</h2>
+    <form id="addContactForm">
+        <div class="row">
+            <div class="form-group col-md-6">
+                <label for="contactId">Contact ID:</label>
+                <input type="text" id="contactId" class="form-control" required>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="contactNumber">Contact Number:</label>
+                <input type="text" id="contactNumber" class="form-control" required>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-6">
+                <label for="contactPlatform">Contact Platform:</label>
+                <input type="text" id="contactPlatform" class="form-control">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="contactSebutan">Contact Sebutan:</label>
+                <input type="text" id="contactSebutan" class="form-control">
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-6">
+                <label for="contactStoredName">Contact Stored Name:</label>
+                <input type="text" id="contactStoredName" class="form-control">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="contactPicUrl">Contact Pic URL:</label>
+                <input type="text" id="contactPicUrl" class="form-control">
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-6">
+                <label for="contactPublishedName">Contact Published Name:</label>
+                <input type="text" id="contactPublishedName" class="form-control">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="contactSavedName">Contact Saved Name:</label>
+                <input type="text" id="contactSavedName" class="form-control">
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-6">
+                <label for="isBusiness">Is Business:</label>
+                <input type="checkbox" id="isBusiness" class="form-check-input">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="isMyContact">Is My Contact:</label>
+                <input type="checkbox" id="isMyContact" class="form-check-input">
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-4">
+                <label for="type_1">Type 1:</label>
+                <input type="text" id="type_1" class="form-control">
+            </div>
+            <div class="form-group col-md-4">
+                <label for="type_2">Type 2:</label>
+                <input type="text" id="type_2" class="form-control">
+            </div>
+            <div class="form-group col-md-4">
+                <label for="type_3">Type 3:</label>
+                <input type="text" id="type_3" class="form-control">
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-6">
+                <label for="contactAddress">Contact Address:</label>
+                <input type="text" id="contactAddress" class="form-control">
+            </div>
+            <div class="form-group col-md-3">
+                <label for="contactRW">Contact RW:</label>
+                <input type="text" id="contactRW" class="form-control">
+            </div>
+            <div class="form-group col-md-3">
+                <label for="contactRT">Contact RT:</label>
+                <input type="text" id="contactRT" class="form-control">
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-6">
+                <label for="note_1">Note 1:</label>
+                <input type="text" id="note_1" class="form-control">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="note_2">Note 2:</label>
+                <input type="text" id="note_2" class="form-control">
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-6">
+                <label for="contactGender">Contact Gender:</label>
+                <input type="text" id="contactGender" class="form-control">
+            </div>
+        </div>
+        <button type="submit" class="btn btn-success">Tambah Kontak</button>
+    </form>
+</div>
+
+
+<div class="content">
+    <h2>Daftar Kontak</h2>
+    <div class="table-responsive">
+        <table id="chatDataTable" class="table table-striped table-bordered" cellspacing="0" width="100%">
+            <thead>
+                <tr>
+                    <th>Select</th>
+                    <th>contactId</th>
+                    <th>contactNumber</th>
+                    <th>contactPlatform</th>
+                    <th>contactStoredName</th>
+                    <th>contactPicUrl</th>
+                    <th>contactPublishedName</th>
+                    <th>contactSavedName</th>
+                    <th>isBusiness</th>
+                    <th>isMyContact</th>
+                    <th>type_1</th>
+                    <th>type_2</th>
+                    <th>type_3</th>
+                    <th>contactAddress</th>
+                    <th>contactRW</th>
+                    <th>contactRT</th>
+                    <th>note_1</th>
+                    <th>note_2</th>
+                    <th>contactGender</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                    <th>Select</th>
+                    <th>contactId</th>
+                    <th>contactNumber</th>
+                    <th>contactPlatform</th>
+                    <th>contactStoredName</th>
+                    <th>contactPicUrl</th>
+                    <th>contactPublishedName</th>
+                    <th>contactSavedName</th>
+                    <th>isBusiness</th>
+                    <th>isMyContact</th>
+                    <th>type_1</th>
+                    <th>type_2</th>
+                    <th>type_3</th>
+                    <th>contactAddress</th>
+                    <th>contactRW</th>
+                    <th>contactRT</th>
+                    <th>note_1</th>
+                    <th>note_2</th>
+                    <th>contactGender</th>
+                    <th>Actions</th>
+                </tr>
+            </tfoot>
+            <tbody>
+                {{#each contacts}}
+                <tr>
+                    <td><input type="checkbox" class="select-checkbox" data-id="{{contactId}}"
+                            data-name="{{contactStoredName}}" data-number="{{contactNumber}}"></td>
+                    <td>{{contactId}}</td>
+                    <td>{{contactNumber}}</td>
+                    <td>{{contactPlatform}}</td>
+                    <td>{{contactStoredName}}</td>
+                    <td><img src="{{contactPicUrl}}" alt="Profile Picture" style="width:50px;height:50px;"></td>
+                    <td>{{contactPublishedName}}</td>
+                    <td>{{contactSavedName}}</td>
+                    <td>{{isBusiness}}</td>
+                    <td>{{isMyContact}}</td>
+                    <td>{{type_1}}</td>
+                    <td>{{type_2}}</td>
+                    <td>{{type_3}}</td>
+                    <td>{{contactAddress}}</td>
+                    <td>{{contactRW}}</td>
+                    <td>{{contactRT}}</td>
+                    <td>{{note_1}}</td>
+                    <td>{{note_2}}</td>
+                    <td>{{contactGender}}</td>
+                    <td>
+                        <button class="btn btn-primary edit-contact" data-id="{{contactId}}">Edit</button>
+                        <button class="btn btn-danger delete-contact" data-id="{{contactId}}">Delete</button>
+                    </td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Modal for editing contact -->
+<div id="editContactModal" class="modal fade text-start bs-example-modal-scrollable" tabindex="-1" role="dialog"
+    aria-labelledby="editContactModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="editContactModalLabel">Edit Kontak</h4>
+                <button type="button" class="btn-close btn-sm" data-bs-dismiss="modal" aria-hidden="true"></button>
+            </div>
+            <div class="modal-body">
+                <form id="editContactForm">
+                    <input type="hidden" id="edit-contactId">
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label for="edit-contactNumber">Contact Number:</label>
+                            <input type="text" id="edit-contactNumber" class="form-control" required>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="edit-contactPlatform">Contact Platform:</label>
+                            <input type="text" id="edit-contactPlatform" class="form-control">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label for="edit-contactSebutan">Contact Sebutan:</label>
+                            <input type="text" id="edit-contactSebutan" class="form-control">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="edit-contactStoredName">Contact Stored Name:</label>
+                            <input type="text" id="edit-contactStoredName" class="form-control">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label for="edit-contactPicUrl">Contact Pic URL:</label>
+                            <input type="text" id="edit-contactPicUrl" class="form-control">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="edit-contactPublishedName">Contact Published Name:</label>
+                            <input type="text" id="edit-contactPublishedName" class="form-control">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label for="edit-contactSavedName">Contact Saved Name:</label>
+                            <input type="text" id="edit-contactSavedName" class="form-control">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="edit-isBusiness">Is Business:</label>
+                            <input type="checkbox" id="edit-isBusiness" class="form-check-input">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="edit-isMyContact">Is My Contact:</label>
+                            <input type="checkbox" id="edit-isMyContact" class="form-check-input">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-4">
+                            <label for="edit-type_1">Type 1:</label>
+                            <input type="text" id="edit-type_1" class="form-control">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="edit-type_2">Type 2:</label>
+                            <input type="text" id="edit-type_2" class="form-control">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="edit-type_3">Type 3:</label>
+                            <input type="text" id="edit-type_3" class="form-control">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label for="edit-contactAddress">Contact Address:</label>
+                            <input type="text" id="edit-contactAddress" class="form-control">
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="edit-contactRW">Contact RW:</label>
+                            <input type="text" id="edit-contactRW" class="form-control">
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="edit-contactRT">Contact RT:</label>
+                            <input type="text" id="edit-contactRT" class="form-control">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label for="edit-note_1">Note 1:</label>
+                            <input type="text" id="edit-note_1" class="form-control">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="edit-note_2">Note 2:</label>
+                            <input type="text" id="edit-note_2" class="form-control">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label for="edit-contactGender">Contact Gender:</label>
+                            <input type="text" id="edit-contactGender" class="form-control">
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Update Kontak</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script src="js/jquery.min.js"></script>
+<script src="js/bs-datatable.js"></script>
+
+<script>
+    jQuery(document).ready(function () {
+        jQuery('#chatDataTable').dataTable();
+    });
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const selectedList = document.getElementById('selectedPersonsList');
+        
+        const editContactModalElement = document.getElementById('editContactModal');
+        const editContactModal = new bootstrap.Modal(editContactModalElement);
+        
+        const closeModalBtn = document.querySelector('.close');
+        const unselectAllBtn = document.getElementById('unselectAllBtn');
+        const selectAllBtn = document.getElementById('selectAllBtn');
+
+        const updateSelectedList = () => {
+            selectedList.innerHTML = ''; // Clear the list
+            const checkboxes = document.querySelectorAll('.select-checkbox:checked');
+            checkboxes.forEach((checkbox, index) => {
+                const name = checkbox.getAttribute('data-name');
+                const listItem = document.createElement('li');
+                listItem.textContent = `${index + 1}. ${name}`; // Create list item with the name
+                selectedList.appendChild(listItem); // Add the list item to the list
+            });
+        };
+
+        // Event listener for checkboxes
+        const checkboxes = document.querySelectorAll('.select-checkbox');
+        if (checkboxes) {
+            checkboxes.forEach((checkbox) => {
+                checkbox.addEventListener('change', updateSelectedList);
+            });
+        }
+
+        // Event listener for add contact form submission
+        document.getElementById('addContactForm').addEventListener('submit', async function (event) {
+            event.preventDefault();
+            const data = {
+                contactId: document.getElementById('contactId').value,
+                contactNumber: document.getElementById('contactNumber').value,
+                contactPlatform: document.getElementById('contactPlatform').value,
+                contactSebutan: document.getElementById('contactSebutan').value,
+                contactStoredName: document.getElementById('contactStoredName').value,
+                contactPicUrl: document.getElementById('contactPicUrl').value,
+                contactPublishedName: document.getElementById('contactPublishedName').value,
+                contactSavedName: document.getElementById('contactSavedName').value,
+                isBusiness: document.getElementById('isBusiness').checked,
+                isMyContact: document.getElementById('isMyContact').checked,
+                type_1: document.getElementById('type_1').value,
+                type_2: document.getElementById('type_2').value,
+                type_3: document.getElementById('type_3').value,
+                contactAddress: document.getElementById('contactAddress').value,
+                contactRW: document.getElementById('contactRW').value,
+                contactRT: document.getElementById('contactRT').value,
+                note_1: document.getElementById('note_1').value,
+                note_2: document.getElementById('note_2').value,
+                contactGender: document.getElementById('contactGender').value
+            };
+
+            try {
+                const response = await fetch('/api/insert-contact', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                });
+                const result = await response.json();
+                if (result.success) {
+                    alert('Contact added successfully');
+                    location.reload(); // Reload the page to reflect the changes
+                } else {
+                    alert('Failed to add contact');
+                }
+            } catch (error) {
+                console.error('Error adding contact:', error);
+                alert('Error adding contact');
+            }
+        });
+
+        // Event listener for edit contact button
+        document.querySelectorAll('.edit-contact').forEach(button => {
+            button.addEventListener('click', async (event) => {
+                const contactId = event.target.getAttribute('data-id');
+                try {
+                    const response = await fetch(`/api/get-contact/${contactId}`);
+                    const result = await response.json();
+                    if (result.success) {
+                        const data = result.data;
+
+                        if (document.getElementById('edit-contactId')) document.getElementById('edit-contactId').value = data.contactId;
+                        if (document.getElementById('edit-contactNumber')) document.getElementById('edit-contactNumber').value = data.contactNumber;
+                        if (document.getElementById('edit-contactPlatform')) document.getElementById('edit-contactPlatform').value = data.contactPlatform;
+                        if (document.getElementById('edit-contactSebutan')) document.getElementById('edit-contactSebutan').value = data.contactSebutan;
+                        if (document.getElementById('edit-contactStoredName')) document.getElementById('edit-contactStoredName').value = data.contactStoredName;
+                        if (document.getElementById('edit-contactPicUrl')) document.getElementById('edit-contactPicUrl').value = data.contactPicUrl;
+                        if (document.getElementById('edit-contactPublishedName')) document.getElementById('edit-contactPublishedName').value = data.contactPublishedName;
+                        if (document.getElementById('edit-contactSavedName')) document.getElementById('edit-contactSavedName').value = data.contactSavedName;
+                        if (document.getElementById('edit-isBusiness')) document.getElementById('edit-isBusiness').checked = data.isBusiness;
+                        if (document.getElementById('edit-isMyContact')) document.getElementById('edit-isMyContact').checked = data.isMyContact;
+                        if (document.getElementById('edit-type_1')) document.getElementById('edit-type_1').value = data.type_1;
+                        if (document.getElementById('edit-type_2')) document.getElementById('edit-type_2').value = data.type_2;
+                        if (document.getElementById('edit-type_3')) document.getElementById('edit-type_3').value = data.type_3;
+                        if (document.getElementById('edit-contactAddress')) document.getElementById('edit-contactAddress').value = data.contactAddress;
+                        if (document.getElementById('edit-contactRW')) document.getElementById('edit-contactRW').value = data.contactRW;
+                        if (document.getElementById('edit-contactRT')) document.getElementById('edit-contactRT').value = data.contactRT;
+                        if (document.getElementById('edit-note_1')) document.getElementById('edit-note_1').value = data.note_1;
+                        if (document.getElementById('edit-note_2')) document.getElementById('edit-note_2').value = data.note_2;
+                        if (document.getElementById('edit-contactGender')) document.getElementById('edit-contactGender').value = data.contactGender;
+
+                        editContactModal.show();
+                    } else {
+                        alert('Failed to fetch contact details');
+                    }
+                } catch (error) {
+                    console.error('Error fetching contact details:', error);
+                    alert('Error fetching contact details');
+                }
+            });
+        });
+
+        // Event listener for edit contact form submission
+        document.getElementById('editContactForm').addEventListener('submit', async function (event) {
+            event.preventDefault();
+            const data = {
+                contactId: document.getElementById('edit-contactId').value,
+                contactNumber: document.getElementById('edit-contactNumber').value,
+                contactPlatform: document.getElementById('edit-contactPlatform').value,
+                contactSebutan: document.getElementById('edit-contactSebutan').value,
+                contactStoredName: document.getElementById('edit-contactStoredName').value,
+                contactPicUrl: document.getElementById('edit-contactPicUrl').value,
+                contactPublishedName: document.getElementById('edit-contactPublishedName').value,
+                contactSavedName: document.getElementById('edit-contactSavedName').value,
+                isBusiness: document.getElementById('edit-isBusiness').checked,
+                isMyContact: document.getElementById('edit-isMyContact').checked,
+                type_1: document.getElementById('edit-type_1').value,
+                type_2: document.getElementById('edit-type_2').value,
+                type_3: document.getElementById('edit-type_3').value,
+                contactAddress: document.getElementById('edit-contactAddress').value,
+                contactRW: document.getElementById('edit-contactRW').value,
+                contactRT: document.getElementById('edit-contactRT').value,
+                note_1: document.getElementById('edit-note_1').value,
+                note_2: document.getElementById('edit-note_2').value,
+                contactGender: document.getElementById('edit-contactGender').value
+            };
+
+            try {
+                const response = await fetch('/api/update-contact', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                });
+                const result = await response.json();
+                if (result.success) {
+                    alert('Contact updated successfully');
+                    editContactModal.hide();
+                    location.reload(); // Reload the page to reflect the changes
+                } else {
+                    alert('Failed to update contact');
+                }
+            } catch (error) {
+                console.error('Error updating contact:', error);
+                alert('Error updating contact');
+            }
+        });
+
+
+
+        // Event listener for delete contact button
+        document.querySelectorAll('.delete-contact').forEach(button => {
+            button.addEventListener('click', async (event) => {
+                const contactId = event.target.getAttribute('data-id');
+                if (confirm('Are you sure you want to delete this contact?')) {
+                    try {
+                        const response = await fetch(`/api/delete-contact/${contactId}`, {
+                            method: 'DELETE'
+                        });
+                        const result = await response.json();
+                        if (result.success) {
+                            alert('Contact deleted successfully');
+                            location.reload(); // Reload the page to reflect the changes
+                        } else {
+                            alert('Failed to delete contact');
+                        }
+                    } catch (error) {
+                        console.error('Error deleting contact:', error);
+                        alert('Error deleting contact');
+                    }
+                }
+            });
+        });
+
+        // Event listener for modal close button
+        closeModalBtn.addEventListener('click', () => {
+            editContactModal.hide();
+        });
+
+        // Event listener for edit contact form submission
+        document.getElementById('editContactForm').addEventListener('submit', async function (event) {
+            event.preventDefault();
+            const data = {
+                contactId: document.getElementById('edit-contactId').value,
+                contactNumber: document.getElementById('edit-contactNumber').value,
+                contactPlatform: document.getElementById('edit-contactPlatform').value,
+                contactSebutan: document.getElementById('edit-contactSebutan').value,
+                contactStoredName: document.getElementById('edit-contactStoredName').value,
+                contactPicUrl: document.getElementById('edit-contactPicUrl').value,
+                contactPublishedName: document.getElementById('edit-contactPublishedName').value,
+                contactSavedName: document.getElementById('edit-contactSavedName').value,
+                isBusiness: document.getElementById('edit-isBusiness').checked,
+                isMyContact: document.getElementById('edit-isMyContact').checked,
+                type_1: document.getElementById('edit-type_1').value,
+                type_2: document.getElementById('edit-type_2').value,
+                type_3: document.getElementById('edit-type_3').value,
+                contactAddress: document.getElementById('edit-contactAddress').value,
+                contactRW: document.getElementById('edit-contactRW').value,
+                contactRT: document.getElementById('edit-contactRT').value,
+                note_1: document.getElementById('edit-note_1').value,
+                note_2: document.getElementById('edit-note_2').value,
+                contactGender: document.getElementById('edit-contactGender').value
+            };
+
+            try {
+                const response = await fetch('/api/update-contact', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                });
+                const result = await response.json();
+                if (result.success) {
+                    alert('Contact updated successfully');
+                    editContactModal.hide();
+                    location.reload(); // Reload the page to reflect the changes
+                } else {
+                    alert('Failed to update contact');
+                }
+            } catch (error) {
+                console.error('Error updating contact:', error);
+                alert('Error updating contact');
+            }
+        });
+
+        // Event listener for select all button
+        selectAllBtn.addEventListener('click', () => {
+            const checkboxes = document.querySelectorAll('.select-checkbox');
+            checkboxes.forEach((checkbox) => {
+                checkbox.checked = true;
+            });
+            updateSelectedList();
+        });
+
+        // Event listener for unselect all button
+        unselectAllBtn.addEventListener('click', () => {
+            const checkboxes = document.querySelectorAll('.select-checkbox');
+            checkboxes.forEach((checkbox) => {
+                checkbox.checked = false;
+            });
+            updateSelectedList();
+        });
+    });
+</script>

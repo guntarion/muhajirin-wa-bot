@@ -25,6 +25,10 @@ const {
     // fetchGroupBroadcastMembers,
     // fetchGroupMembersPhoneNumbers,
     // storeProgress,
+    getContactById,
+    insertContact,
+    updateContact,
+    deleteContact,
     fetchGroupMembersDetails,
     storeBroadcastLog,
     getProgress,
@@ -374,6 +378,67 @@ router.get('/get-template/:templateName', async (req, res) => {
         res.status(500).json({ error: 'Failed to fetch template details' });
     }
 });
+
+
+// Route to insert a new contact
+router.post('/insert-contact', async (req, res) => {
+    const data = req.body;
+
+    if (!data.contactId || !data.contactNumber) {
+        return res.status(400).json({ success: false, message: 'Contact ID and Contact Number are required' });
+    }
+
+    try {
+        await insertContact(data);
+        res.status(201).json({ success: true, message: 'Contact inserted successfully' });
+    } catch (error) {
+        console.error('Error inserting contact:', error);
+        res.status(500).json({ success: false, message: 'Failed to insert contact' });
+    }
+});
+
+
+router.get('/get-contact/:contactId', async (req, res) => {
+    const { contactId } = req.params;
+    try {
+        const contact = await getContactById(contactId);
+        if (contact) {
+            res.json({ success: true, data: contact });
+        } else {
+            res.status(404).json({
+                success: false,
+                error: 'Contact not found',
+            });
+        }
+    } catch (error) {
+        console.error('Error fetching contact:', error);
+        res.status(500).json({ error: 'Failed to fetch contact' });
+    }
+});
+
+router.post('/update-contact', async (req, res) => {
+    const data = req.body;
+    try {
+        await updateContact(data.contactId, data);
+        res.json({ success: true });
+    } catch (error) {
+        console.error('Error updating contact:', error);
+        res.status(500).json({ error: 'Failed to update contact' });
+    }
+});
+
+
+router.delete('/delete-contact/:contactId', async (req, res) => {
+    const { contactId } = req.params;
+    try {
+        await deleteContact(contactId);
+        res.json({ success: true });
+    } catch (error) {
+        console.error('Error deleting contact:', error);
+        res.status(500).json({ error: 'Failed to delete contact' });
+    }
+});
+
 
 
 router.post('/send-message', sendMessage);

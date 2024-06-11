@@ -44,6 +44,130 @@ async function contactExists(contactId) {
     return rows.length > 0;
 }
 
+async function getAllContactsPersonal() {
+    const sql = 'SELECT * FROM contact_personal';
+    try {
+        const [rows] = await pool.query(sql);
+        return rows;
+    } catch (error) {
+        console.error('Error fetching all contacts:', error);
+        throw error;
+    }
+}
+
+async function getContactById(contactId) {
+    const sql = 'SELECT * FROM contact_personal WHERE contactId = ?';
+    try {
+        const [rows] = await pool.query(sql, [contactId]);
+        return rows[0];
+    } catch (error) {
+        console.error('Error fetching contact by ID:', error);
+        throw error;
+    }
+}
+
+async function insertContact(data) {
+    const sqlInsert = `
+        INSERT INTO contact_personal (
+            contactId,
+            contactNumber,
+            contactPlatform,
+            contactSebutan,
+            contactStoredName,
+            contactPicUrl,
+            contactPublishedName,
+            contactSavedName,
+            isBusiness,
+            isMyContact,
+            type_1,
+            type_2,
+            type_3,
+            contactAddress,
+            contactRW,
+            contactRT,
+            note_1,
+            note_2,
+            contactGender
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    `;
+    try {
+        await pool.query(sqlInsert, [
+            data.contactId,
+            data.contactNumber,
+            data.contactPlatform,
+            data.contactSebutan,
+            data.contactStoredName,
+            data.contactPicUrl,
+            data.contactPublishedName,
+            data.contactSavedName,
+            data.isBusiness,
+            data.isMyContact,
+            data.type_1,
+            data.type_2,
+            data.type_3,
+            data.contactAddress,
+            data.contactRW,
+            data.contactRT,
+            data.note_1,
+            data.note_2,
+            data.contactGender,
+        ]);
+    } catch (error) {
+        console.error('Error inserting contact:', error);
+        throw error;
+    }
+}
+
+// mysqldb.js
+async function updateContact(contactId, data) {
+    const sqlUpdate = `
+        UPDATE contact_personal
+        SET contactNumber = ?, contactPlatform = ?, contactSebutan = ?, contactStoredName = ?, contactPicUrl = ?, contactPublishedName = ?, contactSavedName = ?, isBusiness = ?, isMyContact = ?, type_1 = ?, type_2 = ?, type_3 = ?, contactAddress = ?, contactRW = ?, contactRT = ?, note_1 = ?, note_2 = ?, contactGender = ?
+        WHERE contactId = ?
+    `;
+    try {
+        await pool.query(sqlUpdate, [
+            data.contactNumber,
+            data.contactPlatform,
+            data.contactSebutan,
+            data.contactStoredName,
+            data.contactPicUrl,
+            data.contactPublishedName,
+            data.contactSavedName,
+            data.isBusiness,
+            data.isMyContact,
+            data.type_1,
+            data.type_2,
+            data.type_3,
+            data.contactAddress,
+            data.contactRW,
+            data.contactRT,
+            data.note_1,
+            data.note_2,
+            data.contactGender,
+            contactId,
+        ]);
+    } catch (error) {
+        console.error('Error updating contact:', error);
+        throw error;
+    }
+}
+
+
+
+async function deleteContact(contactId) {
+    const sqlDelete = 'DELETE FROM contact_personal WHERE contactId = ?';
+    try {
+        await pool.query(sqlDelete, [contactId]);
+    } catch (error) {
+        console.error('Error deleting contact:', error);
+        throw error;
+    }
+}
+
+
+
+
 async function saveContactPersonal(data) {
     const sqlInsert = `
         INSERT INTO contact_personal (
@@ -245,16 +369,16 @@ async function saveMessage(data) {
     );
 }
 
-async function getAllContactsPersonal() {
-    const sql = 'SELECT * FROM contact_personal';
-    try {
-        const [rows] = await pool.query(sql);
-        return rows;
-    } catch (error) {
-        console.error('Error fetching contact personal:', error);
-        throw error;
-    }
-}
+// async function getAllContactsPersonal() {
+//     const sql = 'SELECT * FROM contact_personal';
+//     try {
+//         const [rows] = await pool.query(sql);
+//         return rows;
+//     } catch (error) {
+//         console.error('Error fetching contact personal:', error);
+//         throw error;
+//     }
+// }
 
 
 // async function fetchGroupBroadcast() {
@@ -545,6 +669,10 @@ async function fetchAllTemplates() {
 
 module.exports = {
     contactExists,
+    getContactById,
+    insertContact,
+    updateContact,
+    deleteContact,
     saveContactPersonal,
     updateContactFromCSV,
     saveContact,
