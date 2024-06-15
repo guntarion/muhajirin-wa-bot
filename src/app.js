@@ -4,6 +4,7 @@ const http = require('http');
 const path = require('path');
 const { engine } = require('express-handlebars');
 const WebSocket = require('ws');
+const cors = require('cors'); // Importing cors middleware
 require('dotenv').config();
 
 const client = require('../whatsapp/muhaclient');
@@ -12,6 +13,9 @@ const apiRoutes = require('../routes/apiRoutes');
 
 const app = express();
 const port = process.env.PORT || 3050;
+
+// Use CORS middleware
+app.use(cors()); // Enable CORS for all routes
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -53,7 +57,7 @@ app.use('/api', apiRoutes); // Includes messageRoutes, healthRoute
 app.use(viewRoutes); // Routes for serving HTML pages
 
 // Initialize WhatsApp client
-// client.initialize();
+client.initialize();
 
 // WebSocket server setup
 const server = http.createServer(app);
