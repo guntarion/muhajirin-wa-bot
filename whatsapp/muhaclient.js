@@ -3,7 +3,7 @@ const { Client, LocalAuth, MessageMedia } = require('../index'); // Adjust the p
 const qrcode = require('qrcode-terminal');
 const fs = require('fs');
 const { createObjectCsvWriter } = require('csv-writer');
-const cron = require('node-cron');
+// const cron = require('node-cron');
 
 const nasehatList = require('../models/nasehatData');
 const haditsData = require('../models/haditsMuslimData');
@@ -40,8 +40,8 @@ const {
     appendMuhajirinToSheet,
     inputRegistrasiPanitiaQurban,
     getInfoKegiatanLayananMuhajirin,
-    getInfoQurban,
-    getInfoKhitan,
+    // getInfoQurban,
+    // getInfoKhitan,
     convertTo24Hour,
     adjustTime,
     googleAuth,
@@ -110,6 +110,7 @@ client.on('ready', async () => {
     //     console.error('Error fetching contact details:', error);
     // }
 
+    /*
     // Schedule a message to be sent every morning at 5 AM (GMT +7)
     cron.schedule('0 5 * * *', async () => {
         // const groupId = '62811334932-1630463874@g.us'; // Replace with your group ID
@@ -140,7 +141,7 @@ client.on('ready', async () => {
     }, {
         timezone: 'Asia/Jakarta' // Set timezone to GMT +7
     });
-
+*/
 
 });
 

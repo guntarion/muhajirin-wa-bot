@@ -1,0 +1,16 @@
+
+- Ada paket timbang tambahan: 
+	- featuring tulang yang masih berdaging.
+	- jeroan sapi 1/2 kg untuk panitia
+- Ada paket inventori tambahan: 
+	- sapi 1/2 dan kambing 1/2, ditambah tulang yg masih berdaging
+	- kambing 1/2 dan sapi 1/2. Maksudnya, tidak ada paket kambing 1 kg, melainkan selalu berpasangan dg daging sapi
+- Bikin checklist yang phone-friendly untuk distribusi. Apapun, petugas inventori keluar harus bisa mengoperasikan sambil berdiri
+- Sinkronisasi hitungan antara rekap timbang dan inventori, sekaligus ditunjukkan. Atau ada panel admin khusus untuk mengamati perbedaan antara keduanya. Perlu muncul info `harusnya` seperti apa.
+- Bagaimana sinkron data antara google form ke database aplikasi
+- Pembagian kelompok otomatis sesuai lokasi
+- Monitoring penyembelihan perlu masuk infonya di database. Saat ini, begitu refresh, datanya hilang.
+- Angka target perolehan antar data-timbang dan inventori, belum sinkron
+- Template pesan khusus untuk RT, lembaga, individu.
+- Kirim pesan untuk pengqurban
+- Kirim gambar di WA
